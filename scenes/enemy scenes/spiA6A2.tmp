@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbsssjjkhekwl"]
+
+[ext_resource type="Script" path="res://scripts/enemy scripts/spikewalkerenemyscript.gd" id="1_2jpkr"]
+[ext_resource type="PackedScene" uid="uid://du1j44gmra2u0" path="res://scenes/cell part scenes/basiccell.tscn" id="2_kkjym"]
+[ext_resource type="PackedScene" uid="uid://c2meu00vdcdgv" path="res://assets/cell parts/outernailmod.glb" id="3_dam08"]
+[ext_resource type="Script" path="res://scripts/enemy scripts/EnemyMovementScript.gd" id="4_ty5ci"]
+[ext_resource type="Script" path="res://scripts/enemy scripts/EnemyRotationScript.gd" id="5_mobro"]
+[ext_resource type="Script" path="res://scripts/enemy scripts/EnemyGetRotationDirection.gd" id="6_gu1wh"]
+[ext_resource type="Script" path="res://scripts/enemy scripts/EnemyMoveForwardScript.gd" id="7_kp7gg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mj06n"]
+radius = 0.2
+height = 0.9
+
+[node name="SpikeWalker" type="CharacterBody3D"]
+collision_layer = 65
+collision_mask = 111
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_2jpkr")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="basiccell" parent="Body" instance=ExtResource("2_kkjym")]
+
+[node name="outernailmod" parent="Body" instance=ExtResource("3_dam08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125939, 0, 0.892476)
+
+[node name="Corecollisionbox" type="CollisionPolygon3D" parent="." groups=["cellcolbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.082, 0)
+depth = 0.56
+polygon = PackedVector2Array(-0.738773, -0.426488, 0.00112882, -0.842979, 0.726563, -0.414172, 0.715015, 0.423066, 0.00159931, 0.847332, -0.731241, 0.432129)
+margin = 0.08
+
+[node name="outernailmodcolbox" type="CollisionShape3D" parent="." groups=["outermodcolbox", "playercollisionbox"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00426114, 0.0368116, 0.751222)
+shape = SubResource("CapsuleShape3D_mj06n")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MovementComponent" type="Node" parent="Components"]
+script = ExtResource("4_ty5ci")
+
+[node name="RotationComponent" type="Node" parent="Components"]
+script = ExtResource("5_mobro")
+
+[node name="GetRotationDirectionComponent" type="Node3D" parent="Components"]
+script = ExtResource("6_gu1wh")
+
+[node name="EnemyMoveForwardComponent" type="Node" parent="Components"]
+script = ExtResource("7_kp7gg")

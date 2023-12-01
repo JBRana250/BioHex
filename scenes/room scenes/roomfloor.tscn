@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://k88bnoqkp1r5"]
+
+[ext_resource type="PackedScene" uid="uid://bv8bhpg8s24sy" path="res://assets/room assets/arenaground.glb" id="1_udjax"]
+
+[node name="ArenaGround" type="StaticBody3D"]
+collision_layer = 32
+collision_mask = 27
+
+[node name="arenaground" parent="." instance=ExtResource("1_udjax")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+
+[node name="arenagroundcollision" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(21.6506, -12.5, 5.46392e-07, 0, -1.09278e-06, -25, 12.5, 21.6506, -9.4638e-07, 0, 0, 0)
+depth = 0.02
+polygon = PackedVector2Array(-0.870318, -0.50061, -0.00707579, -1.00299, 0.86678, -0.507686, 0.870318, 0.504148, 0, 0.999451, -0.870318, 0.497072)

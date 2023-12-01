@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8x1oxdqk483r"]
+
+[ext_resource type="PackedScene" uid="uid://didrf2sf1504f" path="res://assets/cell parts/generalplayer/basiccellcaster.glb" id="1_dclt1"]
+[ext_resource type="Script" path="res://scenes/cell part scenes/RangedDamageComponent.gd" id="2_wwqrq"]
+
+[node name="basiccellcaster" instance=ExtResource("1_dclt1")]
+
+[node name="reload_timer" type="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="Marker3D" type="Marker3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.56)
+
+[node name="Components" type="Node" parent="." index="4"]
+
+[node name="RangedDamageComponent" type="Node" parent="Components" index="0"]
+script = ExtResource("2_wwqrq")

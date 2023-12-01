@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://rra2ad7g4px4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pr7pd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmg66"]
+transparency = 1
+albedo_color = Color(0.52549, 0.380392, 0.4, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13j5d"]
+size = Vector3(50, 50, 10)
+
+[node name="invis wall" type="StaticBody3D"]
+collision_layer = 4
+
+[node name="arenawallmesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 10, -0.0146191, 2.38419e-07, 0.00798607)
+mesh = SubResource("BoxMesh_pr7pd")
+surface_material_override/0 = SubResource("StandardMaterial3D_cmg66")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_13j5d")

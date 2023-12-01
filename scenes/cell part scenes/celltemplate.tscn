@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://rl8w87icl35h"]
+
+[ext_resource type="PackedScene" uid="uid://wgedn0f30j8e" path="res://assets/cell parts/basiccell.glb" id="1_x15ii"]
+
+[node name="cellbody" type="CharacterBody3D"]
+
+[node name="basiccell" parent="." instance=ExtResource("1_x15ii")]
+
+[node name="cellcollisionbox" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.0289924, 0)
+depth = 0.275
+disabled = true
+polygon = PackedVector2Array(-0.870318, -0.50061, -0.00707579, -1.00299, 0.86678, -0.507686, 0.870318, 0.504148, 0, 0.999451, -0.870318, 0.497072)

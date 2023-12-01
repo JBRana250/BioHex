@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://4qxtpb820wlg"]
+
+[ext_resource type="Script" path="res://scripts/player scripts/PlayerScript.gd" id="1_ps455"]
+[ext_resource type="PackedScene" uid="uid://wgedn0f30j8e" path="res://assets/organism parts/basiccell.glb" id="2_2lffv"]
+[ext_resource type="PackedScene" uid="uid://b3axqjomckp3k" path="res://assets/organism parts/corehexashooter.glb" id="4_sng8s"]
+[ext_resource type="Script" path="res://scripts/player scripts/PlayerMovementScript.gd" id="5_7mvi1"]
+[ext_resource type="PackedScene" uid="uid://c2meu00vdcdgv" path="res://assets/organism parts/outernailmod.glb" id="6_ctp48"]
+[ext_resource type="Script" path="res://scripts/player scripts/PlayerRotationScript.gd" id="6_mn4wx"]
+[ext_resource type="Script" path="res://scripts/player scripts/PlayerCamControllerScript.gd" id="7_ay4xb"]
+[ext_resource type="Script" path="res://scripts/player scripts/PlayerRangedControllerScript.gd" id="8_vtkhd"]
+[ext_resource type="Script" path="res://scenes/player scenes/GetMousePosScript.gd" id="9_wkd22"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_djqd0"]
+radius = 0.2
+height = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6f7d6"]
+radius = 0.4
+
+[node name="Player" type="CharacterBody3D"]
+axis_lock_linear_y = true
+script = ExtResource("1_ps455")
+
+[node name="PlayerBody" type="Node3D" parent="."]
+
+[node name="basiccell2" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+
+[node name="basiccell3" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26899, 0, 0.733277)
+
+[node name="basiccell4" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26821, 0, 2.2046)
+
+[node name="outernailmod" parent="PlayerBody" instance=ExtResource("6_ctp48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28541, 0, 3.07662)
+
+[node name="RangedWeapons" type="Node3D" parent="PlayerBody"]
+
+[node name="corehexashooter" parent="PlayerBody/RangedWeapons" instance=ExtResource("4_sng8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26637, 0.332718, 0.719492)
+
+[node name="Corecollisionbox" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.0820915, 0)
+depth = 0.56
+polygon = PackedVector2Array(-0.747334, -0.405165, 0.00112882, -0.842979, 0.726563, -0.414172, 0.715015, 0.423066, -0.0206488, 0.85349, -0.741156, 0.433216)
+margin = 0.08
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PlayerMovementComponent" type="Node" parent="Components"]
+script = ExtResource("5_7mvi1")
+
+[node name="PlayerRotationComponent" type="Node" parent="Components"]
+script = ExtResource("6_mn4wx")
+
+[node name="PlayerCameraController" type="Node" parent="Components"]
+script = ExtResource("7_ay4xb")
+
+[node name="PlayerRangedController" type="Node" parent="Components"]
+script = ExtResource("8_vtkhd")
+
+[node name="GetMousePosComponent" type="Node3D" parent="Components"]
+script = ExtResource("9_wkd22")
+
+[node name="cellcollisionbox" type="CollisionPolygon3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, -1.28241, 0.0820915, 0.731256)
+depth = 0.56
+polygon = PackedVector2Array(-0.738773, -0.426488, 0.00112882, -0.842979, 0.726563, -0.414172, 0.715015, 0.423066, 0.00159931, 0.847332, -0.731241, 0.432129)
+margin = 0.08
+
+[node name="cellcollisionbox2" type="CollisionPolygon3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, -1.28241, 0.0820915, 2.20153)
+depth = 0.56
+polygon = PackedVector2Array(-0.738773, -0.426488, 0.00112882, -0.842979, 0.726563, -0.414172, 0.715015, 0.423066, 0.00159931, 0.847332, -0.731241, 0.432129)
+margin = 0.08
+
+[node name="outernailmodcolbox" type="CollisionShape3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.26798, 0.0368116, 2.94424)
+shape = SubResource("CapsuleShape3D_djqd0")
+
+[node name="corehexashootercolbox" type="CollisionShape3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.268, 0.333, 0.719)
+shape = SubResource("SphereShape3D_6f7d6")
+
+[connection signal="rotate_rangedweapons" from="Components/GetMousePosComponent" to="Components/PlayerRangedController" method="_on_get_mouse_pos_component_rotate_rangedweapons"]
+[connection signal="rotate_rangedweapons" from="Components/GetMousePosComponent" to="Components/PlayerRotationComponent" method="_on_get_mouse_pos_component_rotate_rangedweapons"]

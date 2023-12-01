@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://4qxtpb820wlg"]
+
+[ext_resource type="Script" path="res://PlayerScript.gd" id="1_7lm8p"]
+[ext_resource type="Script" path="res://PlayerMovementScript.gd" id="1_mktkq"]
+[ext_resource type="PackedScene" uid="uid://wgedn0f30j8e" path="res://basiccell.glb" id="2_2lffv"]
+[ext_resource type="Script" path="res://PlayerRotationScript.gd" id="3_qo2j4"]
+[ext_resource type="Script" path="res://PlayerCamControllerScript.gd" id="4_r47t1"]
+
+[node name="Player" type="CharacterBody3D"]
+axis_lock_linear_y = true
+script = ExtResource("1_7lm8p")
+
+[node name="PlayerBody" type="Node3D" parent="."]
+
+[node name="basiccell2" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+
+[node name="basiccell3" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49487, 0, 0.854259)
+
+[node name="basiccell4" parent="PlayerBody" instance=ExtResource("2_2lffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98974, 0, 1.70852)
+
+[node name="Corecollisionbox" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.03, 0)
+depth = 0.275
+polygon = PackedVector2Array(-0.870318, -0.50061, -0.00707579, -1.00299, 0.86678, -0.507686, 0.870318, 0.504148, 0, 0.999451, -0.870318, 0.497072)
+margin = 0.08
+
+[node name="Cellcollisionbox" type="CollisionPolygon3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(-0.859665, -0.510858, 2.23303e-08, 0, -4.37114e-08, -1, 0.510858, -0.859665, 3.75772e-08, -1.4879, 0.03, 0.84023)
+depth = 0.275
+polygon = PackedVector2Array(-0.870318, -0.50061, -0.00707579, -1.00299, 0.86678, -0.507686, 0.870318, 0.504148, 0, 0.999451, -0.870318, 0.497072)
+margin = 0.08
+
+[node name="Cellcollisionbox2" type="CollisionPolygon3D" parent="." groups=["playercollisionbox"]]
+transform = Transform3D(-0.859665, -0.510858, 2.23303e-08, 0, -4.37114e-08, -1, 0.510858, -0.859665, 3.75772e-08, -2.98458, 0.03, 1.69679)
+depth = 0.275
+polygon = PackedVector2Array(-0.870318, -0.50061, -0.00707579, -1.00299, 0.86678, -0.507686, 0.870318, 0.504148, 0, 0.999451, -0.870318, 0.497072)
+margin = 0.08
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Movement" type="Node" parent="Components"]
+script = ExtResource("1_mktkq")
+
+[node name="Rotation" type="Node3D" parent="Components"]
+script = ExtResource("3_qo2j4")
+
+[node name="CameraController" type="Node" parent="Components"]
+script = ExtResource("4_r47t1")
