@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://uj5omfj3kl8y"]
-
-[ext_resource type="PackedScene" uid="uid://bon81s6ldkpdj" path="res://assets/cell parts/generalplayer/cellbasiccore.glb" id="1_wskbo"]
-
-[node name="cellbasiccore" instance=ExtResource("1_wskbo")]

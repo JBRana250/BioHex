@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://rerv56i1e8gf"]
+
+[ext_resource type="PackedScene" uid="uid://bwhwx1lvhni7q" path="res://World Scene/assets/room.glb" id="1_ciihr"]
+
+[node name="Room" type="Node3D"]
+
+[node name="room_mesh" parent="." instance=ExtResource("1_ciihr")]

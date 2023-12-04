@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5epxmcm7sld2"]
+
+[ext_resource type="PackedScene" uid="uid://k88bnoqkp1r5" path="res://Combat Scene/scenes/room scenes/roomfloor.tscn" id="1_ap8sy"]
+[ext_resource type="PackedScene" uid="uid://rra2ad7g4px4" path="res://Combat Scene/scenes/room scenes/roomwall.tscn" id="2_0tin1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ArenaGround" parent="." instance=ExtResource("1_ap8sy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.271603, 0)
+
+[node name="ArenaWall" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.728, -27)
+
+[node name="ArenaWall2" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.728, 27)
+
+[node name="ArenaWall3" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 23.4413, 24.7284, -13.0445)
+
+[node name="ArenaWall4" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -23.8213, 24.7284, 12.3414)
+
+[node name="ArenaWall5" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 23.4, 24.728, 13.1)
+
+[node name="ArenaWall6" parent="." instance=ExtResource("2_0tin1")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -24.1998, 24.7284, -11.7173)

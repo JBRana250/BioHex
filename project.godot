@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="BioHex"
-run/main_scene="res://scenes/title_screen.tscn"
+run/main_scene="res://Title Screen/title_screen.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DebugOverlay="*res://scenes/debug_overlay.tscn"
-Globals="*res://scripts/Globals.gd"
-SceneSwitcher="*res://scripts/scene_switcher.gd"
+DebugOverlay="*res://Combat Scene/scenes/debug_overlay.tscn"
+Globals="*res://Combat Scene/scripts/Globals.gd"
+SceneSwitcher="*res://Combat Scene/scripts/scene_switcher.gd"
 
 [input]
 

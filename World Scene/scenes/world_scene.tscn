@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjmvrs3wcx88l"]
+
+[ext_resource type="PackedScene" uid="uid://ct13fqjcthvwa" path="res://Combat Scene/scenes/room scenes/ground.tscn" id="1_65dwk"]
+[ext_resource type="Script" path="res://World Scene/scripts/PathMapCreation.gd" id="1_g0lae"]
+[ext_resource type="Script" path="res://World Scene/scripts/RoomInstantiation.gd" id="2_bm426"]
+
+[node name="world" type="Node3D"]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 10)
+size = 9.42
+
+[node name="Path" type="Node" parent="."]
+
+[node name="PathCreationComponents" type="Node" parent="Path"]
+
+[node name="PathMapCreator" type="Node" parent="Path/PathCreationComponents"]
+script = ExtResource("1_g0lae")
+num_of_initial_rooms = 3
+rows_to_boss = 14
+
+[node name="RoomInstantiator" type="Node" parent="Path/PathCreationComponents"]
+script = ExtResource("2_bm426")
+
+[node name="Ground" parent="." instance=ExtResource("1_65dwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, 0)
+
+[node name="LightPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LightPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.40306)
