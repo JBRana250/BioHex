@@ -199,5 +199,7 @@ func _create_path_map(num_of_initial_rooms: int, rows_to_boss: int):
 		_extend_rooms_in_row(row)
 
 func _ready():
-	_create_path_map(num_of_initial_rooms, rows_to_boss)
-	#print(path_map)
+	if path_map == {}:
+		_create_path_map(num_of_initial_rooms, rows_to_boss)
+	Globals.path_map = path_map
+	Globals.rows_to_boss = rows_to_boss

@@ -15,14 +15,14 @@ size = 9.42
 
 [node name="Path" type="Node" parent="."]
 
-[node name="PathCreationComponents" type="Node" parent="Path"]
+[node name="Components" type="Node" parent="Path"]
 
-[node name="PathMapCreator" type="Node" parent="Path/PathCreationComponents"]
+[node name="PathMapCreator" type="Node" parent="Path/Components"]
 script = ExtResource("1_g0lae")
 num_of_initial_rooms = 3
 rows_to_boss = 14
 
-[node name="RoomInstantiator" type="Node" parent="Path/PathCreationComponents"]
+[node name="RoomInstantiator" type="Node" parent="Path/Components"]
 script = ExtResource("2_bm426")
 
 [node name="Ground" parent="." instance=ExtResource("1_65dwk")]

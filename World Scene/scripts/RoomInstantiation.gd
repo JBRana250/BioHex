@@ -2,10 +2,10 @@ extends Node
 
 @export var room_scene = preload("res://World Scene/scenes/room.tscn")
 
-@onready var path_map_creator = get_parent().find_child("PathMapCreator")
-@onready var path_map = path_map_creator.path_map
-@onready var rows_to_boss = path_map_creator.rows_to_boss
+@onready var path_map = Globals.path_map
+@onready var rows_to_boss = Globals.rows_to_boss
 
+@onready var path = get_parent().get_parent()
 # The Plan:
 # Rooms are instantiated row by row, starting from row 0, all the way to row n
 # Loop through every key in path_map, for every key that matches the criteria for the current row.
@@ -29,10 +29,15 @@ func _instantiate_even_row_rooms(row):
 		
 		#Instantiate the room and set parent to current scene
 		var room_instance = room_scene.instantiate()
-		get_tree().get_root().add_child.call_deferred(room_instance)
+		path.add_child.call_deferred(room_instance)
 		
 		#Set room position
 		room_instance.position = world_dist
+		
+		#Set room attributes
+		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+		attributes.room_pos = room_pos
+		attributes.row_num = row
 
 func _instantiate_odd_row_rooms(row):
 	var row_y_coordinate = float(row-1) / float(2)
@@ -53,10 +58,15 @@ func _instantiate_odd_row_rooms(row):
 		
 		#Instantiate the room and set parent to current scene
 		var room_instance = room_scene.instantiate()
-		get_tree().get_root().add_child.call_deferred(room_instance)
+		path.add_child.call_deferred(room_instance)
 		
 		#Set room position
 		room_instance.position = world_dist
+		
+		#Set room attributes
+		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+		attributes.room_pos = room_pos
+		attributes.row_num = row
 
 func _instantiate_rooms_in_row(row):
 	#first determine if row num is even or odd
