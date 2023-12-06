@@ -3,6 +3,7 @@ extends Node
 @export var room_pos: Vector2
 @export var row_num: int
 @export var eligible_to_travel: bool
+@export var res_path: String
 
 func _ready():
 	var current_room_pos = Globals.current_room_pos

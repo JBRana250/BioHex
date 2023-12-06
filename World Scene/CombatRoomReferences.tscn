@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyqmqfqsqmndg"]
+
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/CombatRoomReferenceScript.gd" id="1_rbsf2"]
+
+[node name="CombatRoomReferences" type="Node"]
+script = ExtResource("1_rbsf2")

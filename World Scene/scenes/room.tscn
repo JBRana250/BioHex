@@ -21,7 +21,6 @@ margin = 0.08
 
 [node name="OnClickComponent" type="Node" parent="Components"]
 script = ExtResource("2_iqk8b")
-res_path = "res://Combat Scene/scenes/defaultcombat.tscn"
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("3_7orod")

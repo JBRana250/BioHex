@@ -45,11 +45,11 @@ func _determine_branch_starting_room(initial_rooms_left, possible_cells):
 		possible_cells.remove_at(0)
 		return _determine_branch_starting_room(initial_rooms_left, possible_cells)
 
-func _establish_starting_rooms(num_of_initial_rooms: int):
+func _establish_starting_rooms(_num_of_initial_rooms: int):
 	# each branch's starting room may only occupy cells that have an even x coordinate.
 	var possible_cells = [0,2,4,6,8,10,12,14]
-	var initial_rooms_left = num_of_initial_rooms
-	for i in range(num_of_initial_rooms):
+	var initial_rooms_left = _num_of_initial_rooms
+	for i in range(_num_of_initial_rooms):
 		var results = _determine_branch_starting_room(initial_rooms_left, possible_cells)
 		initial_rooms_left = results[0]
 		possible_cells = results[1]
@@ -187,15 +187,15 @@ func _extend_rooms_in_row(row):
 		_extend_even_row_rooms(row)
 	
 
-func _create_path_map(num_of_initial_rooms: int, rows_to_boss: int):
+func _create_path_map(_num_of_initial_rooms: int, _rows_to_boss: int):
 	# First, decide what cells each branch will start with
-	_establish_starting_rooms(num_of_initial_rooms)
+	_establish_starting_rooms(_num_of_initial_rooms)
 	#print("Starting room positions:")
 	#print(path_map)
 	#print("")
 	
 	# Then, go through each each cell in each row and instantiate a continuation room for each one. 
-	for row in range(rows_to_boss):
+	for row in range(_rows_to_boss):
 		_extend_rooms_in_row(row)
 
 func _ready():

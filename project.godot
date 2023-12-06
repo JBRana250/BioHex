@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugOverlay="*res://Combat Scene/scenes/debug_overlay.tscn"
-Globals="*res://Combat Scene/scripts/Globals.gd"
-SceneSwitcher="*res://Combat Scene/scripts/scene_switcher.gd"
+DebugOverlay="*res://Autoloads/debug_overlay.tscn"
+Globals="*res://Autoloads/Globals.gd"
+SceneSwitcher="*res://Autoloads/scene_switcher.gd"
 
 [input]
 

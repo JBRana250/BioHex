@@ -1,7 +1,7 @@
 extends Node
 
 @export var room_scene = preload("res://World Scene/scenes/room.tscn")
-
+@onready var CombatRoomReferences = owner.find_child("CombatRoomReferences")
 @onready var path_map = Globals.path_map
 @onready var rows_to_boss = Globals.rows_to_boss
 
@@ -38,6 +38,7 @@ func _instantiate_even_row_rooms(row):
 		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
 		attributes.room_pos = room_pos
 		attributes.row_num = row
+		attributes.res_path = CombatRoomReferences.spikewalker3
 
 func _instantiate_odd_row_rooms(row):
 	var row_y_coordinate = float(row-1) / float(2)
@@ -67,6 +68,7 @@ func _instantiate_odd_row_rooms(row):
 		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
 		attributes.room_pos = room_pos
 		attributes.row_num = row
+		attributes.res_path = CombatRoomReferences.spikewalker3
 
 func _instantiate_rooms_in_row(row):
 	#first determine if row num is even or odd

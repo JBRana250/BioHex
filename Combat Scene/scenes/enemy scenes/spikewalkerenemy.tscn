@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dbsssjjkhekwl"]
 
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://Combat Scene/scenes/cell part scenes/outernailmod.tscn" id="2_dwtsd"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CellParts/outernailmod.tscn" id="2_dwtsd"]
 [ext_resource type="PackedScene" uid="uid://bcqsiwg1jnp4o" path="res://Combat Scene/assets/cell parts/enemy/enemybasiccell.glb" id="2_vvbum"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/SetDamageAttributes.gd" id="3_gjstp"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyMovementScript.gd" id="4_ty5ci"]
