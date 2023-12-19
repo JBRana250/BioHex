@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://gtsxeh2gmfad"]
+
+[ext_resource type="Script" path="res://Combat Scene/scripts/camera scripts/Camera3DScript.gd" id="1_vnjv8"]
+
+[node name="CameraPivot" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+collision_mask = 32
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+script = ExtResource("1_vnjv8")
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+enabled = false
+target_position = Vector3(0, 0, -1)
+collision_mask = 2

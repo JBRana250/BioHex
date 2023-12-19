@@ -1,8 +1,8 @@
 extends Node
 class_name CreatureAttackScript
 
-@export var damage = 2
-@export var owner_alignment = "Player"
+@export var damage: int
+@export var owner_alignment: String
 
 func _get_body_shape_from_index(body, body_shape_index):
 	var body_shape_owner = body.shape_find_owner(body_shape_index)

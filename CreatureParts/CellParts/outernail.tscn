@@ -77,7 +77,7 @@ margin = 0.05
 radius = 0.19
 height = 0.47
 
-[node name="outernailmod" type="Node3D"]
+[node name="outernail" type="Node3D"]
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, 2.98023e-08, 0.5, 0.5, -1.19209e-07, -0.866025, 2.98023e-08, 1, -1.19209e-07, 0, 0, -0.247283)
@@ -89,19 +89,19 @@ transform = Transform3D(0.866025, 2.98023e-08, 0.5, 0.5, -1.19209e-07, -0.866025
 mesh = SubResource("ArrayMesh_2oxqw")
 skeleton = NodePath("")
 
-[node name="outernailmodhitbox" type="Area3D" parent="."]
+[node name="outernailhitbox" type="Area3D" parent="."]
 collision_layer = 256
 collision_mask = 65
 script = ExtResource("1_lkvsp")
 
-[node name="outernailmodhitbox" type="CollisionShape3D" parent="outernailmodhitbox" groups=["Hitbox"]]
+[node name="outernailhitbox" type="CollisionShape3D" parent="outernailhitbox" groups=["Hitbox"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_lfcn5")
 
-[node name="Components" type="Node" parent="outernailmodhitbox"]
+[node name="Components" type="Node" parent="outernailhitbox"]
 
-[node name="MeleeDamageComponent" type="Node" parent="outernailmodhitbox/Components"]
+[node name="MeleeDamageComponent" type="Node" parent="outernailhitbox/Components"]
 script = ExtResource("1_s8ijs")
 
-[connection signal="body_shape_entered" from="outernailmodhitbox" to="outernailmodhitbox" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="outernailmodhitbox" to="outernailmodhitbox" method="_on_body_shape_exited"]
+[connection signal="body_shape_entered" from="outernailhitbox" to="outernailhitbox" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="outernailhitbox" to="outernailhitbox" method="_on_body_shape_exited"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ivi6q8g1viw8"]
+[gd_scene load_steps=8 format=3 uid="uid://44xva61htfj0"]
 
 [ext_resource type="PackedScene" uid="uid://c5epxmcm7sld2" path="res://Combat Scene/scenes/room scenes/roomtemplate.tscn" id="1_3ckjo"]
 [ext_resource type="PackedScene" uid="uid://c04aehk23h5bp" path="res://Combat Scene/scenes/world scenes/outerwater.tscn" id="2_l7m0j"]
-[ext_resource type="PackedScene" uid="uid://4qxtpb820wlg" path="res://Player/Player.tscn" id="3_0e4n6"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/camera scripts/Camera3DScript.gd" id="4_17b06"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/CreatureData.gd" id="5_mgtsg"]
 [ext_resource type="PackedScene" uid="uid://6n66yf2c5crn" path="res://Autoloads/debug_overlay.tscn" id="5_sfyf6"]
 [ext_resource type="PackedScene" uid="uid://demdden8yiy83" path="res://Combat Scene/scenes/room scenes/spike_walker_spawn.tscn" id="6_ceefv"]
+[ext_resource type="PackedScene" uid="uid://mrkwvfdcww8d" path="res://Player/player_spawn.tscn" id="8_u5271"]
 
 [sub_resource type="Environment" id="Environment_kv8t8"]
 glow_enabled = true
@@ -23,25 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 [node name="mouseraycastfloor" parent="." instance=ExtResource("2_l7m0j")]
 monitoring = false
 
-[node name="Player" parent="." instance=ExtResource("3_0e4n6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2014, 0.22, 0)
-
-[node name="CameraPivot" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot"]
-collision_mask = 32
-spring_length = 10.0
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-script = ExtResource("4_17b06")
-
-[node name="RayCast3D" type="RayCast3D" parent="Player/CameraPivot/SpringArm3D/Camera3D"]
-enabled = false
-target_position = Vector3(0, 0, -1)
-collision_mask = 2
-
 [node name="DebugOverlay" parent="." instance=ExtResource("5_sfyf6")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -57,3 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.606, 0.25, -12.466)
 
 [node name="SpikeWalkerSpawn3" parent="EnemySpawns" instance=ExtResource("6_ceefv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.606, 0.25, 15.53)
+
+[node name="OutputPrinter" type="Node" parent="."]
+script = ExtResource("5_mgtsg")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("8_u5271")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.199, 0.25, 0)

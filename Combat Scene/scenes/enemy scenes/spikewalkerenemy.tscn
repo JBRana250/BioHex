@@ -1,8 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dbsssjjkhekwl"]
 
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CellParts/outernailmod.tscn" id="2_dwtsd"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/outernail.tscn" id="2_dwtsd"]
 [ext_resource type="PackedScene" uid="uid://bcqsiwg1jnp4o" path="res://Combat Scene/assets/cell parts/enemy/enemybasiccell.glb" id="2_vvbum"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/SetDamageAttributes.gd" id="3_gjstp"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyMovementScript.gd" id="4_ty5ci"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyRotationScript.gd" id="5_mobro"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyGetRotationDirection.gd" id="6_gu1wh"]
@@ -11,6 +10,24 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/enemycellpartscripts/enemycorecell.gd" id="9_iqvil"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSizeScript.gd" id="9_nglio"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureColBoxScript.gd" id="11_o4rdj"]
+
+[sub_resource type="GDScript" id="GDScript_bye3k"]
+script/source = "extends Node3D
+
+@export var damageDistance: String
+@export var alignment: String
+@export var damage: float
+
+func _on_ranged_damage_component_tree_entered():
+	var damageComponent: Node
+	match damageDistance:
+		\"Ranged\":
+			damageComponent = find_child(\"RangedDamageComponent\")
+		\"Melee\":
+			damageComponent = find_child(\"MeleeDamageComponent\")
+	damageComponent.owner_alignment = alignment
+	damageComponent.globalSetDamage(damage)
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_otj2a"]
 radius = 0.18
@@ -31,7 +48,7 @@ axis_lock_angular_z = true
 
 [node name="outernailmod" parent="Body/MeleeWeapons" instance=ExtResource("2_dwtsd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
-script = ExtResource("3_gjstp")
+script = SubResource("GDScript_bye3k")
 damage = 0.25
 
 [node name="Components" type="Node" parent="."]

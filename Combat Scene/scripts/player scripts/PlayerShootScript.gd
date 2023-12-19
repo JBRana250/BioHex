@@ -1,5 +1,7 @@
 extends Node
 
+@onready var creature = owner.get_parent()
+
 const basic_bullet = preload("res://Combat Scene/scenes/projectiles/basicprojectile.tscn")
 @onready var ranged_weapons = $"../../Body/RangedWeapons"
 
@@ -28,9 +30,9 @@ func _fire_weapon(weapon):
 		#set bullet's position
 		if weapon.find_children("", "Marker3D") == []:
 			print("weapon has no Timer child!")
-			projectile_instance.position = weapon.global_position + Vector3(owner.velocity.x, 0, owner.velocity.z) * 0.025
+			projectile_instance.position = weapon.global_position + Vector3(creature.velocity.x, 0, creature.velocity.z) * 0.025
 		else:
-			projectile_instance.position = weapon.find_children("", "Marker3D")[0].global_position + Vector3(owner.velocity.x, 0, owner.velocity.z) * 0.025
+			projectile_instance.position = weapon.find_children("", "Marker3D")[0].global_position + Vector3(creature.velocity.x, 0, creature.velocity.z) * 0.025
 		
 		#set bullet direction and speed
 		var weapon_dir = -weapon.get_global_transform().basis.z

@@ -1,0 +1,164 @@
+[gd_scene load_steps=21 format=3 uid="uid://4qxtpb820wlg"]
+
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerScript.gd" id="1_ps455"]
+[ext_resource type="PackedScene" uid="uid://b8x1oxdqk483r" path="res://CreatureParts/CellParts/basiccellcaster.tscn" id="4_5ffb4"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="5_7mvi1"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/outernail.tscn" id="5_eopfu"]
+[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/basiccellcore.tscn" id="5_wfkyi"]
+[ext_resource type="PackedScene" uid="uid://du1j44gmra2u0" path="res://CreatureParts/CellParts/basiccell.tscn" id="6_01ucr"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playercorecell.gd" id="6_al8x0"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="6_mn4wx"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerbasiccell.gd" id="6_oog2h"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerCamControllerScript.gd" id="7_ay4xb"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerGetRotationDirectionScript.gd" id="7_gkne0"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRangedControllerScript.gd" id="8_vtkhd"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerShootScript.gd" id="10_7nr8r"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerInputScript.gd" id="12_32yyw"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="14_enn3v"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playercellcaster.gd" id="14_xkxyf"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerouternail.gd" id="18_gm4cy"]
+
+[sub_resource type="GDScript" id="GDScript_bye3k"]
+script/source = "extends Node3D
+
+@export var damageDistance: String
+@export var alignment: String
+@export var damage: float
+
+func _on_ranged_damage_component_tree_entered():
+	var damageComponent: Node
+	match damageDistance:
+		\"Ranged\":
+			damageComponent = find_child(\"RangedDamageComponent\")
+		\"Melee\":
+			damageComponent = find_child(\"MeleeDamageComponent\")
+	damageComponent.owner_alignment = alignment
+	damageComponent.globalSetDamage(damage)
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fkh3r"]
+radius = 0.3
+height = 0.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i8ctu"]
+radius = 0.18
+height = 0.46
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_mask = 118
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_ps455")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="RangedWeapons" type="Node3D" parent="Body"]
+
+[node name="basiccellcaster2" parent="Body/RangedWeapons" instance=ExtResource("4_5ffb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 2.55)
+
+[node name="basiccellcaster" parent="Body/RangedWeapons" instance=ExtResource("4_5ffb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0.85)
+
+[node name="corecell" parent="Body" instance=ExtResource("6_01ucr")]
+
+[node name="basiccell" parent="Body" instance=ExtResource("6_01ucr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.85)
+
+[node name="basiccell2" parent="Body" instance=ExtResource("6_01ucr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 2.55)
+
+[node name="cellbasiccore" parent="Body" instance=ExtResource("5_wfkyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.85)
+
+[node name="cellbasiccore2" parent="Body" instance=ExtResource("5_wfkyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 2.55)
+
+[node name="MeleeWeapons" type="Node3D" parent="Body"]
+
+[node name="outernail" parent="Body/MeleeWeapons" instance=ExtResource("5_eopfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 3.65)
+script = SubResource("GDScript_bye3k")
+alignment = "Player"
+damage = 1.5
+
+[node name="Corecollisionbox" type="CollisionPolygon3D" parent="." groups=["cellcolbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.0462472, 0)
+depth = 0.54
+polygon = PackedVector2Array(-0.869727, -0.493062, 0.00349882, -0.995989, 0.867409, -0.497065, 0.865413, 0.508487, -0.0263796, 1.01667, -0.857818, 0.504279)
+margin = 0.08
+
+[node name="CreatureColComponent" type="Node" parent="Corecollisionbox"]
+script = ExtResource("6_al8x0")
+cellpart_path = NodePath("../../Body/corecell")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MovementComponent" type="Node" parent="Components"]
+script = ExtResource("5_7mvi1")
+
+[node name="RotationComponent" type="Node" parent="Components"]
+script = ExtResource("6_mn4wx")
+
+[node name="PlayerCameraController" type="Node" parent="Components"]
+script = ExtResource("7_ay4xb")
+
+[node name="RangedWeaponsRotater" type="Node" parent="Components"]
+script = ExtResource("8_vtkhd")
+
+[node name="GetRotationDirectionComponent" type="Node3D" parent="Components"]
+script = ExtResource("7_gkne0")
+
+[node name="RangedWeaponsShooter" type="Node" parent="Components"]
+script = ExtResource("10_7nr8r")
+
+[node name="PlayerInputComponent" type="Node" parent="Components"]
+script = ExtResource("12_32yyw")
+
+[node name="PlayerDeathComponent" type="Node" parent="Components"]
+script = ExtResource("14_enn3v")
+
+[node name="cellcolbox" type="CollisionPolygon3D" parent="." groups=["cellcolbox", "creaturecollisionbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, -1.5, 0.046, 0.85)
+depth = 0.54
+polygon = PackedVector2Array(-0.873228, -0.496507, 0.00349882, -0.995989, 0.867409, -0.497065, 0.865413, 0.508487, -0.00907815, 0.994736, -0.870979, 0.493202)
+margin = 0.08
+
+[node name="CreatureColComponent" type="Node" parent="cellcolbox"]
+script = ExtResource("6_oog2h")
+cellpart_path = NodePath("../../Body/basiccell")
+
+[node name="cellcolbox2" type="CollisionPolygon3D" parent="." groups=["cellcolbox", "creaturecollisionbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, -1.5, 0.046, 2.55)
+depth = 0.54
+polygon = PackedVector2Array(-0.873228, -0.496507, 0.00349882, -0.995989, 0.867409, -0.497065, 0.865413, 0.508487, -0.00907815, 0.994736, -0.870979, 0.493202)
+margin = 0.08
+
+[node name="CreatureColComponent" type="Node" parent="cellcolbox2"]
+script = ExtResource("6_oog2h")
+cellpart_path = NodePath("../../Body/basiccell2")
+
+[node name="cellcastercolbox" type="CollisionShape3D" parent="." groups=["cellcastercolbox", "creaturecollisionbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0.85)
+shape = SubResource("CapsuleShape3D_fkh3r")
+
+[node name="CreatureColComponent" type="Node" parent="cellcastercolbox"]
+script = ExtResource("14_xkxyf")
+cellpart_path = NodePath("../../Body/RangedWeapons/basiccellcaster")
+
+[node name="cellcastercolbox2" type="CollisionShape3D" parent="." groups=["cellcastercolbox", "creaturecollisionbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 2.55)
+shape = SubResource("CapsuleShape3D_fkh3r")
+
+[node name="CreatureColComponent" type="Node" parent="cellcastercolbox2"]
+script = ExtResource("14_xkxyf")
+cellpart_path = NodePath("../../Body/RangedWeapons/basiccellcaster2")
+
+[node name="outernailmodcolbox" type="CollisionShape3D" parent="." groups=["creaturecollisionbox", "outermodcolbox"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.5, 0, 3.65)
+shape = SubResource("CapsuleShape3D_i8ctu")
+
+[node name="CreatureColComponent" type="Node" parent="outernailmodcolbox"]
+script = ExtResource("18_gm4cy")
+cellpart_path = NodePath("../../Body/MeleeWeapons/outernail")

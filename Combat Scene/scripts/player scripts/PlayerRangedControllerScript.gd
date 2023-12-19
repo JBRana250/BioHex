@@ -1,5 +1,7 @@
 extends Node
 
+@onready var creature = owner.get_parent()
+
 @export var ranged_rotation_speed: float = 5
 @export var rotationclampfloat: float = 0.1
 @export var ranged_weapons_dir = Vector2(0,1)
@@ -38,10 +40,10 @@ func _physics_process(delta):
 		ranged_weapons_dir = _RotateVector(ranged_weapons_dir, (ranged_rotation_speed * delta))
 	#set ranged_weapons_dir magnitude to be equal to player_mousevector
 	ranged_weapons_dir = ranged_weapons_dir.normalized() * (player_mousevector.length())
-	DebugOverlay.draw.add_vector(owner.position, owner.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), 2, Color.DARK_GREEN, false)
+	DebugOverlay.draw.add_vector(creature.position, creature.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), 2, Color.DARK_GREEN, false)
 	#iterate through all children of ranged_weapons, and set their direction to be the ranged weapons dir
 	for child in ranged_weapons.get_children():
-		child.look_at(owner.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), Vector3.UP)
+		child.look_at(creature.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), Vector3.UP)
 		DebugOverlay.draw.add_vector(child.global_position, child.global_position - child.get_global_transform().basis.z, 2, Color.CORNFLOWER_BLUE, false)
 	
 	#check if first child is looking in direction of ranged_weapons_dir
@@ -49,6 +51,6 @@ func _physics_process(delta):
 	if -rotationclampfloat < vectordiff.x and  vectordiff.x < rotationclampfloat and -rotationclampfloat < vectordiff.z and vectordiff.z < rotationclampfloat:
 		return
 	for child in ranged_weapons.get_children():
-		child.look_at(owner.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), Vector3.UP)
+		child.look_at(creature.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), Vector3.UP)
 
 

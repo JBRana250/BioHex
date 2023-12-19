@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c0jtvr5xh7ec0"
-path="res://.godot/imported/outernailmod.glb-b84a551e9d243fc157081a9a39dd4e43.scn"
+path="res://.godot/imported/outernail.glb-aac0dead827edc1a72bde76129b7736c.scn"
 
 [deps]
 
-source_file="res://Combat Scene/assets/cell parts/generalplayer/outernailmod.glb"
-dest_files=["res://.godot/imported/outernailmod.glb-b84a551e9d243fc157081a9a39dd4e43.scn"]
+source_file="res://Combat Scene/assets/cell parts/generalplayer/outernail.glb"
+dest_files=["res://.godot/imported/outernail.glb-aac0dead827edc1a72bde76129b7736c.scn"]
 
 [params]
 

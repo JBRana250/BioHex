@@ -1,9 +1,11 @@
 extends Node
 
+@onready var creature = owner.get_parent()
+
 @export var size: float = 0.75
 
 func _ready():
-	owner.scale = Vector3(size,size,size)
+	creature.scale = Vector3(size,size,size)
 
 func globalChangeCreatureSize(newSize):
-	owner.scale = Vector3(newSize, newSize, newSize)
+	creature.scale = Vector3(newSize, newSize, newSize)

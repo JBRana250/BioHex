@@ -1,6 +1,8 @@
 extends Node
 class_name CreatureRotationScript
 
+@onready var creature = owner.get_parent()
+
 @onready var body = $"../../Body"
 @onready var get_rotation_direction_component = $"../GetRotationDirectionComponent"
 
@@ -43,7 +45,7 @@ func _RotateBodyInDirection(direction, delta):
 	#change rotation
 	body.rotation.y += rotation_speed * delta * dir
 	#iterate through all colliders
-	for child in owner.get_children():
+	for child in creature.get_children():
 		if child.is_in_group("creaturecollisionbox"):
 			#get vector between child and player origin
 			var distvector: Vector3 = child.position - Vector3()
@@ -61,7 +63,7 @@ func _physics_process(delta):
 	if is_instance_valid(body):
 		direction_to_rotate = get_rotation_direction_component.globalGetRotationDirection()
 		forward_dir = body.get_global_transform().basis.z #Vector3 with (x, 0, z) representing direction player is facing
-		DebugOverlay.draw.add_vector(owner.position, owner.position + forward_dir*2, 2, Color.SKY_BLUE, false)
+		DebugOverlay.draw.add_vector(creature.position, creature.position + forward_dir*2, 2, Color.SKY_BLUE, false)
 		#check if forward_dir is close to player_mousevector
 		var vectordiff: Vector3 = direction_to_rotate.normalized() - forward_dir.normalized()
 		if -rotationclampfloat < vectordiff.x and  vectordiff.x < rotationclampfloat and -rotationclampfloat < vectordiff.z and vectordiff.z < rotationclampfloat:

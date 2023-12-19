@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjriww054qrhy"]
 
-[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/SpawnAttributes.gd" id="1_iqlrm"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/SpawnEntity.gd" id="2_fyxes"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/SpawnSceneAttributes.gd" id="1_iqlrm"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/SpawnScene.gd" id="2_fyxes"]
 
 [node name="EnemySpawn" type="Node3D"]
 
