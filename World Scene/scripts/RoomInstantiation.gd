@@ -1,7 +1,7 @@
 extends Node
 
 @export var room_scene = preload("res://World Scene/scenes/room.tscn")
-@onready var CombatRoomReferences = owner.find_child("CombatRoomReferences")
+@onready var CombatRoomReferences = owner.get_node("CombatRoomReferences")
 @onready var path_map = Globals.path_map
 @onready var rows_to_boss = Globals.rows_to_boss
 
@@ -35,7 +35,7 @@ func _instantiate_even_row_rooms(row):
 		room_instance.position = world_dist
 		
 		#Set room attributes
-		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+		var attributes = room_instance.get_node("Components").get_node("RoomAttributes")
 		attributes.room_pos = room_pos
 		attributes.row_num = row
 		attributes.res_path = CombatRoomReferences.spikewalker3
@@ -65,7 +65,7 @@ func _instantiate_odd_row_rooms(row):
 		room_instance.position = world_dist
 		
 		#Set room attributes
-		var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+		var attributes = room_instance.get_node("Components").get_node("RoomAttributes")
 		attributes.room_pos = room_pos
 		attributes.row_num = row
 		attributes.res_path = CombatRoomReferences.spikewalker3

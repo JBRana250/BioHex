@@ -1,11 +1,10 @@
 extends Node
 class_name CreatureColBoxScript
 
-@export var cellpart_path: NodePath # we assign a path using inspector 
-@onready var cellpart := get_node(cellpart_path) as Node3D # then we get a reference
+var cellpart: Node3D
+var health: float
 @onready var onHitMaterial = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
 @onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
-var health: float = 10
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -32,7 +31,7 @@ func _emit_death_particles(part):
 	#after 0.5s, queue free the particle instance
 	await(_wait(0.5))
 	particle_instance.queue_free()
-	
+
 func globalOnHit(damage):
 	health -= damage
 	if health <= 0:

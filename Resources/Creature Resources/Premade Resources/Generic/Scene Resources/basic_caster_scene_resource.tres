@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Creature_Part_Scene_Resource" load_steps=4 format=3 uid="uid://b36lle7rtt2m6"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/creature_part_scene_resource.gd" id="1_141dd"]
+[ext_resource type="PackedScene" uid="uid://bxqi73mplsm8r" path="res://CreatureParts/CellParts/Generic/CollisionBoxes/cellcastercolbox.tscn" id="1_hygq2"]
+[ext_resource type="PackedScene" uid="uid://b8x1oxdqk483r" path="res://CreatureParts/CellParts/basiccellcaster.tscn" id="2_sa2ex"]
+
+[resource]
+script = ExtResource("1_141dd")
+scene = ExtResource("2_sa2ex")
+CBscene = ExtResource("1_hygq2")

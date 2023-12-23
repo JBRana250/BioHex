@@ -1,7 +1,7 @@
 extends Node
 
-@onready var attributes = get_parent().find_child("RoomAttributes")
-@onready var room_mesh = owner.find_child("room_mesh").get_child(0)
+@onready var attributes = get_parent().get_node("RoomAttributes")
+@onready var room_mesh = owner.get_node("room_mesh").get_child(0)
 
 func _ready():
 	if attributes.eligible_to_travel:

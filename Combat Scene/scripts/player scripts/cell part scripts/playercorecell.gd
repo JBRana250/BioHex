@@ -1,8 +1,6 @@
 extends CreatureColBoxScript
 
-#override parent's variable values
-func _ready():
-	health = 150
+var Components: Node
 
 func globalOnHit(damage):
 
@@ -18,6 +16,4 @@ func globalOnHit(damage):
 			child.set_surface_override_material(0, null)
 
 	if health <= 0:
-		for child in owner.get_children():
-			if child.name == "Components" and child.find_child("PlayerDeathComponent"):
-				child.find_child("PlayerDeathComponent").PlayerDeath()
+		Components.get_node("PlayerDeathComponent").PlayerDeath(Components.get_parent())

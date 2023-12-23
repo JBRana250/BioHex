@@ -1,0 +1,1 @@
+extends creature_spawn_script

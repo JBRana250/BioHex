@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://du1j44gmra2u0"]
-
-[ext_resource type="PackedScene" uid="uid://b6g4ahmmpw6u3" path="res://Combat Scene/assets/cell parts/generalplayer/basiccell.glb" id="1_iyq2m"]
-
-[node name="basiccell" instance=ExtResource("1_iyq2m")]

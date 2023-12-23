@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Creature_Part_Scene_Resource" load_steps=4 format=3 uid="uid://vk4k67agxu2p"]
+
+[ext_resource type="PackedScene" uid="uid://y4bbc7gbolxh" path="res://CreatureParts/CellParts/Generic/CollisionBoxes/outernailcolbox.tscn" id="1_0l2eu"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/creature_part_scene_resource.gd" id="1_6pldv"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/outernail.tscn" id="2_my0qp"]
+
+[resource]
+script = ExtResource("1_6pldv")
+scene = ExtResource("2_my0qp")
+CBscene = ExtResource("1_0l2eu")

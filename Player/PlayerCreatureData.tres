@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Creature_Resource" load_steps=13 format=3 uid="uid://dq5mxnsbq4s74"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="1_a8mhm"]
+[ext_resource type="PackedScene" uid="uid://dquy7dajyjfhh" path="res://Player/Player.tscn" id="1_bdpuc"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/creature_resource.gd" id="1_wojrr"]
+[ext_resource type="PackedScene" uid="uid://bkud2cpnpv0rj" path="res://CreatureParts/body.tscn" id="1_xtbxf"]
+[ext_resource type="PackedScene" uid="uid://dy58jkfh1mnnc" path="res://Player/components.tscn" id="2_ntiph"]
+[ext_resource type="Resource" uid="uid://sd7gemnfjca4" path="res://Resources/Creature Resources/Premade Resources/Player/Cell Resources/basic_core_cell_resource.tres" id="4_qg1dp"]
+[ext_resource type="Resource" uid="uid://dx67wdpyhnqd7" path="res://Resources/Creature Resources/Premade Resources/Player/Core Component Resources/basic_caster_resource.tres" id="5_qqv7v"]
+[ext_resource type="Resource" uid="uid://b5uyk3s4ivnuy" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_cell_health_resource.tres" id="6_3qprq"]
+[ext_resource type="Resource" uid="uid://bklhuxxot48gs" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_cell_scene_resource.tres" id="6_ku0qf"]
+[ext_resource type="Resource" uid="uid://ch0g48iyrhhvd" path="res://Resources/Creature Resources/Premade Resources/Player/Outer Component Resources/outer_nail_resource.tres" id="9_ndk2t"]
+
+[sub_resource type="Resource" id="Resource_ot86j"]
+script = ExtResource("1_a8mhm")
+Name = "basic"
+position = Array[int]([2])
+core_component = ExtResource("5_qqv7v")
+inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
+outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([])
+health_resource = ExtResource("6_3qprq")
+scene_resource = ExtResource("6_ku0qf")
+
+[sub_resource type="Resource" id="Resource_qq05j"]
+script = ExtResource("1_a8mhm")
+Name = "basic"
+position = Array[int]([2, 1])
+core_component = ExtResource("5_qqv7v")
+inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
+outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([ExtResource("9_ndk2t")])
+health_resource = ExtResource("6_3qprq")
+scene_resource = ExtResource("6_ku0qf")
+
+[resource]
+script = ExtResource("1_wojrr")
+creature_data_array = Array[ExtResource("1_a8mhm")]([ExtResource("4_qg1dp"), SubResource("Resource_ot86j"), SubResource("Resource_qq05j")])
+owner_alignment = "Player"
+character = ExtResource("1_bdpuc")
+components = ExtResource("2_ntiph")
+body = ExtResource("1_xtbxf")

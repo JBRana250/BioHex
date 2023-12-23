@@ -1,6 +1,6 @@
 extends Node
 
-@onready var attributes = get_parent().find_child("RoomAttributes")
+@onready var attributes = get_parent().get_node("RoomAttributes")
 
 
 func _on_area_3d_input_event(_camera, event, _position, _normal, _shape_idx):

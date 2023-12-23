@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://erjdvdqosjpi"]
+
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerbasiccell.gd" id="1_bjje7"]
+
+[node name="cellcolbox" type="CollisionPolygon3D" groups=["cellcolbox", "creaturecollisionbox"]]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0.046, 0)
+depth = 0.54
+polygon = PackedVector2Array(-0.873228, -0.496507, 0.00349882, -0.995989, 0.867409, -0.497065, 0.865413, 0.508487, -0.00907815, 0.994736, -0.870979, 0.493202)
+margin = 0.08
+
+[node name="CreatureColComponent" type="Node" parent="."]
+script = ExtResource("1_bjje7")

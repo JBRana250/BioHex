@@ -1,21 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://mrkwvfdcww8d"]
 
-[ext_resource type="Script" path="res://Combat Scene/scripts/room scripts/spawn scripts/CreatureData.gd" id="1_i3i0m"]
+[ext_resource type="Resource" uid="uid://dq5mxnsbq4s74" path="res://Player/PlayerCreatureData.tres" id="2_2b2tg"]
 [ext_resource type="Script" path="res://Player/SpawnPlayer.gd" id="2_j4bwf"]
 
 [node name="PlayerSpawn" type="Marker3D"]
 
 [node name="Components" type="Node" parent="."]
 
-[node name="CreatureData" type="Node" parent="Components"]
-script = ExtResource("1_i3i0m")
-template_res_path = "res://Player/player.tscn"
-
 [node name="SpawnComponent" type="Node" parent="Components"]
 script = ExtResource("2_j4bwf")
+creature_resource = ExtResource("2_2b2tg")
 
 [node name="SpawnDelay" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 autostart = true
 

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://44xva61htfj0"]
+
+[ext_resource type="PackedScene" uid="uid://c5epxmcm7sld2" path="res://Combat Scene/scenes/room scenes/roomtemplate.tscn" id="1_qdwal"]
+[ext_resource type="PackedScene" uid="uid://c04aehk23h5bp" path="res://Combat Scene/scenes/world scenes/outerwater.tscn" id="2_xjo0g"]
+[ext_resource type="PackedScene" uid="uid://6n66yf2c5crn" path="res://Autoloads/debug_overlay.tscn" id="3_kg87w"]
+[ext_resource type="PackedScene" uid="uid://demdden8yiy83" path="res://Combat Scene/scenes/room scenes/spike_walker_spawn.tscn" id="4_8ww32"]
+[ext_resource type="PackedScene" uid="uid://mrkwvfdcww8d" path="res://Player/player_spawn.tscn" id="5_1dvp0"]
+
+[sub_resource type="Environment" id="Environment_kv8t8"]
+glow_enabled = true
+
+[node name="combat_scene" type="Node3D"]
+
+[node name="LightPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LightPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="basicroom" parent="." instance=ExtResource("1_qdwal")]
+
+[node name="mouseraycastfloor" parent="." instance=ExtResource("2_xjo0g")]
+monitoring = false
+
+[node name="DebugOverlay" parent="." instance=ExtResource("3_kg87w")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kv8t8")
+
+[node name="EnemySpawns" type="Node" parent="."]
+
+[node name="SpikeWalkerSpawn" parent="EnemySpawns" instance=ExtResource("4_8ww32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.503, 0.25, 0)
+
+[node name="SpikeWalkerSpawn2" parent="EnemySpawns" instance=ExtResource("4_8ww32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.606, 0.25, -12.466)
+
+[node name="SpikeWalkerSpawn3" parent="EnemySpawns" instance=ExtResource("4_8ww32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.606, 0.25, 15.53)
+
+[node name="OutputPrinter" type="Node" parent="."]
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_1dvp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.199, 0.25, 0)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Core_Resource" load_steps=3 format=3 uid="uid://bnmjam6i2cu6u"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/core_resource.gd" id="1_5t1v7"]
+[ext_resource type="Resource" uid="uid://bmll5uaf5spsh" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/basic_core_scene_resource.tres" id="1_o7ijd"]
+
+[resource]
+script = ExtResource("1_5t1v7")
+Name = "basiccore"
+scene_resource = ExtResource("1_o7ijd")

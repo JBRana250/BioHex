@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Creature_Part_Health_Resource" load_steps=2 format=3 uid="uid://b5uyk3s4ivnuy"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/creature_part_health_resource.gd" id="1_a8gli"]
+
+[resource]
+script = ExtResource("1_a8gli")
+base_health = 100
+health_modifiers = {}

@@ -2,7 +2,7 @@ extends Node
 
 class_name spawn_scene_script
 
-@onready var attributes = get_parent().find_child("Attributes")
+@onready var attributes = get_parent().get_node("Attributes")
 @onready var entity = attributes.entity
 var entity_instance
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://4qxtpb820wlg"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerScript.gd" id="1_ps455"]
-[ext_resource type="PackedScene" uid="uid://b8x1oxdqk483r" path="res://CreatureParts/CellParts/basiccellcaster.tscn" id="4_5ffb4"]
+[ext_resource type="PackedScene" uid="uid://b8x1oxdqk483r" path="res://CreatureParts/CellParts/Generic/basiccellcaster.tscn" id="4_5ffb4"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="5_7mvi1"]
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/outernail.tscn" id="5_eopfu"]
-[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/basiccellcore.tscn" id="5_wfkyi"]
-[ext_resource type="PackedScene" uid="uid://du1j44gmra2u0" path="res://CreatureParts/CellParts/basiccell.tscn" id="6_01ucr"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outernail.tscn" id="5_eopfu"]
+[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/Generic/basiccellcore.tscn" id="5_wfkyi"]
+[ext_resource type="PackedScene" uid="uid://du1j44gmra2u0" path="res://CreatureParts/CellParts/Player/basiccell.tscn" id="6_01ucr"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playercorecell.gd" id="6_al8x0"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="6_mn4wx"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerbasiccell.gd" id="6_oog2h"]
@@ -91,7 +91,6 @@ margin = 0.08
 
 [node name="CreatureColComponent" type="Node" parent="Corecollisionbox"]
 script = ExtResource("6_al8x0")
-cellpart_path = NodePath("../../Body/corecell")
 
 [node name="Components" type="Node" parent="."]
 
@@ -127,7 +126,6 @@ margin = 0.08
 
 [node name="CreatureColComponent" type="Node" parent="cellcolbox"]
 script = ExtResource("6_oog2h")
-cellpart_path = NodePath("../../Body/basiccell")
 
 [node name="cellcolbox2" type="CollisionPolygon3D" parent="." groups=["cellcolbox", "creaturecollisionbox"]]
 transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, -1.5, 0.046, 2.55)
@@ -137,7 +135,6 @@ margin = 0.08
 
 [node name="CreatureColComponent" type="Node" parent="cellcolbox2"]
 script = ExtResource("6_oog2h")
-cellpart_path = NodePath("../../Body/basiccell2")
 
 [node name="cellcastercolbox" type="CollisionShape3D" parent="." groups=["cellcastercolbox", "creaturecollisionbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0.85)
@@ -145,7 +142,6 @@ shape = SubResource("CapsuleShape3D_fkh3r")
 
 [node name="CreatureColComponent" type="Node" parent="cellcastercolbox"]
 script = ExtResource("14_xkxyf")
-cellpart_path = NodePath("../../Body/RangedWeapons/basiccellcaster")
 
 [node name="cellcastercolbox2" type="CollisionShape3D" parent="." groups=["cellcastercolbox", "creaturecollisionbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 2.55)
@@ -153,7 +149,6 @@ shape = SubResource("CapsuleShape3D_fkh3r")
 
 [node name="CreatureColComponent" type="Node" parent="cellcastercolbox2"]
 script = ExtResource("14_xkxyf")
-cellpart_path = NodePath("../../Body/RangedWeapons/basiccellcaster2")
 
 [node name="outernailmodcolbox" type="CollisionShape3D" parent="." groups=["creaturecollisionbox", "outermodcolbox"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.5, 0, 3.65)
@@ -161,4 +156,3 @@ shape = SubResource("CapsuleShape3D_i8ctu")
 
 [node name="CreatureColComponent" type="Node" parent="outernailmodcolbox"]
 script = ExtResource("18_gm4cy")
-cellpart_path = NodePath("../../Body/MeleeWeapons/outernail")
