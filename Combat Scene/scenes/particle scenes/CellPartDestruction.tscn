@@ -16,12 +16,12 @@ curve = SubResource("Curve_rx1eq")
 lifetime_randomness = 0.5
 emission_shape = 2
 emission_sphere_radius = 0.25
-flatness = 0.4
-gravity = Vector3(0, -7.5, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 7.5
 angle_min = -45.0
 angle_max = 45.0
+flatness = 0.4
+initial_velocity_min = 5.0
+initial_velocity_max = 7.5
+gravity = Vector3(0, -7.5, 0)
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_lm1vt")
 
