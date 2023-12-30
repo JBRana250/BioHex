@@ -1,8 +1,21 @@
 extends CreatureRotationScript
 
+var creature_transform_basis: Node3D
+
 #Set parent's export variables to new values
 func _init():
 	rotation_speed = 1.25
+
+func _RotateBodyInDirection(direction, delta):
+	var dir = null
+	match direction:
+		"clockwise":
+			dir = 1
+		"counterclockwise":
+			dir = -1
+	#change rotation
+	creature.rotation.y += rotation_speed * delta * dir
+	creature_transform_basis.rotation.y += rotation_speed * delta * dir
 
 func _physics_process(delta):
 	if is_instance_valid(body):

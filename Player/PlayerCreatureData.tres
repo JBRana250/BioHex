@@ -15,6 +15,7 @@
 script = ExtResource("1_a8mhm")
 Name = "basic"
 position = Array[int]([2])
+weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
 outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([])
@@ -25,6 +26,7 @@ scene_resource = ExtResource("6_ku0qf")
 script = ExtResource("1_a8mhm")
 Name = "basic"
 position = Array[int]([2, 1])
+weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
 outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([ExtResource("9_ndk2t")])

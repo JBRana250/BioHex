@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy58jkfh1mnnc"]
+[gd_scene load_steps=9 format=3 uid="uid://dy58jkfh1mnnc"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="1_yt4j8"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="2_726qr"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerShootScript.gd" id="6_7r5lx"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerInputScript.gd" id="7_0ln76"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="8_d7tmd"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
 
 [node name="Components" type="Node"]
 
@@ -20,6 +19,7 @@ script = ExtResource("2_726qr")
 
 [node name="PlayerCameraController" type="Node" parent="."]
 script = ExtResource("3_ih44n")
+cam_rotation_speed = null
 
 [node name="RangedWeaponsRotater" type="Node" parent="."]
 script = ExtResource("4_wkr0s")
@@ -35,6 +35,3 @@ script = ExtResource("7_0ln76")
 
 [node name="PlayerDeathComponent" type="Node" parent="."]
 script = ExtResource("8_d7tmd")
-
-[node name="ForceComponent" type="Node" parent="."]
-script = ExtResource("9_gqabf")

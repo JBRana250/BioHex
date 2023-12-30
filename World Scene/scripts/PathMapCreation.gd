@@ -9,20 +9,6 @@ extends Node
 
 @export var map_x_max = 14
 
-# the plan:
-# path_map represents a grid, 0,0 is the bottom left corner cell.
-# only positive integer values for x and y coordinates for spots in grid are allowed.
-# branches will spawn in a range from 0th cell to 10th cell. RANDOMLY.
-# therefore, at start when deciding what cell to put the starting room in a branch, its a random chance that gets larger based on num of branches left and num of cells left in starting row.
-
-# The map:
-# the map will start will maximum of 8 starting nodes for the branches to start from.
-
-# Rest of the plan is in the design notebook.
-
-
-#ctrl + r: find and replace
-
 class Room:
 	var type: String
 	func _init(_type):
@@ -62,12 +48,7 @@ func _extend_even_row_rooms(row):
 	for room_pos in path_map.keys():
 		if !int(room_pos.x) & 1 and room_pos.y == row_y_coordinate:
 			eligible_rooms[room_pos] = path_map[room_pos]
-	
-	#print("Row Num: %d, Row Y Coordinate: %d, Row X Status: Even" % [row, row_y_coordinate])
-	#print("Eligible Rooms:")
-	#print(eligible_rooms)
-	#print("")
-	
+
 	# Loop over eligible_rooms array. For every room, check the position in x-1 to see if a room is there, and if so, remove those coordinates from possible extension spots 
 	for room_pos in eligible_rooms:
 		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y)]
@@ -76,11 +57,7 @@ func _extend_even_row_rooms(row):
 		for eligible_position in eligible_extension_positions:
 			if !(0 <= eligible_position.x and eligible_position.x <= map_x_max):
 				eligible_extension_positions.erase(eligible_position)
-				
-		#print("Eligible extension positions for the position %v" % room_pos)
-		#print(eligible_extension_positions)
-		#print("")
-		
+
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
 		var extensions = 1
@@ -105,15 +82,9 @@ func _extend_even_row_rooms(row):
 			
 			if rand_num <= probability:
 				# the current position is chosen
-				#print("room created with probability %f" % probability)
-				#print("created room's position:")
-				#print(eligible_position)
-				#print("")
-				
 				_create_room(eligible_position.x, eligible_position.y, "fight")
 				eligible_extension_positions.clear()
 			else:
-				#print("room not created with probability %f" % probability)
 				eligible_extension_positions_left -= 1
 	
 func _extend_odd_row_rooms(row):
@@ -123,12 +94,7 @@ func _extend_odd_row_rooms(row):
 	for room_pos in path_map.keys():
 		if int(room_pos.x) & 1 and room_pos.y == row_y_coordinate:
 			eligible_rooms[room_pos] = path_map[room_pos]
-	
-	#print("Row Num: %d, Row Y Coordinate: %d, Row X Status: Odd" % [row, row_y_coordinate])
-	#print("Eligible Rooms:")
-	#print(eligible_rooms)
-	#print("")
-	
+
 	for room_pos in eligible_rooms:
 		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y + 1), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y + 1)]
 		
@@ -137,10 +103,6 @@ func _extend_odd_row_rooms(row):
 		for eligible_position in eligible_extension_positions:
 			if !(0 <= eligible_position.x and eligible_position.x <= map_x_max):
 				eligible_extension_positions.erase(eligible_position)
-				
-		#print("Eligible extension positions for the position %v" % room_pos)
-		#print(eligible_extension_positions)
-		#print("")
 		
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
@@ -164,10 +126,6 @@ func _extend_odd_row_rooms(row):
 			rand_num = randf_range(0,100)
 			if rand_num <= probability:
 				# the current position is chosen
-				#print("room created with probability %f" % probability)
-				#print("created room's position:")
-				#print(eligible_position)
-				#print("")
 				
 				_create_room(eligible_position.x, eligible_position.y, "fight")
 				extensions -= 1
@@ -190,9 +148,6 @@ func _extend_rooms_in_row(row):
 func _create_path_map(_num_of_initial_rooms: int, _rows_to_boss: int):
 	# First, decide what cells each branch will start with
 	_establish_starting_rooms(_num_of_initial_rooms)
-	#print("Starting room positions:")
-	#print(path_map)
-	#print("")
 	
 	# Then, go through each each cell in each row and instantiate a continuation room for each one. 
 	for row in range(_rows_to_boss):

@@ -1,5 +1,5 @@
 extends GetRotationDirectionScript
-@onready var camera_3d: Camera3D = $"../../CameraPivot/SpringArm3D/Camera3D"
+var camera_3d: Camera3D
 
 func _GetRotationDirection():
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state

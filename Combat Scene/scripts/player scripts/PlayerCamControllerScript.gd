@@ -2,9 +2,10 @@ extends Node
 
 @onready var creature = owner.get_parent()
 
-@onready var camera_3d: Camera3D = $"../../CameraPivot/SpringArm3D/Camera3D"
-@onready var spring_arm: SpringArm3D = $"../../CameraPivot/SpringArm3D"
-@onready var camera_pivot: Node3D = $"../../CameraPivot"
+var cam_pivot: Node3D
+var creature_transform_basis: Node3D
+var spring_arm: SpringArm3D
+var camera_3d: Camera3D
 
 @export var cam_rotation_speed: float = 0.15
 
@@ -23,9 +24,10 @@ func globalSetCamRotation(isRotating, prev_mouse_pos = Vector2()):
 func _process(delta):
 	if(cam_rotating):
 		next_mouse_position = get_viewport().get_mouse_position()
-		creature.rotate_y((next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta)
-		camera_pivot.rotate_x((next_mouse_position.y - prev_mouse_position.y) * -cam_rotation_speed * delta)
+		cam_pivot.rotation.y += (next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta
+		creature_transform_basis.rotation.y += (next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta
+		cam_pivot.rotation.x += (next_mouse_position.y - prev_mouse_position.y) * -cam_rotation_speed * delta
 		#lock z rotation
-		camera_pivot.rotation.z = 0
-		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90), 0)
+		cam_pivot.rotation.z = 0
+		cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-90), 0)
 		prev_mouse_position = next_mouse_position

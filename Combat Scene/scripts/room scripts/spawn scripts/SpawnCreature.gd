@@ -7,13 +7,18 @@ class_name creature_spawn_script
 @onready var body = creature_resource.body
 @onready var components = creature_resource.components
 
+const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
+
+var creature_transform_basis_instance: Node3D
 var components_instance: Node
+var force_component_instance: Node
+
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
 
 func _spawn_thing(_thing, _parent, _position, _rotation):
 	if !_thing:
-		print("thing that is trying to be spawned does not exist")
+		print_debug("thing that is trying to be spawned does not exist")
 		return
 	var thing_instance = _thing.instantiate()
 	if thing_instance.get_class() == "Node":
@@ -23,10 +28,25 @@ func _spawn_thing(_thing, _parent, _position, _rotation):
 	thing_instance.position = _position
 	thing_instance.rotation = _rotation
 	return thing_instance
-	
-func _attach_components(creature_instance):
-	#Attach components to creature
-	components_instance = _spawn_thing(components, creature_instance, Vector3(), Vector3())
+
+var DependencyArray = ["creature_transform_basis"]
+
+func _attach_dependencies(component, Dependency):
+	match Dependency:
+		"creature_transform_basis":
+			component.creature_transform_basis = creature_transform_basis_instance
+
+func _check_dependencies(component):
+	for Dependency in DependencyArray:
+		if Dependency in component:
+			_attach_dependencies(component, Dependency)
+
+func _attach_components(_parent):
+	var thing_instance = components.instantiate()
+	for component in thing_instance.get_children():
+		_check_dependencies(component)
+	_parent.add_child(thing_instance)
+	return thing_instance
 
 func _spawn_creature():
 	# Instantiate base creature
@@ -36,6 +56,8 @@ func _spawn_creature():
 	var body_instance = _spawn_thing(body, character_instance, Vector3(), Vector3())
 	var ranged_weapons = body_instance.get_node("RangedWeapons")
 	var melee_weapons = body_instance.get_node("MeleeWeapons")
+	
+	creature_transform_basis_instance = _spawn_thing(creature_transform_basis, get_tree().current_scene, Vector3(), Vector3())
 	
 	# Iterate over creature_data, for each cell in creature data, instantiate it according to position.
 	for cell in creature_resource.creature_data_array:
@@ -65,11 +87,7 @@ func _spawn_creature():
 		var CBcell_instance = _spawn_thing(scene_resource.CBscene, character_instance, cell_pos, Vector3(deg_to_rad(90),deg_to_rad(-30),0))
 		var collision_component = CBcell_instance.get_child(0)
 		
-		match cell.Name:
-			"core":
-				component_reference_parts.append(collision_component)
-			"basic":
-				pass
+		component_reference_parts.append(collision_component)
 		
 		collision_component.cellpart = cell_instance
 		collision_component.health = float(cell.health_resource.base_health)
@@ -93,6 +111,7 @@ func _spawn_creature():
 					var damage_component = core_component_instance.get_node("Components").get_node("RangedDamageComponent")
 					damage_component.damage = 2.5
 					damage_component.owner_alignment = creature_resource.owner_alignment
+			component_reference_parts.append(collision_component)
 					
 		for inner_component in cell.inner_components:
 			pass
@@ -135,10 +154,26 @@ func _spawn_creature():
 					var damage_component = outer_component_instance.find_child("Components").get_node("MeleeDamageComponent")
 					damage_component.damage = 0.5
 					damage_component.owner_alignment = creature_resource.owner_alignment
+			component_reference_parts.append(collision_component)
 	return character_instance
+
+var component_references = ["Components", "ForceComponent"]
+
+func _attach_component_reference(part, comp_ref):
+	match comp_ref:
+		"Components":
+			part.Components = components_instance
+		"ForceComponent":
+			part.ForceComponent = force_component_instance
+
+func _check_component_references(part):
+	for comp_ref in component_references:
+		if comp_ref in part:
+			_attach_component_reference(part, comp_ref)
 
 func _on_spawn_delay_timeout():
 	var character_instance = _spawn_creature()
-	_attach_components(character_instance)
+	components_instance = _attach_components(character_instance)
+	force_component_instance = components_instance.find_child("ForceComponent")
 	for part in component_reference_parts:
-		part.Components = components_instance
+		_check_component_references(part)

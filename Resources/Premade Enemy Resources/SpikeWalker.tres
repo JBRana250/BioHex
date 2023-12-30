@@ -13,6 +13,7 @@
 script = ExtResource("6_wnjl5")
 Name = "core"
 position = Array[int]([])
+weight = 0
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
 outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([ExtResource("5_4kght")])
 health_resource = ExtResource("4_ho81y")

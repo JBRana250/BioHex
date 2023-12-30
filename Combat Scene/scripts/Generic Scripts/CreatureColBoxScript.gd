@@ -6,6 +6,8 @@ var health: float
 @onready var onHitMaterial = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
 @onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
 
+var ForceComponent: Node
+
 func _wait(seconds):
 	var t = Timer.new()
 	t.set_wait_time(seconds)
@@ -32,15 +34,19 @@ func _emit_death_particles(part):
 	await(_wait(0.5))
 	particle_instance.queue_free()
 
-func globalOnHit(damage):
+func _health_depleted():
+	_emit_death_particles(cellpart)
+		
+	#queue free the cell part and the col box
+	cellpart.queue_free()
+	get_parent().queue_free()
+
+func globalOnHit(damage, kb_force_name, kb_force_dir, kb_force_mag, kb_force_duration):
 	health -= damage
+	if kb_force_mag > 0:
+		ForceComponent.globalAddForce(kb_force_name, kb_force_dir, kb_force_mag, kb_force_duration)
 	if health <= 0:
-		
-		_emit_death_particles(cellpart)
-		
-		#queue free the cell part and the col box
-		cellpart.queue_free()
-		get_parent().queue_free()
+		_health_depleted()
 		
 	for child in cellpart.get_children():
 		if child is MeshInstance3D:

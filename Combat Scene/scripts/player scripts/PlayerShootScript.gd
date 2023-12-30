@@ -14,7 +14,7 @@ func globalSetFiring(isFiring):
 
 func _reload_completed(weapon):
 	if weapon.find_children("", "Timer") == []:
-		print("weapon has no Timer child!")
+		print_debug("weapon has no Timer child!")
 	else:
 		if weapon.find_children("", "Timer")[0].is_stopped() == true:
 			return true
@@ -29,7 +29,7 @@ func _fire_weapon(weapon):
 		
 		#set bullet's position
 		if weapon.find_children("", "Marker3D") == []:
-			print("weapon has no Timer child!")
+			print_debug("weapon has no Marker3D child!")
 			projectile_instance.position = weapon.global_position + Vector3(creature.velocity.x, 0, creature.velocity.z) * 0.025
 		else:
 			projectile_instance.position = weapon.find_children("", "Marker3D")[0].global_position + Vector3(creature.velocity.x, 0, creature.velocity.z) * 0.025

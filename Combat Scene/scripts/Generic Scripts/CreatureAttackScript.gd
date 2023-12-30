@@ -4,6 +4,8 @@ class_name CreatureAttackScript
 @export var damage: float
 @export var owner_alignment: String
 
+var kb_force_dir: Vector3
+
 func _get_body_shape_from_index(body, body_shape_index):
 	var body_shape_owner = body.shape_find_owner(body_shape_index)
 	return body.shape_owner_get_owner(body_shape_owner)
