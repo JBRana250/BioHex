@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy58jkfh1mnnc"]
+[gd_scene load_steps=11 format=3 uid="uid://dy58jkfh1mnnc"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="1_yt4j8"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="2_726qr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerInputScript.gd" id="7_0ln76"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="8_d7tmd"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="10_xoqkk"]
 
 [node name="Components" type="Node"]
 
@@ -38,3 +39,6 @@ script = ExtResource("8_d7tmd")
 
 [node name="ForceComponent" type="Node" parent="."]
 script = ExtResource("9_gqabf")
+
+[node name="SpawnComponent" type="Node" parent="."]
+script = ExtResource("10_xoqkk")

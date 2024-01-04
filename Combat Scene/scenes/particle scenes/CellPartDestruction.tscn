@@ -9,11 +9,12 @@ emission_energy_multiplier = 3.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.993507, 0.0421052), -1.41842, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_lm1vt"]
+[sub_resource type="CurveTexture" id="CurveTexture_8i44t"]
 curve = SubResource("Curve_rx1eq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kxhvl"]
 lifetime_randomness = 0.5
+emission_shape_scale = Vector3(2, 2, 2)
 emission_shape = 2
 emission_sphere_radius = 0.25
 angle_min = -45.0
@@ -23,7 +24,7 @@ initial_velocity_min = 5.0
 initial_velocity_max = 7.5
 gravity = Vector3(0, -7.5, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_lm1vt")
+scale_curve = SubResource("CurveTexture_8i44t")
 
 [sub_resource type="SphereMesh" id="SphereMesh_mrgr3"]
 radius = 0.2

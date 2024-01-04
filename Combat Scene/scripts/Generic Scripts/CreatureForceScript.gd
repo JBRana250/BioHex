@@ -1,6 +1,6 @@
 extends Node
 
-class_name creature_force_script
+class_name CreatureForceScript
 
 @onready var movement_component = owner.find_child("MovementComponent")
 

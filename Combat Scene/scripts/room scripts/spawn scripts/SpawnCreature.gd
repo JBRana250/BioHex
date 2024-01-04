@@ -7,14 +7,29 @@ class_name creature_spawn_script
 @onready var body = creature_resource.body
 @onready var components = creature_resource.components
 
+const creature_spawn_beam = preload("res://Combat Scene/scenes/creaturespawnbeam.tscn")
 const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
+const creature_spawn_particles = preload("res://Combat Scene/scenes/particle scenes/CreatureSpawnParticles.tscn")
 
 var creature_transform_basis_instance: Node3D
+var character_instance: CharacterBody3D
 var components_instance: Node
 var force_component_instance: Node
+var spawn_particles_instance: Node3D
 
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
+var DependencyArray = ["creature_transform_basis"]
+var component_references = ["Components", "ForceComponent"]
+
+func _wait(seconds):
+	var t = Timer.new()
+	t.set_wait_time(seconds)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	await(t.timeout)
+	return
 
 func _spawn_thing(_thing, _parent, _position, _rotation):
 	if !_thing:
@@ -29,8 +44,6 @@ func _spawn_thing(_thing, _parent, _position, _rotation):
 	thing_instance.rotation = _rotation
 	return thing_instance
 
-var DependencyArray = ["creature_transform_basis"]
-
 func _attach_dependencies(component, Dependency):
 	match Dependency:
 		"creature_transform_basis":
@@ -41,16 +54,15 @@ func _check_dependencies(component):
 		if Dependency in component:
 			_attach_dependencies(component, Dependency)
 
-func _attach_components(_parent):
-	var thing_instance = components.instantiate()
-	for component in thing_instance.get_children():
+func _attach_components():
+	components_instance = components.instantiate()
+	for component in components_instance.get_children():
 		_check_dependencies(component)
-	_parent.add_child(thing_instance)
-	return thing_instance
+	character_instance.add_child(components_instance)
 
 func _spawn_creature():
 	# Instantiate base creature
-	var character_instance = _spawn_thing(character, get_tree().current_scene, owner.position, Vector3())
+	character_instance = _spawn_thing(character, get_tree().current_scene, owner.position, Vector3())
 	
 	# Instantiate body
 	var body_instance = _spawn_thing(body, character_instance, Vector3(), Vector3())
@@ -155,9 +167,6 @@ func _spawn_creature():
 					damage_component.damage = 0.5
 					damage_component.owner_alignment = creature_resource.owner_alignment
 			component_reference_parts.append(collision_component)
-	return character_instance
-
-var component_references = ["Components", "ForceComponent"]
 
 func _attach_component_reference(part, comp_ref):
 	match comp_ref:
@@ -171,9 +180,21 @@ func _check_component_references(part):
 		if comp_ref in part:
 			_attach_component_reference(part, comp_ref)
 
+func _spawn_beam():
+	var beam_instance = _spawn_thing(creature_spawn_beam, get_tree().current_scene, owner.position + Vector3(0,20,0), Vector3())
+	for i in range(17):
+		beam_instance.scale.y += 5
+		await(_wait(0.01))
+	beam_instance.queue_free()
+	spawn_particles_instance = _spawn_thing(creature_spawn_particles, get_tree().current_scene, owner.position, Vector3())
+	spawn_particles_instance.get_child(0).emitting = true
+
 func _on_spawn_delay_timeout():
-	var character_instance = _spawn_creature()
-	components_instance = _attach_components(character_instance)
+	await(_spawn_beam())
+	_spawn_creature()
+	_attach_components()
 	force_component_instance = components_instance.find_child("ForceComponent")
 	for part in component_reference_parts:
 		_check_component_references(part)
+	await(_wait(2.5))
+	spawn_particles_instance.queue_free()

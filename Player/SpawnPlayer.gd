@@ -39,15 +39,18 @@ func _check_dependencies(component):
 		if Dependency in component:
 			_attach_dependencies(component, Dependency)
 
-func _attach_camera(character_instance):
+func _attach_camera():
 	# Attach camera to base creature
 	var cam_pivot_remote_instance = _spawn_thing(cam_pivot_remote, character_instance, Vector3(), Vector3())
 	cam_pivot_remote_instance.remote_path = "../../CameraPivot"
 	
 func _on_spawn_delay_timeout():
-	var character_instance = _spawn_creature()
-	await(_attach_camera(character_instance))
-	components_instance = _attach_components(character_instance)
+	await(_spawn_beam())
+	_spawn_creature()
+	await(_attach_camera())
+	_attach_components()
 	force_component_instance = components_instance.find_child("ForceComponent")
 	for part in component_reference_parts:
 		_check_component_references(part)
+	await(_wait(2.5))
+	spawn_particles_instance.queue_free()
