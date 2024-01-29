@@ -11,6 +11,6 @@ func _process(_delta):
 	
 	#if the angle between direction creature is facing and the player is large, result in slower speed. smaller angle -> more speed. No angle -> max speed.
 	var angle = abs(rotation_component.globalGetAngleBetweenForwardAndDesiredDirection())
-	var speed_decrement = angle * 10
+	var speed_decrement = angle * 5
 	
 	movement_component.max_speed = 7 - speed_decrement

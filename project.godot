@@ -20,6 +20,13 @@ config/icon="res://icon.svg"
 DebugOverlay="*res://Autoloads/debug_overlay.tscn"
 Globals="*res://Autoloads/Globals.gd"
 SceneSwitcher="*res://Autoloads/scene_switcher.gd"
+UI="*res://Autoloads/ui.tscn"
+EventManager="*res://Autoloads/EventManager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [input]
 

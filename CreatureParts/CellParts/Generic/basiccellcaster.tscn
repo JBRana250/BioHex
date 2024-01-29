@@ -15,5 +15,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.56)
 
 [node name="RangedDamageComponent" type="Node" parent="Components" index="0"]
 script = ExtResource("2_0ako2")
-damage = 0.0
 owner_alignment = ""

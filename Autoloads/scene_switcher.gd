@@ -10,6 +10,7 @@ func switch_scene(res_path):
 	call_deferred("_deferred_switch_scene", res_path)
 
 func _deferred_switch_scene(res_path):
+	EventManager.broadcast_event("LeavingScene", {"scene":current_scene})
 	current_scene.queue_free()
 	var scene = load(res_path)
 	current_scene = scene.instantiate()

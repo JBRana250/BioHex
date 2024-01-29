@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Title Screen/title_screen_scripts/titlescreen_camera_behaviour.gd" id="1_jy1bu"]
 [ext_resource type="PackedScene" uid="uid://cgbuclsa55ek0" path="res://Combat Scene/scenes/projectiles/basicbulletmesh.tscn" id="1_vejbm"]
-[ext_resource type="PackedScene" uid="uid://cu8evcq4wt4ta" path="res://Title Screen/title_screen_menu.tscn" id="2_acigm"]
 [ext_resource type="Script" path="res://Title Screen/title_screen_scripts/title_screen_rotation.gd" id="2_x0idx"]
+[ext_resource type="Script" path="res://Title Screen/title_screen_scripts/display_title_screen_UI.gd" id="4_csusi"]
 
 [sub_resource type="Environment" id="Environment_p7myx"]
 background_mode = 1
@@ -22,8 +22,6 @@ script = ExtResource("2_x0idx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="basicbullet"]
 
-[node name="Title_Screen_Menu" parent="." instance=ExtResource("2_acigm")]
-
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
@@ -33,3 +31,6 @@ script = ExtResource("1_jy1bu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p7myx")
+
+[node name="DisplayTitleScreenUI" type="Node" parent="."]
+script = ExtResource("4_csusi")

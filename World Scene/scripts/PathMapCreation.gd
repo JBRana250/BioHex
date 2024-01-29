@@ -1,7 +1,5 @@
 extends Node
 
-@export var branching_chance: float = 0
-@export var branch_num: int = 0
 
 @export var num_of_initial_rooms: int
 @export var rows_to_boss: int
@@ -11,18 +9,20 @@ extends Node
 
 class Room:
 	var type: String
-	func _init(_type):
+	var branching_chance: float
+	func _init(_type, _branching_chance):
 		type = _type
+		branching_chance = _branching_chance
 
-func _create_room(xpos: int, ypos: int, room_type: String):
-	path_map[Vector2(xpos, ypos)] = Room.new(room_type)
+func _create_room(xpos: int, ypos: int, room_type: String, branching_chance: float):
+	path_map[Vector2(xpos, ypos)] = Room.new(room_type, branching_chance)
 
 func _determine_branch_starting_room(initial_rooms_left, possible_cells):
 	var probability = (float(initial_rooms_left) / float(possible_cells.size())) * 100
 	var rand_num = randf_range(0,100)
 	if rand_num <= probability:
 		#create room at cell
-		_create_room(possible_cells[0], 0, "fight")
+		_create_room(possible_cells[0], 0, "fight", 0)
 		initial_rooms_left -= 1
 		possible_cells.remove_at(0)
 		return [initial_rooms_left, possible_cells]
@@ -51,6 +51,7 @@ func _extend_even_row_rooms(row):
 
 	# Loop over eligible_rooms array. For every room, check the position in x-1 to see if a room is there, and if so, remove those coordinates from possible extension spots 
 	for room_pos in eligible_rooms:
+		var room = path_map[room_pos]
 		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y)]
 			
 		#If possible extension is out of bounds, remove from list.
@@ -60,19 +61,18 @@ func _extend_even_row_rooms(row):
 
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
+		var new_branching_chance = 0
 		var extensions = 1
-		if rand_num <= branching_chance:
+		if rand_num <= room.branching_chance:
 			rand_num = randf_range(0,100)
-			if rand_num <= branching_chance:
+			if rand_num <= room.branching_chance:
 				extensions = 3
-				branching_chance -= branch_num
-				branch_num += 2
+				new_branching_chance = room.branching_chance - 15
 			else:
 				extensions = 2
-				branching_chance -= branch_num * 2
-				branch_num += 1
+				new_branching_chance = room.branching_chance - 10
 		else:
-			branching_chance += 50 - branch_num
+			new_branching_chance = room.branching_chance + 20
 		
 		# For every eligible extension position, run code to determine if it is chosen.
 		var eligible_extension_positions_left = eligible_extension_positions.size()
@@ -82,7 +82,7 @@ func _extend_even_row_rooms(row):
 			
 			if rand_num <= probability:
 				# the current position is chosen
-				_create_room(eligible_position.x, eligible_position.y, "fight")
+				_create_room(eligible_position.x, eligible_position.y, "fight", new_branching_chance)
 				eligible_extension_positions.clear()
 			else:
 				eligible_extension_positions_left -= 1
@@ -96,6 +96,7 @@ func _extend_odd_row_rooms(row):
 			eligible_rooms[room_pos] = path_map[room_pos]
 
 	for room_pos in eligible_rooms:
+		var room = path_map[room_pos]
 		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y + 1), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y + 1)]
 		
 		
@@ -106,19 +107,18 @@ func _extend_odd_row_rooms(row):
 		
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
+		var new_branching_chance = 0
 		var extensions = 1
-		if rand_num <= branching_chance:
+		if rand_num <= room.branching_chance:
 			rand_num = randf_range(0,100)
-			if rand_num <= branching_chance:
+			if rand_num <= room.branching_chance:
 				extensions = 3
-				branching_chance -= 5
-				branch_num += 2
+				new_branching_chance = room.branching_chance - 100
 			else:
 				extensions = 2
-				branching_chance -= 2.5
-				branch_num += 1
+				new_branching_chance = room.branching_chance - 25
 		else:
-			branching_chance += 5
+			new_branching_chance = room.branching_chance + 5
 		
 		var eligible_extension_positions_left = eligible_extension_positions.size()
 		for eligible_position in eligible_extension_positions:
@@ -127,7 +127,7 @@ func _extend_odd_row_rooms(row):
 			if rand_num <= probability:
 				# the current position is chosen
 				
-				_create_room(eligible_position.x, eligible_position.y, "fight")
+				_create_room(eligible_position.x, eligible_position.y, "fight", new_branching_chance)
 				extensions -= 1
 				if extensions <= 0:
 					eligible_extension_positions.clear()
@@ -154,7 +154,10 @@ func _create_path_map(_num_of_initial_rooms: int, _rows_to_boss: int):
 		_extend_rooms_in_row(row)
 
 func _ready():
-	if path_map == {}:
+	if Globals.path_map == {}:
 		_create_path_map(num_of_initial_rooms, rows_to_boss)
+	else:
+		path_map = Globals.path_map
+		rows_to_boss = Globals.rows_to_boss
 	Globals.path_map = path_map
 	Globals.rows_to_boss = rows_to_boss

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmlma80cm6b2m"]
+
+[ext_resource type="Texture2D" uid="uid://bdc3k1r6e82wm" path="res://World Scene/assets/UI/BioHex Creature Editor Logo.svg" id="1_e0abs"]
+[ext_resource type="Script" path="res://Generic/Scripts/TextureButtonNavToScene.gd" id="2_6svi2"]
+
+[node name="World Scene UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CreatureEditorButton" type="TextureButton" parent="MarginContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("1_e0abs")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_6svi2")
+scene_path = "res://Evolution Scene/Scenes/evolution_scene.tscn"
+
+[connection signal="pressed" from="MarginContainer/CreatureEditorButton" to="MarginContainer/CreatureEditorButton" method="_on_pressed"]

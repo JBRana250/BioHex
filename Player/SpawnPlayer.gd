@@ -16,7 +16,7 @@ func _wait(seconds):
 	return
 
 func _ready():
-	DependencyArray = ["cam_pivot", "spring_arm", "camera_3d", "creature_transform_basis"]
+	DependencyArray = ["cam_pivot", "spring_arm", "camera_3d", "creature_transform_basis", "creature_action_timer"]
 	await(get_tree().current_scene.tree_exited) #this is so that we wait for the old scene to unload
 	cam_pivot_instance = _spawn_thing(cam_pivot, get_tree().current_scene, Vector3(), Vector3(deg_to_rad(-60), 0, 0))
 	for i in range(50):
@@ -33,6 +33,8 @@ func _attach_dependencies(component, Dependency):
 			component.camera_3d = cam_pivot_instance.get_child(0).get_child(0)
 		"creature_transform_basis":
 			component.creature_transform_basis = creature_transform_basis_instance
+		"creature_action_timer":
+			component.creature_action_timer = creature_action_timer_instance
 
 func _check_dependencies(component):
 	for Dependency in DependencyArray:

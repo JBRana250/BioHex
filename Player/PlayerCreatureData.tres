@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Creature_Resource" load_steps=13 format=3 uid="uid://dq5mxnsbq4s74"]
+[gd_resource type="Resource" script_class="Creature_Resource" load_steps=17 format=3 uid="uid://dq5mxnsbq4s74"]
 
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="1_a8mhm"]
 [ext_resource type="PackedScene" uid="uid://dquy7dajyjfhh" path="res://Player/Player.tscn" id="1_bdpuc"]
@@ -9,7 +9,10 @@
 [ext_resource type="Resource" uid="uid://dx67wdpyhnqd7" path="res://Resources/Creature Resources/Premade Resources/Player/Core Component Resources/basic_caster_resource.tres" id="5_qqv7v"]
 [ext_resource type="Resource" uid="uid://b5uyk3s4ivnuy" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_cell_health_resource.tres" id="6_3qprq"]
 [ext_resource type="Resource" uid="uid://bklhuxxot48gs" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_cell_scene_resource.tres" id="6_ku0qf"]
-[ext_resource type="Resource" uid="uid://ch0g48iyrhhvd" path="res://Resources/Creature Resources/Premade Resources/Player/Outer Component Resources/outer_nail_resource.tres" id="9_ndk2t"]
+[ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_nail_damage_resource.tres" id="9_tnbu8"]
+[ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_nail_health_resource.tres" id="10_chwjb"]
+[ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_nail_scene_resource.tres" id="11_r1hyu"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="12_vsmkt"]
 
 [sub_resource type="Resource" id="Resource_ot86j"]
 script = ExtResource("1_a8mhm")
@@ -18,9 +21,18 @@ position = Array[int]([2])
 weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
-outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([])
+outer_components = Array[ExtResource("12_vsmkt")]([])
 health_resource = ExtResource("6_3qprq")
 scene_resource = ExtResource("6_ku0qf")
+
+[sub_resource type="Resource" id="Resource_xdcd2"]
+script = ExtResource("12_vsmkt")
+Name = "outernail"
+type = "melee_weapon"
+position = 1
+health_resource = ExtResource("10_chwjb")
+scene_resource = ExtResource("11_r1hyu")
+damage_resource = ExtResource("9_tnbu8")
 
 [sub_resource type="Resource" id="Resource_qq05j"]
 script = ExtResource("1_a8mhm")
@@ -29,7 +41,7 @@ position = Array[int]([2, 1])
 weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
-outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([ExtResource("9_ndk2t")])
+outer_components = Array[ExtResource("12_vsmkt")]([SubResource("Resource_xdcd2")])
 health_resource = ExtResource("6_3qprq")
 scene_resource = ExtResource("6_ku0qf")
 

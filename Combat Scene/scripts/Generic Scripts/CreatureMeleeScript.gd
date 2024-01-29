@@ -9,9 +9,6 @@ var overlapping_body_shapes = {}
 
 var kb_mag: float = 25
 
-func _ready():
-	damage = 0.5
-
 func _update_kb_force_dir():
 	kb_force_dir = owner.get_global_transform().basis.z
 

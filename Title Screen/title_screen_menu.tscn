@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu8evcq4wt4ta"]
 
-[ext_resource type="Script" path="res://Title Screen/title_screen_scripts/ButtonNavToScene.gd" id="1_v4udq"]
+[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="1_47u0b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nv1to"]
 
@@ -62,7 +62,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_nv1to")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nv1to")
 text = "PLAY"
 icon_alignment = 1
-script = ExtResource("1_v4udq")
+script = ExtResource("1_47u0b")
 scene_path = "res://World Scene/scenes/world_scene.tscn"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/PlayButton" to="MarginContainer/CenterContainer/PlayButton" method="_on_pressed"]

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Core_Component_Resource" load_steps=5 format=3 uid="uid://dx67wdpyhnqd7"]
+[gd_resource type="Resource" script_class="Core_Component_Resource" load_steps=6 format=3 uid="uid://dx67wdpyhnqd7"]
 
 [ext_resource type="Resource" uid="uid://bnmjam6i2cu6u" path="res://Resources/Creature Resources/Premade Resources/Generic/Core Resources/basic_core_resource.tres" id="1_7iye4"]
 [ext_resource type="Resource" uid="uid://c1ss3qmqff4c1" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_caster_health_resource.tres" id="2_oyecw"]
+[ext_resource type="Resource" uid="uid://hbafppok3qxs" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/basic_caster_damage_resource.tres" id="2_sf06o"]
 [ext_resource type="Resource" uid="uid://b36lle7rtt2m6" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/basic_caster_scene_resource.tres" id="3_aliuw"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/core_component_resource.gd" id="4_cihhl"]
 
@@ -12,3 +13,4 @@ type = "ranged_weapon"
 core = ExtResource("1_7iye4")
 health_resource = ExtResource("2_oyecw")
 scene_resource = ExtResource("3_aliuw")
+damage_resource = ExtResource("2_sf06o")

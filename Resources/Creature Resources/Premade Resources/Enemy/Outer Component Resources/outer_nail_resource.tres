@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Outer_Component_Resource" load_steps=4 format=3 uid="uid://btjylh40xqgg1"]
+[gd_resource type="Resource" script_class="Outer_Component_Resource" load_steps=5 format=3 uid="uid://btjylh40xqgg1"]
 
 [ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="1_afrg2"]
 [ext_resource type="Resource" uid="uid://3r8elsneqn1a" path="res://Resources/Creature Resources/Premade Resources/Enemy/Health Resources/outer_nail_health_resource.tres" id="1_aufck"]
+[ext_resource type="Resource" uid="uid://b6smr68cthgof" path="res://Resources/Creature Resources/Premade Resources/Enemy/Damage Resources/outer_nail_damage_resource.tres" id="1_plp0i"]
 [ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_nail_scene_resource.tres" id="2_1wf5f"]
 
 [resource]
@@ -11,3 +12,4 @@ type = "melee_weapon"
 position = 1
 health_resource = ExtResource("1_aufck")
 scene_resource = ExtResource("2_1wf5f")
+damage_resource = ExtResource("1_plp0i")

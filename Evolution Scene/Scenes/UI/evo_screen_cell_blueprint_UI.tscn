@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi5n3yda3ltvs"]
+
+[ext_resource type="Texture2D" uid="uid://d1k3ym52bx1gs" path="res://Evolution Scene/Assets/UI/Plus Button.svg" id="1_yin6w"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/cell blueprint/add_creature_cell_button.gd" id="2_o20ie"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/cell blueprint/cancel_add_creature_cell_button.gd" id="2_s2u5n"]
+[ext_resource type="Texture2D" uid="uid://bv4onrt8q3dv7" path="res://Evolution Scene/Assets/UI/Cancel Button.svg" id="3_moxf5"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1870.0
+offset_bottom = 1030.0
+mouse_filter = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CancelAddCellButton" type="TextureButton" parent="HBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("3_moxf5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_s2u5n")
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AddCellButton" type="TextureButton" parent="HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("1_yin6w")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_o20ie")
+
+[connection signal="pressed" from="HBoxContainer/CenterContainer2/CancelAddCellButton" to="HBoxContainer/CenterContainer2/CancelAddCellButton" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/AddCellButton" to="HBoxContainer/CenterContainer/AddCellButton" method="_on_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs31ffl6c1msk"]
+
+[ext_resource type="PackedScene" uid="uid://cafeaqdsf0b6u" path="res://Evolution Scene/Assets/Cell Part Blueprints/basiccellblueprint.glb" id="1_pxb20"]
+[ext_resource type="Material" uid="uid://dr21mufu731pp" path="res://Evolution Scene/Assets/Cell Part Blueprints/basic_cell_blueprint_idle_material.tres" id="2_hc5a1"]
+[ext_resource type="PackedScene" uid="uid://bdsllr50qbwyb" path="res://Evolution Scene/Scenes/Cell Part Blueprints/cell blueprint/cellblueprintcolbox.tscn" id="3_ndcwm"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBSetMaterialScript.gd" id="3_rageg"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBMouseInputScript.gd" id="5_taogx"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBShowUIScript.gd" id="6_ohyt5"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CellBlueprintProperties.gd" id="7_aq8bp"]
+
+[node name="basiccellblueprint" groups=["CellBlueprint"] instance=ExtResource("1_pxb20")]
+
+[node name="Cylinder_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_hc5a1")
+script = ExtResource("3_rageg")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="cellblueprintcolbox" parent="Area3D" index="0" instance=ExtResource("3_ndcwm")]
+
+[node name="Components" type="Node" parent="." index="3"]
+
+[node name="MouseInputComponent" type="Node3D" parent="Components" index="0" node_paths=PackedStringArray("mesh", "show_UI_component")]
+script = ExtResource("5_taogx")
+mesh = NodePath("../../Cylinder_001")
+show_UI_component = NodePath("../ShowUIComponent")
+
+[node name="ShowUIComponent" type="Node" parent="Components" index="1"]
+script = ExtResource("6_ohyt5")
+
+[node name="Properties" type="Node" parent="Components" index="2"]
+script = ExtResource("7_aq8bp")
+
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="globalMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="globalMouseExited"]

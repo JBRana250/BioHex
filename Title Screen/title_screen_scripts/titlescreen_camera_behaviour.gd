@@ -32,8 +32,8 @@ func _input(_event):
 func _process(delta):
 	if(cam_rotating):
 		next_mouse_position = get_viewport().get_mouse_position()
-		camera_pivot.rotate_y((next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta)
-		camera_pivot.rotate_x((next_mouse_position.y - prev_mouse_position.y) * -cam_rotation_speed * delta)
+		camera_pivot.rotation.y += (next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta
+		camera_pivot.rotation.x += (next_mouse_position.y - prev_mouse_position.y) * -cam_rotation_speed * delta
 		
 		#lock z rotation
 		camera_pivot.rotation.z = 0

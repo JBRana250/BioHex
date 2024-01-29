@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Weapon_Damage_Resource" load_steps=2 format=3 uid="uid://bjau5gusvyljb"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/weapon_damage_resource.gd" id="1_4dqax"]
+
+[resource]
+script = ExtResource("1_4dqax")
+base_damage = 10.0
+damage_modifiers = {}

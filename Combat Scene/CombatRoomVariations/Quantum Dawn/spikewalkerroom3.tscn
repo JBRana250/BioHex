@@ -18,6 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 
 [node name="basicroom" parent="." instance=ExtResource("1_qdwal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0987275, -0.171874, 0.0530586)
 
 [node name="mouseraycastfloor" parent="." instance=ExtResource("2_xjo0g")]
 monitoring = false

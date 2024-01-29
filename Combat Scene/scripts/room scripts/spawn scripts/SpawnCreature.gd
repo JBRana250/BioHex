@@ -9,9 +9,11 @@ class_name creature_spawn_script
 
 const creature_spawn_beam = preload("res://Combat Scene/scenes/creaturespawnbeam.tscn")
 const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
+const creature_action_timer = preload("res://CreatureParts/creature_action_timer.tscn")
 const creature_spawn_particles = preload("res://Combat Scene/scenes/particle scenes/CreatureSpawnParticles.tscn")
 
 var creature_transform_basis_instance: Node3D
+var creature_action_timer_instance: Timer
 var character_instance: CharacterBody3D
 var components_instance: Node
 var force_component_instance: Node
@@ -19,7 +21,7 @@ var spawn_particles_instance: Node3D
 
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
-var DependencyArray = ["creature_transform_basis"]
+var DependencyArray = ["creature_transform_basis", "creature_action_timer"]
 var component_references = ["Components", "ForceComponent"]
 
 func _wait(seconds):
@@ -36,7 +38,7 @@ func _spawn_thing(_thing, _parent, _position, _rotation):
 		print_debug("thing that is trying to be spawned does not exist")
 		return
 	var thing_instance = _thing.instantiate()
-	if thing_instance.get_class() == "Node":
+	if thing_instance.get_class() == "Node" or thing_instance.get_class() == "Timer":
 		_parent.add_child(thing_instance)
 		return thing_instance
 	_parent.add_child(thing_instance)
@@ -48,6 +50,8 @@ func _attach_dependencies(component, Dependency):
 	match Dependency:
 		"creature_transform_basis":
 			component.creature_transform_basis = creature_transform_basis_instance
+		"creature_action_timer":
+			component.creature_action_timer = creature_action_timer_instance
 
 func _check_dependencies(component):
 	for Dependency in DependencyArray:
@@ -69,8 +73,10 @@ func _spawn_creature():
 	var ranged_weapons = body_instance.get_node("RangedWeapons")
 	var melee_weapons = body_instance.get_node("MeleeWeapons")
 	
+	#Instantiate transform basis and action timer
 	creature_transform_basis_instance = _spawn_thing(creature_transform_basis, get_tree().current_scene, Vector3(), Vector3())
-	
+	creature_action_timer_instance = _spawn_thing(creature_action_timer, character_instance, Vector3(), Vector3())
+
 	# Iterate over creature_data, for each cell in creature data, instantiate it according to position.
 	for cell in creature_resource.creature_data_array:
 		# Instantiate cell at location
@@ -121,7 +127,7 @@ func _spawn_creature():
 					
 					# set damage attributes
 					var damage_component = core_component_instance.get_node("Components").get_node("RangedDamageComponent")
-					damage_component.damage = 2.5
+					damage_component.damage = core_component.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
 			component_reference_parts.append(collision_component)
 					
@@ -164,7 +170,7 @@ func _spawn_creature():
 					collision_component.cellpart = outer_component_instance
 					collision_component.health = float(outer_component.health_resource.base_health)
 					var damage_component = outer_component_instance.find_child("Components").get_node("MeleeDamageComponent")
-					damage_component.damage = 0.5
+					damage_component.damage = outer_component.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
 			component_reference_parts.append(collision_component)
 
