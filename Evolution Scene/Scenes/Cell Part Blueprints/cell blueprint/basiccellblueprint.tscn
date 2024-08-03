@@ -20,9 +20,10 @@ script = ExtResource("3_rageg")
 
 [node name="Components" type="Node" parent="." index="3"]
 
-[node name="MouseInputComponent" type="Node3D" parent="Components" index="0" node_paths=PackedStringArray("mesh", "show_UI_component")]
+[node name="MouseInputComponent" type="Node3D" parent="Components" index="0" node_paths=PackedStringArray("mesh", "properties", "show_UI_component")]
 script = ExtResource("5_taogx")
 mesh = NodePath("../../Cylinder_001")
+properties = NodePath("../Properties")
 show_UI_component = NodePath("../ShowUIComponent")
 
 [node name="ShowUIComponent" type="Node" parent="Components" index="1"]
@@ -31,5 +32,5 @@ script = ExtResource("6_ohyt5")
 [node name="Properties" type="Node" parent="Components" index="2"]
 script = ExtResource("7_aq8bp")
 
-[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="globalMouseEntered"]
-[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="globalMouseExited"]
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="onMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="onMouseExited"]

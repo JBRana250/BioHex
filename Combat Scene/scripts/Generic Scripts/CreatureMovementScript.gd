@@ -32,7 +32,8 @@ func globalAddActiveForce(force_name, force_dir, force_mag):
 
 func _sum_active_forces():
 	for active_force in active_forces.values():
-		net_active_force += active_force.direction * active_force.magnitude
+		net_active_force.x += active_force.direction.x * active_force.magnitude
+		net_active_force.z += active_force.direction.y * active_force.magnitude
 
 func _dampen_active_forces(delta):
 	for active_force_name in active_forces.keys():

@@ -64,6 +64,42 @@ func _attach_components():
 		_check_dependencies(component)
 	character_instance.add_child(components_instance)
 
+func _get_number_sign(number):
+	if number > 0:
+		return "POS"
+	if number < 0:
+		return "NEG"
+	if number == 0:
+		return "ZERO"
+	else:
+		print_debug("error getting sign")
+		return "ERR"
+
+func _unpack_cell_position(cell_pos: Vector2) -> Vector3:
+	var unpacked_y_position = cell_pos.y * -1.7
+	var unpacked_x_position: float = 0
+	var step: float
+	if int(cell_pos.x) & 1: # if odd
+		unpacked_y_position += -0.85
+		match _get_number_sign(cell_pos.x):
+			"POS":
+				unpacked_x_position += 1.5
+				step = ceil(cell_pos.x / 2)
+				unpacked_x_position += (cell_pos.x - step) * 3
+			"NEG":
+				unpacked_x_position -= 1.5
+				step = floor(cell_pos.x / 2)
+				unpacked_x_position += (cell_pos.x - step) * 3
+	else: # if even
+		match _get_number_sign(cell_pos.x):
+			"POS":
+				step = cell_pos.x / 2
+				unpacked_x_position = (cell_pos.x - step) * 3
+			"NEG":
+				step = cell_pos.x / 2
+				unpacked_x_position = (cell_pos.x - step) * 3
+	return Vector3(unpacked_x_position, 0, unpacked_y_position)
+
 func _spawn_creature():
 	# Instantiate base creature
 	character_instance = _spawn_thing(character, get_tree().current_scene, owner.position, Vector3())
@@ -80,26 +116,7 @@ func _spawn_creature():
 	# Iterate over creature_data, for each cell in creature data, instantiate it according to position.
 	for cell in creature_resource.creature_data_array:
 		# Instantiate cell at location
-		# Figure out position
-		var cell_pos = Vector3()
-		for number in cell.position:
-			match number:
-				1:
-					cell_pos.z += 1.7
-				2:
-					cell_pos.x += -1.5
-					cell_pos.z += 0.85
-				3:
-					cell_pos.x += -1.5
-					cell_pos.z += -0.85
-				4:
-					cell_pos.z += -1.7
-				5:
-					cell_pos.x += 1.5
-					cell_pos.z += -0.85
-				6:
-					cell_pos.x += 1.5
-					cell_pos.z += 0.85
+		var cell_pos = _unpack_cell_position(cell.position)
 		var scene_resource = cell.scene_resource
 		var cell_instance = _spawn_thing(scene_resource.scene, body_instance, cell_pos, Vector3())
 		var CBcell_instance = _spawn_thing(scene_resource.CBscene, character_instance, cell_pos, Vector3(deg_to_rad(90),deg_to_rad(-30),0))

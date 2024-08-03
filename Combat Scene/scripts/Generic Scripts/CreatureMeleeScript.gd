@@ -9,9 +9,6 @@ var overlapping_body_shapes = {}
 
 var kb_mag: float = 25
 
-func _update_kb_force_dir():
-	kb_force_dir = owner.get_global_transform().basis.z
-
 #cool internet method but modified slightly
 func _clean_dict(dirty_dict: Dictionary) -> Dictionary:
 	var clean_dict := {}
@@ -47,8 +44,8 @@ func _on_body_shape_entered(_body_rid, body, body_shape_index, _local_shape_inde
 		if !is_instance_valid(body_shape) or !is_instance_valid(body):
 			return
 		if body_shape.get_child_count() != 0:
-			_update_kb_force_dir()
-			body_shape.get_child(0).globalOnHit(damage, "melee_kb", kb_force_dir, kb_mag, 0)
+			
+			body_shape.get_child(0).globalOnHit(damage, "melee_kb", owner.get_global_transform().basis.z, kb_mag, 0)
 			damage_interval_finished = false
 		await(_wait(0.1))
 
@@ -65,4 +62,4 @@ func _on_body_shape_exited(_body_rid, body, body_shape_index, _local_shape_index
 		var current_body_shape_info = overlapping_body_shapes[overlapping_body_shapes.keys()[0]]
 		var current_body = current_body_shape_info[0]
 		var current_body_shape_index = current_body_shape_info[1]
-		_on_body_shape_entered(null, current_body, current_body_shape_index, null)
+		_on_body_shape_entered(_body_rid, current_body, current_body_shape_index, _local_shape_index)

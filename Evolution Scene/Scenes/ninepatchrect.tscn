@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dba2xfp1cnwos"]
+
+[ext_resource type="PackedScene" uid="uid://d3lsc2p3lyq8t" path="res://Generic/Scenes/UI/menu_panel.tscn" id="1_s4mxe"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" parent="." instance=ExtResource("1_s4mxe")]
+offset_left = 556.0
+offset_top = 185.0
+offset_right = 1331.0
+offset_bottom = 822.0

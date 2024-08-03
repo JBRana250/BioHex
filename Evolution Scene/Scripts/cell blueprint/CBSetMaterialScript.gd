@@ -12,4 +12,3 @@ func globalSetMaterialHover():
 
 func globalSetMaterialIdle():
 	set_surface_override_material(0, BASIC_CELL_BLUEPRINT_IDLE_MATERIAL)
-	

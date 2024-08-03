@@ -2,16 +2,18 @@ extends Node3D
 
 @onready var camera_3d = Globals.camera
 @export var mesh: MeshInstance3D
+@export var properties: Node
 @export var show_UI_component: Node
 var mouse_hovering: bool = false
 var is_active: bool = false
 
-func globalMouseEntered():
+
+func onMouseEntered():
 	if is_active == false:
 		mesh.globalSetMaterialHover()
 	mouse_hovering = true
 	
-func globalMouseExited():
+func onMouseExited():
 	if is_active == false:
 		mesh.globalSetMaterialIdle()
 	mouse_hovering = false

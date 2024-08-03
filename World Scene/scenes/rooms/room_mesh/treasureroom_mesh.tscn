@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwd1su8pi4nam"]
+
+[ext_resource type="PackedScene" uid="uid://vhptix5drwiv" path="res://World Scene/assets/treasureroom.glb" id="1_x7t53"]
+[ext_resource type="Material" uid="uid://cjrxngsxw7iwc" path="res://World Scene/assets/room_base1.tres" id="2_fqdlh"]
+[ext_resource type="Material" uid="uid://d24orsp36cnss" path="res://World Scene/assets/room_black.tres" id="3_m2d0r"]
+[ext_resource type="Material" uid="uid://bc5so4ecx0g7h" path="res://World Scene/assets/room_icon_black.tres" id="4_yjbek"]
+
+[node name="treasureroom" instance=ExtResource("1_x7t53")]
+
+[node name="Cylinder_003" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_fqdlh")
+surface_material_override/1 = ExtResource("3_m2d0r")
+
+[node name="Cube" parent="." index="1"]
+surface_material_override/0 = ExtResource("4_yjbek")
+
+[node name="Cube_001" parent="." index="2"]
+surface_material_override/0 = ExtResource("4_yjbek")
+surface_material_override/1 = ExtResource("4_yjbek")

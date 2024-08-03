@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://v3pevxdkmsuo"]
+
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/OnClickComponentScript.gd" id="1_ikw5d"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_qkm31"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="3_wsabv"]
+[ext_resource type="PackedScene" uid="uid://dwd1su8pi4nam" path="res://World Scene/scenes/rooms/room_mesh/treasureroom_mesh.tscn" id="4_rjio8"]
+
+[node name="TreasureRoom" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="hexcolbox" type="CollisionPolygon3D" parent="Area3D"]
+transform = Transform3D(0.866025, -0.5, 2.18557e-08, 0, -4.37114e-08, -1, 0.5, 0.866025, -3.78552e-08, 0, 0, 0)
+depth = 0.54
+polygon = PackedVector2Array(-0.873228, -0.496507, 0.00349882, -0.995989, 0.867409, -0.497065, 0.865413, 0.508487, -0.00907815, 0.994736, -0.870979, 0.493202)
+margin = 0.08
+
+[node name="Components" type="Node" parent="."]
+
+[node name="OnClickComponent" type="Node" parent="Components"]
+script = ExtResource("1_ikw5d")
+
+[node name="RoomAttributes" type="Node" parent="Components"]
+script = ExtResource("2_qkm31")
+
+[node name="Appearance" type="Node" parent="Components"]
+script = ExtResource("3_wsabv")
+
+[node name="room_mesh" parent="." instance=ExtResource("4_rjio8")]
+
+[connection signal="input_event" from="Area3D" to="Components/OnClickComponent" method="_on_area_3d_input_event"]

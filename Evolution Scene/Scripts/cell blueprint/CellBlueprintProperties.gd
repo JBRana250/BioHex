@@ -1,3 +1,3 @@
 extends Node
 
-@export var position: Array[int]
+@export var position: Vector2

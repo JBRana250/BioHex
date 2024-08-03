@@ -10,6 +10,7 @@ script = ExtResource("3_i77qd")
 Name = "outernail"
 type = "melee_weapon"
 position = 1
+pos_to_origin = Vector2(0, -1)
 health_resource = ExtResource("1_8huhv")
 scene_resource = ExtResource("2_756en")
 damage_resource = ExtResource("1_5tvc6")

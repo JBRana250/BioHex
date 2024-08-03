@@ -25,7 +25,13 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -36,4 +42,4 @@ stretch_mode = 0
 script = ExtResource("2_yh3js")
 scene_path = "res://World Scene/scenes/world_scene.tscn"
 
-[connection signal="pressed" from="MarginContainer/BackButton" to="MarginContainer/BackButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="MarginContainer/VBoxContainer/HBoxContainer/BackButton" method="_on_pressed"]

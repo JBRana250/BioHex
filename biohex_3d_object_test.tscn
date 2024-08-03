@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2eavg8ykbdcj"]
+
+[ext_resource type="PackedScene" uid="uid://7slcfry02otv" path="res://Test Assets/biohex_3d_object_test.glb" id="1_yxap5"]
+
+[node name="biohex_3d_object_test" instance=ExtResource("1_yxap5")]
+
+[node name="Camera3D" type="Camera3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.768351, 0.640029, 0, -0.640029, 0.768351, 0, 3.89489, 6.13403)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.24146, 6.77156)

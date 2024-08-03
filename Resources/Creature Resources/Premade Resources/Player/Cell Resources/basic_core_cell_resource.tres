@@ -7,7 +7,9 @@
 [resource]
 script = ExtResource("3_oll48")
 Name = "core"
-position = Array[int]([])
+parent_cell_position_array = Array[Vector2]([])
+child_cell_position_array = Array[Vector2]([])
+position = Vector2(0, 0)
 weight = 0
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
 outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([])

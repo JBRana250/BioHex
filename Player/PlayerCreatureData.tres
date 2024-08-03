@@ -17,7 +17,9 @@
 [sub_resource type="Resource" id="Resource_ot86j"]
 script = ExtResource("1_a8mhm")
 Name = "basic"
-position = Array[int]([2])
+parent_cell_position_array = Array[Vector2]([Vector2(0, 0)])
+child_cell_position_array = Array[Vector2]([Vector2(-1, -2)])
+position = Vector2(-1, -1)
 weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
@@ -30,6 +32,7 @@ script = ExtResource("12_vsmkt")
 Name = "outernail"
 type = "melee_weapon"
 position = 1
+pos_to_origin = Vector2(-1, -3)
 health_resource = ExtResource("10_chwjb")
 scene_resource = ExtResource("11_r1hyu")
 damage_resource = ExtResource("9_tnbu8")
@@ -37,7 +40,9 @@ damage_resource = ExtResource("9_tnbu8")
 [sub_resource type="Resource" id="Resource_qq05j"]
 script = ExtResource("1_a8mhm")
 Name = "basic"
-position = Array[int]([2, 1])
+parent_cell_position_array = Array[Vector2]([Vector2(-1, -1)])
+child_cell_position_array = Array[Vector2]([])
+position = Vector2(-1, -2)
 weight = 0
 core_component = ExtResource("5_qqv7v")
 inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://rg1pv88u0b2v"]
+
+[ext_resource type="PackedScene" uid="uid://cfljd2a3wg72q" path="res://World Scene/assets/shoproom.glb" id="1_qyhtg"]
+[ext_resource type="Material" uid="uid://cjrxngsxw7iwc" path="res://World Scene/assets/room_base1.tres" id="2_21xpd"]
+[ext_resource type="Material" uid="uid://d24orsp36cnss" path="res://World Scene/assets/room_black.tres" id="3_8fehd"]
+[ext_resource type="Material" uid="uid://bc5so4ecx0g7h" path="res://World Scene/assets/room_icon_black.tres" id="4_2k652"]
+
+[node name="shoproom" instance=ExtResource("1_qyhtg")]
+
+[node name="Cylinder_003" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_21xpd")
+surface_material_override/1 = ExtResource("3_8fehd")
+
+[node name="Plane_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("4_2k652")

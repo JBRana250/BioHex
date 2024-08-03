@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bimkuixjthv3l"]
+
+[ext_resource type="PackedScene" uid="uid://bdsllr50qbwyb" path="res://Evolution Scene/Scenes/Cell Part Blueprints/cell blueprint/cellblueprintcolbox.tscn" id="1_m4kfs"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CEMouseInputScript.gd" id="2_ybg7q"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditorProperties.gd" id="3_4jk71"]
+
+[node name="celleditarea" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="cellblueprintcolbox" parent="Area3D" instance=ExtResource("1_m4kfs")]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MouseInputComponent" type="Node3D" parent="Components"]
+script = ExtResource("2_ybg7q")
+
+[node name="ShowUIComponent" type="Node" parent="Components"]
+
+[node name="Properties" type="Node" parent="Components"]
+script = ExtResource("3_4jk71")
+
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="onMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="onMouseExited"]

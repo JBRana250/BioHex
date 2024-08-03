@@ -8,7 +8,7 @@ extends Node
 @export var map_x_max = 14
 
 class Room:
-	var type: String
+	var type: String # combat, shop, treasure, boss
 	var branching_chance: float
 	func _init(_type, _branching_chance):
 		type = _type
@@ -22,7 +22,7 @@ func _determine_branch_starting_room(initial_rooms_left, possible_cells):
 	var rand_num = randf_range(0,100)
 	if rand_num <= probability:
 		#create room at cell
-		_create_room(possible_cells[0], 0, "fight", 0)
+		_create_room(possible_cells[0], 0, "combat", 0)
 		initial_rooms_left -= 1
 		possible_cells.remove_at(0)
 		return [initial_rooms_left, possible_cells]
@@ -52,12 +52,25 @@ func _extend_even_row_rooms(row):
 	# Loop over eligible_rooms array. For every room, check the position in x-1 to see if a room is there, and if so, remove those coordinates from possible extension spots 
 	for room_pos in eligible_rooms:
 		var room = path_map[room_pos]
-		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y)]
+		var possible_eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y)]
+		var eligible_extension_positions = []
 			
 		#If possible extension is out of bounds, remove from list.
-		for eligible_position in eligible_extension_positions:
+		for eligible_position in possible_eligible_extension_positions:
 			if !(0 <= eligible_position.x and eligible_position.x <= map_x_max):
-				eligible_extension_positions.erase(eligible_position)
+				continue
+			if rows_to_boss % 2 == 1:
+				if eligible_position.y > (float(rows_to_boss-1) / float(2)): # if placed on y value beyond boss row
+					continue
+				if row == rows_to_boss-1 and int(eligible_position.x) % 2 == 0:
+					continue
+				eligible_extension_positions.append(eligible_position)
+			elif rows_to_boss % 2 == 0:
+				if eligible_position.y > (float(rows_to_boss) / float(2)): # if placed on y value beyond boss row
+					continue
+				eligible_extension_positions.append(eligible_position)
+			else:
+				print_debug("rows_to_boss is neither odd nor even?!?")
 
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
@@ -82,10 +95,16 @@ func _extend_even_row_rooms(row):
 			
 			if rand_num <= probability:
 				# the current position is chosen
-				_create_room(eligible_position.x, eligible_position.y, "fight", new_branching_chance)
-				eligible_extension_positions.clear()
+				_create_room(eligible_position.x, eligible_position.y, "combat", new_branching_chance)
+				extensions -= 1
+				if extensions <= 0:
+					break
+				else:
+					eligible_extension_positions_left -= 1
 			else:
+				#print("room not created with probability %f" % probability)
 				eligible_extension_positions_left -= 1
+		print()
 	
 func _extend_odd_row_rooms(row):
 	var row_y_coordinate = float(row-1) / float(2)
@@ -97,13 +116,24 @@ func _extend_odd_row_rooms(row):
 
 	for room_pos in eligible_rooms:
 		var room = path_map[room_pos]
-		var eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y + 1), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y + 1)]
-		
-		
+		var possible_eligible_extension_positions = [Vector2(room_pos.x - 1, room_pos.y + 1), Vector2(room_pos.x, room_pos.y + 1), Vector2(room_pos.x + 1, room_pos.y + 1)]
+		var eligible_extension_positions = []
 		#If possible extension is out of bounds, remove from list.
-		for eligible_position in eligible_extension_positions:
+		for eligible_position in possible_eligible_extension_positions:
 			if !(0 <= eligible_position.x and eligible_position.x <= map_x_max):
-				eligible_extension_positions.erase(eligible_position)
+				continue
+			if rows_to_boss % 2 == 0:
+				if eligible_position.y > (float(rows_to_boss) / float(2)): # if placed on y value beyond boss row
+					continue
+				if row == rows_to_boss-1 and int(eligible_position.x) % 2 == 1:
+					continue
+				eligible_extension_positions.append(eligible_position)
+			elif rows_to_boss % 2 == 1:
+				if eligible_position.y > (float(rows_to_boss-1) / float(2)): # if placed on y value beyond boss row
+					continue
+				eligible_extension_positions.append(eligible_position)
+			else:
+				print_debug("rows_to_boss is neither odd nor even?!?")
 		
 		# There is a 10% chance for number of extensions to be 2 instead of 1, and a 1% chance that number of extension is 3.
 		var rand_num = randf_range(0,100)
@@ -126,16 +156,16 @@ func _extend_odd_row_rooms(row):
 			rand_num = randf_range(0,100)
 			if rand_num <= probability:
 				# the current position is chosen
-				
-				_create_room(eligible_position.x, eligible_position.y, "fight", new_branching_chance)
+				_create_room(eligible_position.x, eligible_position.y, "combat", new_branching_chance)
 				extensions -= 1
 				if extensions <= 0:
-					eligible_extension_positions.clear()
+					break
 				else:
 					eligible_extension_positions_left -= 1
 			else:
 				#print("room not created with probability %f" % probability)
 				eligible_extension_positions_left -= 1
+		print()
 	
 func _extend_rooms_in_row(row):
 	#first determine if row num is even or odd

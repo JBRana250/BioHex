@@ -4,7 +4,6 @@ const BASIC_CELL_HEALTH_RESOURCE = preload("res://Resources/Creature Resources/P
 const BASIC_CELL_SCENE_RESOURCE = preload("res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_cell_scene_resource.tres")
 
 func _on_pressed():
-	
 	#Edit player creature data -- add in new cell
 	var new_cell = Cell_Resource.new()
 	var properties = Globals.active_cell_blueprint.get_node("Components/Properties")

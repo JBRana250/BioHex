@@ -1,6 +1,7 @@
 extends Node
 
-@export var room_scene = preload("res://World Scene/scenes/room.tscn")
+@export var combatroom_scene = preload("res://World Scene/scenes/rooms/combat_room.tscn")
+@export var bossroom_scene = preload("res://World Scene/scenes/rooms/boss_room.tscn")
 @onready var CombatRoomReferences = owner.get_node("CombatRoomReferences")
 @onready var path_map = Globals.path_map
 @onready var rows_to_boss = Globals.rows_to_boss
@@ -28,7 +29,20 @@ func _instantiate_even_row_rooms(row):
 		var world_dist = Vector3(-10.25 + world_x_increment, 0, 6.35 - world_z_increment)
 		
 		#Instantiate the room and set parent to current scene
-		var room_instance = room_scene.instantiate()
+		var room = path_map[room_pos]
+		var room_instance = null
+		
+		if row == rows_to_boss:
+			room.type = "boss"
+		
+		match room.type:
+			"combat":
+				room_instance = combatroom_scene.instantiate()
+			"boss":
+				room_instance = bossroom_scene.instantiate()
+			_:
+				print(room.type)
+		
 		path.add_child.call_deferred(room_instance)
 		
 		#Set room position
@@ -58,7 +72,20 @@ func _instantiate_odd_row_rooms(row):
 		var world_dist = Vector3(-8.8 + world_x_increment, 0, 5.5 - world_z_increment)
 		
 		#Instantiate the room and set parent to current scene
-		var room_instance = room_scene.instantiate()
+		var room = path_map[room_pos]
+		var room_instance = null
+		
+		if row == rows_to_boss:
+			room.type = "boss"
+		
+		match room.type:
+			"combat":
+				room_instance = combatroom_scene.instantiate()
+			"boss":
+				room_instance = combatroom_scene.instantiate()
+			_:
+				print(room.type)
+		
 		path.add_child.call_deferred(room_instance)
 		
 		#Set room position

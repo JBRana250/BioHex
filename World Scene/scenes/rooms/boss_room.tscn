@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://rerv56i1e8gf"]
+[gd_scene load_steps=5 format=3 uid="uid://bwjlqix4xwmb2"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/OnClickComponentScript.gd" id="2_iqk8b"]
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="3_7orod"]
-[ext_resource type="PackedScene" uid="uid://21h7hy5g4463" path="res://World Scene/scenes/room_mesh.tscn" id="4_0fdpc"]
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="4_ywmiw"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/OnClickComponentScript.gd" id="1_aew1e"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_3s1mw"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="3_sh26d"]
+[ext_resource type="PackedScene" uid="uid://cisfolnycmbk4" path="res://World Scene/scenes/rooms/room_mesh/bossroom_mesh.tscn" id="4_np7pw"]
 
-[node name="Room" type="Node3D"]
+[node name="BossRoom" type="Node3D"]
 
 [node name="Area3D" type="Area3D" parent="."]
 monitoring = false
@@ -20,14 +20,14 @@ margin = 0.08
 [node name="Components" type="Node" parent="."]
 
 [node name="OnClickComponent" type="Node" parent="Components"]
-script = ExtResource("2_iqk8b")
+script = ExtResource("1_aew1e")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
-script = ExtResource("3_7orod")
+script = ExtResource("2_3s1mw")
 
 [node name="Appearance" type="Node" parent="Components"]
-script = ExtResource("4_ywmiw")
+script = ExtResource("3_sh26d")
 
-[node name="room_mesh" parent="." instance=ExtResource("4_0fdpc")]
+[node name="room_mesh" parent="." instance=ExtResource("4_np7pw")]
 
 [connection signal="input_event" from="Area3D" to="Components/OnClickComponent" method="_on_area_3d_input_event"]
