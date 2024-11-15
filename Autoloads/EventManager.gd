@@ -10,8 +10,9 @@ class Event:
 		recievers = []
 
 var LeavingScene: Event = Event.new("LeavingScene")
+var EnemyDefeated: Event = Event.new("EnemyDefeated")
 
-var Events: Array[Event] = [LeavingScene]
+var Events: Array[Event] = [LeavingScene, EnemyDefeated]
 
 func _get_event_from_name(event_name: String) -> Event:
 	for event in Events:
