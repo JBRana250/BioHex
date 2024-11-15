@@ -52,5 +52,3 @@ func _physics_process(delta):
 		return
 	for child in ranged_weapons.get_children():
 		child.look_at(creature.position + Vector3(ranged_weapons_dir.x, 0, ranged_weapons_dir.y), Vector3.UP)
-
-

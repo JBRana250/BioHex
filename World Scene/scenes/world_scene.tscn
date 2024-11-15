@@ -23,6 +23,9 @@ size = 9.42
 script = ExtResource("1_g0lae")
 num_of_initial_rooms = 3
 rows_to_boss = 14
+combatroomweight = 10.0
+shoproomweight = 1.0
+treasureroomweight = 2.0
 
 [node name="RoomInstantiator" type="Node" parent="Path/Components"]
 script = ExtResource("2_bm426")

@@ -6,6 +6,9 @@ extends Node
 @export var path_map = {} # Key:Value pair with Key = coordinates, value = room
 
 @export var map_x_max = 14
+@export var combatroomweight: float
+@export var shoproomweight: float
+@export var treasureroomweight: float
 
 class Room:
 	var type: String # combat, shop, treasure, boss
@@ -39,6 +42,32 @@ func _establish_starting_rooms(_num_of_initial_rooms: int):
 		var results = _determine_branch_starting_room(initial_rooms_left, possible_cells)
 		initial_rooms_left = results[0]
 		possible_cells = results[1]
+
+func _determine_room_type() -> String:
+	var weightsum = combatroomweight + shoproomweight + treasureroomweight
+	
+	var combatroomratio = combatroomweight / weightsum
+	var combatroomrange = 100 * combatroomratio
+	var combatroommin = 0
+	var combatroommax = combatroommin + combatroomrange
+	
+	var shoproomratio = shoproomweight / weightsum
+	var shoproomrange = 100 * shoproomratio
+	var shoproommin = combatroommax
+	var shoproommax = shoproommin + shoproomrange
+	
+	var treasureroomratio = treasureroomweight / weightsum
+	var treasureroomrange = 100 * treasureroomratio
+	var treasureroommin = shoproommax
+	var treasureroommax = treasureroommin + treasureroomrange
+	
+	var randnum = randf_range(0,100)
+	if combatroommin < randnum and randnum < combatroommax:
+		return "combat"
+	elif shoproommin < randnum and randnum < shoproommax:
+		return "shop"
+	else:
+		return "treasure"
 
 func _extend_even_row_rooms(row):
 	var row_y_coordinate = float(row) / float(2)
@@ -95,7 +124,7 @@ func _extend_even_row_rooms(row):
 			
 			if rand_num <= probability:
 				# the current position is chosen
-				_create_room(eligible_position.x, eligible_position.y, "combat", new_branching_chance)
+				_create_room(eligible_position.x, eligible_position.y, _determine_room_type(), new_branching_chance)
 				extensions -= 1
 				if extensions <= 0:
 					break
@@ -156,7 +185,7 @@ func _extend_odd_row_rooms(row):
 			rand_num = randf_range(0,100)
 			if rand_num <= probability:
 				# the current position is chosen
-				_create_room(eligible_position.x, eligible_position.y, "combat", new_branching_chance)
+				_create_room(eligible_position.x, eligible_position.y, _determine_room_type(), new_branching_chance)
 				extensions -= 1
 				if extensions <= 0:
 					break

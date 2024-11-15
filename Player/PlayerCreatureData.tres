@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Creature_Resource" load_steps=17 format=3 uid="uid://dq5mxnsbq4s74"]
+[gd_resource type="Resource" script_class="Creature_Resource" load_steps=18 format=3 uid="uid://dq5mxnsbq4s74"]
 
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="1_a8mhm"]
 [ext_resource type="PackedScene" uid="uid://dquy7dajyjfhh" path="res://Player/Player.tscn" id="1_bdpuc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dx67wdpyhnqd7" path="res://Resources/Creature Resources/Premade Resources/Player/Core Component Resources/basic_caster_resource.tres" id="5_qqv7v"]
 [ext_resource type="Resource" uid="uid://b5uyk3s4ivnuy" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_cell_health_resource.tres" id="6_3qprq"]
 [ext_resource type="Resource" uid="uid://bklhuxxot48gs" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_cell_scene_resource.tres" id="6_ku0qf"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/inner_component_resource.gd" id="8_6l5u2"]
 [ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_nail_damage_resource.tres" id="9_tnbu8"]
 [ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_nail_health_resource.tres" id="10_chwjb"]
 [ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_nail_scene_resource.tres" id="11_r1hyu"]
@@ -22,7 +23,7 @@ child_cell_position_array = Array[Vector2]([Vector2(-1, -2)])
 position = Vector2(-1, -1)
 weight = 0
 core_component = ExtResource("5_qqv7v")
-inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
+inner_components = Array[ExtResource("8_6l5u2")]([])
 outer_components = Array[ExtResource("12_vsmkt")]([])
 health_resource = ExtResource("6_3qprq")
 scene_resource = ExtResource("6_ku0qf")
@@ -45,7 +46,7 @@ child_cell_position_array = Array[Vector2]([])
 position = Vector2(-1, -2)
 weight = 0
 core_component = ExtResource("5_qqv7v")
-inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
+inner_components = Array[ExtResource("8_6l5u2")]([])
 outer_components = Array[ExtResource("12_vsmkt")]([SubResource("Resource_xdcd2")])
 health_resource = ExtResource("6_3qprq")
 scene_resource = ExtResource("6_ku0qf")

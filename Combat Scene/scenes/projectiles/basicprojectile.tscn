@@ -13,8 +13,8 @@ radius = 0.13
 collision_layer = 8
 collision_mask = 98
 gravity_scale = 0.0
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_it2a2")
 
 [node name="bulletcollisionshape" type="CollisionShape3D" parent="."]

@@ -2,6 +2,8 @@ extends Node
 
 @export var combatroom_scene = preload("res://World Scene/scenes/rooms/combat_room.tscn")
 @export var bossroom_scene = preload("res://World Scene/scenes/rooms/boss_room.tscn")
+@export var shoproom_scene = preload("res://World Scene/scenes/rooms/shop_room.tscn")
+@export var treasureroom_scene = preload("res://World Scene/scenes/rooms/treasure_room.tscn")
 @onready var CombatRoomReferences = owner.get_node("CombatRoomReferences")
 @onready var path_map = Globals.path_map
 @onready var rows_to_boss = Globals.rows_to_boss
@@ -40,6 +42,10 @@ func _instantiate_even_row_rooms(row):
 				room_instance = combatroom_scene.instantiate()
 			"boss":
 				room_instance = bossroom_scene.instantiate()
+			"treasure":
+				room_instance = treasureroom_scene.instantiate()
+			"shop":
+				room_instance = shoproom_scene.instantiate()
 			_:
 				print(room.type)
 		
@@ -83,6 +89,10 @@ func _instantiate_odd_row_rooms(row):
 				room_instance = combatroom_scene.instantiate()
 			"boss":
 				room_instance = combatroom_scene.instantiate()
+			"treasure":
+				room_instance = treasureroom_scene.instantiate()
+			"shop":
+				room_instance = shoproom_scene.instantiate()
 			_:
 				print(room.type)
 		

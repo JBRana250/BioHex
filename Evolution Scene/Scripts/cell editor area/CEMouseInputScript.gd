@@ -45,4 +45,3 @@ func _input(_event):
 			#show_UI_component.globalShowUI()
 			is_active = true
 			Globals.active_cell_blueprint = owner
-
