@@ -215,8 +215,8 @@ func _create_path_map(_num_of_initial_rooms: int, _rows_to_boss: int):
 func _ready():
 	if Globals.path_map == {}:
 		_create_path_map(num_of_initial_rooms, rows_to_boss)
+		Globals.path_map = path_map
+		Globals.rows_to_boss = rows_to_boss
 	else:
 		path_map = Globals.path_map
 		rows_to_boss = Globals.rows_to_boss
-	Globals.path_map = path_map
-	Globals.rows_to_boss = rows_to_boss

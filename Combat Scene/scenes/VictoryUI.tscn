@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf7id2jnknoyu"]
+
+[ext_resource type="Texture2D" uid="uid://dr6hbsjlmc1mh" path="res://Combat Scene/assets/victoryui.png" id="1_wy51q"]
+[ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="2_0kdyd"]
+[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="3_ggxiv"]
+
+[node name="VictoryUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 963.0
+offset_bottom = 544.0
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_wy51q")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 119.0
+offset_right = 1926.0
+offset_bottom = 1205.0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer2"]
+custom_minimum_size = Vector2(600, 275)
+layout_mode = 2
+color = Color(0.823494, 0.662972, 0.488946, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2/ColorRect"]
+custom_minimum_size = Vector2(600, 275)
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 275.0
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer2/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+color = Color(0.878425, 0.739686, 0.593163, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CenterContainer2/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+color = Color(0.823529, 0.662745, 0.490196, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect2"]
+custom_minimum_size = Vector2(100, 275)
+layout_mode = 0
+offset_top = 1.0
+offset_right = 100.0
+offset_bottom = 276.0
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+color = Color(0.823529, 0.662745, 0.490196, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("2_0kdyd")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+script = ExtResource("3_ggxiv")
+scene_path = "res://World Scene/scenes/world_scene.tscn"
+
+[connection signal="pressed" from="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer/MarginContainer/Button" to="CenterContainer2/ColorRect/HBoxContainer/ColorRect2/VBoxContainer/MarginContainer/Button" method="_on_pressed"]

@@ -31,5 +31,8 @@ func unsubscribe(event_name: String, function: Callable):
 
 func broadcast_event(event_name: String, event_data: Dictionary):
 	var event = _get_event_from_name(event_name)
+	if event.recievers == []:
+		print("no recievers")
+		return
 	for reciever in event.recievers:
 		reciever.call(event_data)

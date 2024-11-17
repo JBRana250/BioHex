@@ -8,7 +8,7 @@ extends Node
 func _ready():
 	var current_room_pos = Globals.current_room_pos
 	
-	if Globals.current_row != 0:
+	if Globals.current_row != -1:
 		var eligible_travel_rooms = []
 		if Globals.current_row & 1: #if player is currently on odd row
 			eligible_travel_rooms = [Vector2(current_room_pos.x - 1, current_room_pos.y + 1), Vector2(current_room_pos.x, current_room_pos.y + 1), Vector2(current_room_pos.x + 1, current_room_pos.y + 1)]
