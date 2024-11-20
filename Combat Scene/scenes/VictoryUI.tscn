@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf7id2jnknoyu"]
+[gd_scene load_steps=5 format=3 uid="uid://cf7id2jnknoyu"]
 
+[ext_resource type="Script" path="res://Combat Scene/scenes/victory_ui.gd" id="1_l5mkk"]
 [ext_resource type="Texture2D" uid="uid://dr6hbsjlmc1mh" path="res://Combat Scene/assets/victoryui.png" id="1_wy51q"]
 [ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="2_0kdyd"]
 [ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="3_ggxiv"]
 
-[node name="VictoryUi" type="Control"]
+[node name="VictoryUi" type="Control" node_paths=PackedStringArray("stuff_gained_ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_l5mkk")
+stuff_gained_ui = NodePath("CenterContainer2/ColorRect/HBoxContainer/ColorRect/MarginContainer/StuffGained")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -44,6 +47,24 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 color = Color(0.878425, 0.739686, 0.593163, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect"]
+custom_minimum_size = Vector2(500, 275)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StuffGained" type="HFlowContainer" parent="CenterContainer2/ColorRect/HBoxContainer/ColorRect/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
 
 [node name="ColorRect2" type="ColorRect" parent="CenterContainer2/ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyDrop" load_steps=2 format=3 uid="uid://bjq0kl0nycslr"]
+
+[ext_resource type="Script" path="res://Resources/EnemyDrops/enemydropresource.gd" id="1_xutpm"]
+
+[resource]
+script = ExtResource("1_xutpm")
+enemy_name = "SpikeWalker"
+gold_weight = 2
+claw_weight = 2
+hoof_weight = 1
+scale_weight = 0
+shard_weight = 0
+essence_weight = 0
+num_of_drops = 1

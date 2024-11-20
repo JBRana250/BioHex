@@ -22,6 +22,7 @@ Globals="*res://Autoloads/Globals.gd"
 SceneSwitcher="*res://Autoloads/scene_switcher.gd"
 UI="*res://Autoloads/ui.tscn"
 EventManager="*res://Autoloads/EventManager.gd"
+PlayerResources="*res://Autoloads/player_resources.gd"
 
 [display]
 

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://y4bbc7gbolxh" path="res://CreatureParts/CellParts/Generic/CollisionBoxes/outernailcolbox.tscn" id="1_0l2eu"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/creature_part_scene_resource.gd" id="1_6pldv"]
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/outernail.tscn" id="2_my0qp"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outernail.tscn" id="2_7gn36"]
 
 [resource]
 script = ExtResource("1_6pldv")
-scene = ExtResource("2_my0qp")
+scene = ExtResource("2_7gn36")
 CBscene = ExtResource("1_0l2eu")

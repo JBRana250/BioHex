@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://byx7w173a5b4f"]
+
+[ext_resource type="Script" path="res://Combat Scene/scenes/resource_gained.gd" id="1_uiou0"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_bxx8m"]
+
+[node name="ResourceGained" type="MarginContainer" node_paths=PackedStringArray("label", "texture_rect")]
+offset_right = 96.0
+offset_bottom = 56.0
+script = ExtResource("1_uiou0")
+amount_gained = 1
+resource_gained = "Gold"
+label = NodePath("MarginContainer/HBoxContainer/Label")
+texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_bxx8m")
+expand_mode = 5

@@ -62,9 +62,9 @@ func _determine_room_type() -> String:
 	var treasureroommax = treasureroommin + treasureroomrange
 	
 	var randnum = randf_range(0,100)
-	if combatroommin < randnum and randnum < combatroommax:
+	if combatroommin <= randnum and randnum < combatroommax:
 		return "combat"
-	elif shoproommin < randnum and randnum < shoproommax:
+	elif shoproommin <= randnum and randnum < shoproommax:
 		return "shop"
 	else:
 		return "treasure"
