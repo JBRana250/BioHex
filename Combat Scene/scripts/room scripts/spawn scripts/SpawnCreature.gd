@@ -17,12 +17,13 @@ var creature_action_timer_instance: Timer
 var character_instance: CharacterBody3D
 var components_instance: Node
 var force_component_instance: Node
+var health_component_instance: Node
 var spawn_particles_instance: Node3D
 
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
 var DependencyArray = ["creature_transform_basis", "creature_action_timer"]
-var component_references = ["Components", "ForceComponent"]
+var component_references = ["Components", "ForceComponent", "HealthComponent"]
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -197,6 +198,8 @@ func _attach_component_reference(part, comp_ref):
 			part.Components = components_instance
 		"ForceComponent":
 			part.ForceComponent = force_component_instance
+		"HealthComponent":
+			part.HealthComponent = health_component_instance
 
 func _check_component_references(part):
 	for comp_ref in component_references:
@@ -217,6 +220,7 @@ func _on_spawn_delay_timeout():
 	_spawn_creature()
 	_attach_components()
 	force_component_instance = components_instance.find_child("ForceComponent")
+	health_component_instance = components_instance.find_child("HealthComponent")
 	for part in component_reference_parts:
 		_check_component_references(part)
 	await(_wait(2.5))

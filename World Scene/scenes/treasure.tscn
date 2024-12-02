@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkti7wrvy0ntp"]
+
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasure_keysneeded.gd" id="1_othu5"]
+[ext_resource type="Texture2D" uid="uid://cgmlqfdr21lja" path="res://World Scene/assets/biohex chest locked.png" id="1_w45e7"]
+[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="3_j5imq"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasureclick.gd" id="3_rbjr1"]
+[ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="4_73yf0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjgv8"]
+
+[node name="Treasure" type="Control" node_paths=PackedStringArray("label_keys_needed", "label_keys_have")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_othu5")
+label_keys_needed = NodePath("CenterContainer/VBoxContainer/UnderTreasure/Label2")
+label_keys_have = NodePath("CenterContainer/VBoxContainer/UnderTreasure/Label")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00082, 1.00552)
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.939411, 0.606354, 0.342555, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" node_paths=PackedStringArray("under_treasure")]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tjgv8")
+icon = ExtResource("1_w45e7")
+script = ExtResource("3_rbjr1")
+under_treasure = NodePath("../UnderTreasure")
+num_of_drops = 5
+common_drops = 5
+rare_drops = 10
+legendary_drops = 25
+
+[node name="UnderTreasure" type="HFlowContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UnderTreasure"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Have {} Key(s)"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/UnderTreasure"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Need {} Key(s)"
+horizontal_alignment = 2
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1107.0
+offset_top = 735.0
+offset_right = 1223.0
+offset_bottom = 808.0
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tjgv8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tjgv8")
+icon = ExtResource("4_73yf0")
+script = ExtResource("3_j5imq")
+scene_path = "res://World Scene/scenes/world_scene.tscn"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="CenterContainer/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

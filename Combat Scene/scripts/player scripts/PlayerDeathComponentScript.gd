@@ -27,12 +27,12 @@ func _emit_death_particles(part):
 	await(_wait(0.5))
 	particle_instance.queue_free()
 
-func PlayerDeath(Character):
-	for child in Character.get_node("Body").get_children():
+func Death():
+	for child in get_parent().get_parent().get_node("Body").get_children():
 		if child is Node3D:
 			_emit_death_particles(child)
 		
 		#queue free the child
 		child.queue_free()
 		
-	Character.queue_free()
+	get_parent().get_parent().queue_free()

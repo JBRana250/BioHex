@@ -30,6 +30,13 @@ func _get_rand_resource(weights):
 		if value >= randnum:
 			return restype
 
+func _get_key() -> bool:
+	var randnum = randi_range(0,100)
+	if PlayerResources.pkey > randnum:
+		return true
+	else:
+		return false
+
 func _calculate_and_increase_resources():
 	var resources_gained = {
 		"Gold": 0,
@@ -37,7 +44,8 @@ func _calculate_and_increase_resources():
 		"Hoof": 0,
 		"Scale": 0,
 		"Shard": 0,
-		"Essence": 0
+		"Essence": 0,
+		"Key": 0
 	}
 
 	for enemy in Enemies:
@@ -68,6 +76,13 @@ func _calculate_and_increase_resources():
 					print_debug("invalid resource gained?!?")
 			
 			resources_gained[resource_type] += 1
+	
+	if _get_key():
+		PlayerResources.globalIncreaseKeys(1)
+		PlayerResources.pkey = 0
+		resources_gained["Key"] = 1
+	else:
+		PlayerResources.pkey += 25
 	
 	return resources_gained
 

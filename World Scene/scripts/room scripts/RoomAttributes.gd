@@ -5,6 +5,9 @@ extends Node
 @export var eligible_to_travel: bool
 @export var res_path: String
 
+#Treasure room attributes
+@export var keys_needed: int
+
 func _ready():
 	var current_room_pos = Globals.current_room_pos
 	

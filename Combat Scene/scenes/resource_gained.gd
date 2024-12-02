@@ -12,6 +12,8 @@ const scale_sprite = preload("res://In-Game Resource Sprite/Biohex Scale Sprite.
 const shard_sprite = preload("res://In-Game Resource Sprite/Biohex Shard Sprite.png")
 const essence_sprite = preload("res://In-Game Resource Sprite/Biohex Essence Sprite.png")
 
+const key_sprite = preload("res://In-Game Resource Sprite/Biohex Key Sprite.png")
+
 func globalShowResourcesGained():
 	label.text = "+{amount}".format({"amount": amount_gained})
 	
@@ -28,5 +30,7 @@ func globalShowResourcesGained():
 			texture_rect.texture = shard_sprite
 		"Essence":
 			texture_rect.texture = essence_sprite
+		"Key":
+			texture_rect.texture = key_sprite
 		_:
 			print_debug("invalid resource specified")

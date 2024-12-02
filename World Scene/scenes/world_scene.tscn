@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://World Scene/scripts/PathMapCreation.gd" id="1_g0lae"]
 [ext_resource type="Script" path="res://World Scene/scripts/RoomInstantiation.gd" id="2_bm426"]
 [ext_resource type="PackedScene" uid="uid://cyqmqfqsqmndg" path="res://World Scene/CombatRoomReferences.tscn" id="4_k5d42"]
-[ext_resource type="Script" path="res://World Scene/scenes/DisplayWorldSceneUI.gd" id="5_yk4rv"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/DisplayWorldSceneUI.gd" id="5_yk4rv"]
 
 [node name="world" type="Node3D"]
 
@@ -26,6 +26,9 @@ rows_to_boss = 14
 combatroomweight = 10.0
 shoproomweight = 1.0
 treasureroomweight = 2.0
+common_treasure_weight = 10
+rare_treasure_weight = 6
+legendary_treasure_weight = 1
 
 [node name="RoomInstantiator" type="Node" parent="Path/Components"]
 script = ExtResource("2_bm426")

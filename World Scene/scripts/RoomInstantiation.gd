@@ -13,6 +13,8 @@ extends Node
 # Rooms are instantiated row by row, starting from row 0, all the way to row n
 # Loop through every key in path_map, for every key that matches the criteria for the current row.
 
+
+
 func _instantiate_even_row_rooms(row):
 	#Get all rooms from path_map that correspond with the current row
 	var row_y_coordinate = float(row) / float(2)
@@ -40,26 +42,53 @@ func _instantiate_even_row_rooms(row):
 		match room.type:
 			"combat":
 				room_instance = combatroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.res_path = CombatRoomReferences.spikewalker3
 			"boss":
 				room_instance = bossroom_scene.instantiate()
-			"treasure":
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.res_path = CombatRoomReferences.spikewalker3 #change later
+			"common treasure":
 				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 1
+			"rare treasure":
+				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 2
+			"legendary treasure":
+				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 3
 			"shop":
 				room_instance = shoproom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
 			_:
 				print(room.type)
 		
-		path.add_child.call_deferred(room_instance)
+		 #add call_deferred to this if problematic
 		
 		#Set room position
 		room_instance.position = world_dist
 		
-		#Set room attributes
-		var attributes = room_instance.get_node("Components").get_node("RoomAttributes")
-		attributes.room_pos = room_pos
-		attributes.row_num = row
-		attributes.res_path = CombatRoomReferences.spikewalker3
-
 func _instantiate_odd_row_rooms(row):
 	var row_y_coordinate = float(row-1) / float(2)
 	
@@ -87,16 +116,48 @@ func _instantiate_odd_row_rooms(row):
 		match room.type:
 			"combat":
 				room_instance = combatroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.res_path = CombatRoomReferences.spikewalker3
 			"boss":
-				room_instance = combatroom_scene.instantiate()
-			"treasure":
+				room_instance = bossroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.res_path = CombatRoomReferences.spikewalker3 #change later
+			"common treasure":
 				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 1
+			"rare treasure":
+				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 2
+			"legendary treasure":
+				room_instance = treasureroom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
+				attributes.keys_needed = 3
 			"shop":
 				room_instance = shoproom_scene.instantiate()
+				path.add_child.call_deferred(room_instance)
+				var attributes = room_instance.find_child("Components").find_child("RoomAttributes")
+				attributes.room_pos = room_pos
+				attributes.row_num = row
 			_:
 				print(room.type)
 		
-		path.add_child.call_deferred(room_instance)
 		
 		#Set room position
 		room_instance.position = world_dist

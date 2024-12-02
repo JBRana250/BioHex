@@ -25,7 +25,9 @@ script = ExtResource("1_8c0hs")
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_4uwld")
 
-[node name="Appearance" type="Node" parent="Components"]
+[node name="Appearance" type="Node" parent="Components" node_paths=PackedStringArray("attributes", "room_mesh")]
 script = ExtResource("3_72bls")
+attributes = NodePath("../RoomAttributes")
+room_mesh = NodePath("../../room_mesh")
 
 [node name="room_mesh" parent="." instance=ExtResource("4_02dwk")]

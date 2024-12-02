@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn1amqhps237y"]
+[gd_scene load_steps=10 format=3 uid="uid://dn1amqhps237y"]
 
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyMovementScript.gd" id="1_yvum8"]
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyRotationScript.gd" id="2_218gw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSizeScript.gd" id="6_v4ihp"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="7_p56cn"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="8_v3v8g"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureHealthComponent.gd" id="9_bjh6q"]
 
 [node name="Components" type="Node"]
 
@@ -35,3 +36,7 @@ script = ExtResource("7_p56cn")
 
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("8_v3v8g")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
+script = ExtResource("9_bjh6q")
+death_component = NodePath("../EnemyDeathComponent")

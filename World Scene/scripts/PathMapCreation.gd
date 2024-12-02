@@ -10,6 +10,10 @@ extends Node
 @export var shoproomweight: float
 @export var treasureroomweight: float
 
+@export var common_treasure_weight: int
+@export var rare_treasure_weight: int
+@export var legendary_treasure_weight: int
+
 class Room:
 	var type: String # combat, shop, treasure, boss
 	var branching_chance: float
@@ -43,6 +47,34 @@ func _establish_starting_rooms(_num_of_initial_rooms: int):
 		initial_rooms_left = results[0]
 		possible_cells = results[1]
 
+func _decide_treasure_rarity():
+	var total_weight = common_treasure_weight + rare_treasure_weight + legendary_treasure_weight
+	
+	var weights = {
+		1: common_treasure_weight,  # int is num of keys needed to open treasure
+		2: rare_treasure_weight,
+		3: legendary_treasure_weight
+	}
+	
+	var accumulator = {}
+	var accumulated_weight = 0
+	for rarity in weights.keys():
+		accumulated_weight += weights[rarity]
+		accumulator[rarity] = accumulated_weight
+	
+	var randnum = randi_range(0, total_weight)
+	for rarity in accumulator.keys():
+		var value = accumulator[rarity]
+		if value >= randnum:
+			match rarity:
+				1:
+					pass
+				2:
+					rare_treasure_weight -= 1
+				3:
+					legendary_treasure_weight -= 1
+			return rarity
+
 func _determine_room_type() -> String:
 	var weightsum = combatroomweight + shoproomweight + treasureroomweight
 	
@@ -67,7 +99,16 @@ func _determine_room_type() -> String:
 	elif shoproommin <= randnum and randnum < shoproommax:
 		return "shop"
 	else:
-		return "treasure"
+		var treasure_rarity = _decide_treasure_rarity()
+		match treasure_rarity:
+			1:
+				return "common treasure"
+			2:
+				return "rare treasure"
+			3:
+				return "legendary treasure"
+			_:
+				return "common treasure"
 
 func _extend_even_row_rooms(row):
 	var row_y_coordinate = float(row) / float(2)

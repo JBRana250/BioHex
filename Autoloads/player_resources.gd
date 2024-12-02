@@ -7,6 +7,9 @@ extends Node
 @export var shards: int
 @export var essence: int
 
+@export var keys: int
+@export var pkey: int
+
 func globalIncreaseGold(value: int):
 	gold += value
 
@@ -54,6 +57,14 @@ func globalDecreaseEssence(value: int):
 	essence -= value 
 	if essence < 0:
 		essence = 0
+
+func globalIncreaseKeys(value: int):
+	keys += value
+
+func globalDecreaseKeys(value: int):
+	keys -= value
+	if keys < 0:
+		keys = 0
 
 func globalPrintGold():
 	print_debug(gold)

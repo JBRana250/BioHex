@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://v3pevxdkmsuo"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/OnClickComponentScript.gd" id="1_ikw5d"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/UIDisplayOnClick.gd" id="1_0i7d7"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_qkm31"]
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="3_wsabv"]
-[ext_resource type="PackedScene" uid="uid://dwd1su8pi4nam" path="res://World Scene/scenes/rooms/room_mesh/treasureroom_mesh.tscn" id="4_rjio8"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/TreasureRoomAppearance.gd" id="4_e1e71"]
+[ext_resource type="PackedScene" uid="uid://d32meai6vu2to" path="res://World Scene/scenes/rooms/treasure_room_mesh.tscn" id="5_fsvxe"]
 
 [node name="TreasureRoom" type="Node3D"]
 
@@ -20,14 +20,17 @@ margin = 0.08
 [node name="Components" type="Node" parent="."]
 
 [node name="OnClickComponent" type="Node" parent="Components"]
-script = ExtResource("1_ikw5d")
+script = ExtResource("1_0i7d7")
+ui_res_path = "res://World Scene/scenes/treasure.tscn"
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_qkm31")
 
-[node name="Appearance" type="Node" parent="Components"]
-script = ExtResource("3_wsabv")
+[node name="Appearance" type="Node" parent="Components" node_paths=PackedStringArray("attributes", "room_mesh")]
+script = ExtResource("4_e1e71")
+attributes = NodePath("../RoomAttributes")
+room_mesh = NodePath("../../treasureroom")
 
-[node name="room_mesh" parent="." instance=ExtResource("4_rjio8")]
+[node name="treasureroom" parent="." instance=ExtResource("5_fsvxe")]
 
 [connection signal="input_event" from="Area3D" to="Components/OnClickComponent" method="_on_area_3d_input_event"]
