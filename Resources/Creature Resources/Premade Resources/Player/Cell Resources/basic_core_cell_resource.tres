@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Cell_Resource" load_steps=4 format=3 uid="uid://sd7gemnfjca4"]
+[gd_resource type="Resource" script_class="Cell_Resource" load_steps=6 format=3 uid="uid://sd7gemnfjca4"]
 
 [ext_resource type="Resource" uid="uid://d3qn1sd08jd4w" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_core_cell_health_resource.tres" id="1_3swd2"]
 [ext_resource type="Resource" uid="uid://icaupj7fs4ci" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_core_cell_scene_resource.tres" id="2_epibl"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/inner_component_resource.gd" id="2_meu23"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="3_d5nvn"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="3_oll48"]
 
 [resource]
@@ -11,7 +13,7 @@ parent_cell_position_array = Array[Vector2]([])
 child_cell_position_array = Array[Vector2]([])
 position = Vector2(0, 0)
 weight = 0
-inner_components = Array[Resource("res://Resources/Creature Resources/inner_component_resource.gd")]([])
-outer_components = Array[Resource("res://Resources/Creature Resources/outer_component_resource.gd")]([])
+inner_components = Array[ExtResource("2_meu23")]([])
+outer_components = Array[ExtResource("3_d5nvn")]([])
 health_resource = ExtResource("1_3swd2")
 scene_resource = ExtResource("2_epibl")

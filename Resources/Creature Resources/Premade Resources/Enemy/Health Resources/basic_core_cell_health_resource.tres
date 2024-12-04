@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_1yror")
-base_health = 15
+base_health = 11
 health_modifiers = {}

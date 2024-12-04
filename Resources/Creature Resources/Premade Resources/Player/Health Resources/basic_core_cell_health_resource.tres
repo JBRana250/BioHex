@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_thdbb")
-base_health = 150
+base_health = 110
 health_modifiers = {}

@@ -49,6 +49,8 @@ func globalOnHit(damage, kb_force_name, kb_force_dir, kb_force_mag, kb_force_dur
 	if health <= 0:
 		_health_depleted()
 	
+	if !is_instance_valid(HealthComponent):
+		return
 	HealthComponent.globalDecreaseHealth(damage)
 	
 	if !is_instance_valid(cellpart):

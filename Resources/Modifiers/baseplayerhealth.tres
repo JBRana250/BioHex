@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://c0nlk4tnidlvf"]
+
+[ext_resource type="Script" path="res://Resources/Modifiers/modifier_resource.gd" id="1_afk6g"]
+
+[resource]
+script = ExtResource("1_afk6g")
+mod_name = "basehealth"
+mod_type = "health"
+mod_value = 10.0
+mult = true

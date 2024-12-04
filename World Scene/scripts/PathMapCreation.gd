@@ -91,7 +91,7 @@ func _determine_room_type() -> String:
 	var treasureroomratio = treasureroomweight / weightsum
 	var treasureroomrange = 100 * treasureroomratio
 	var treasureroommin = shoproommax
-	var treasureroommax = treasureroommin + treasureroomrange
+	var _treasureroommax = treasureroommin + treasureroomrange
 	
 	var randnum = randf_range(0,100)
 	if combatroommin <= randnum and randnum < combatroommax:

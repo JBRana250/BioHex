@@ -1,6 +1,7 @@
 extends Node
-
 @onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
+
+@export var already_dead: bool = false
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -30,8 +31,13 @@ func _emit_death_particles(part):
 
 func Death():
 	
+	if already_dead:
+		return
+	
 	#connect this so that the game knows the enemy died
 	EventManager.broadcast_event("EnemyDefeated", {})
+	
+	already_dead = true
 	
 	for child in get_parent().get_parent().get_node("Body").get_children():
 		if child is Node3D:

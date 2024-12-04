@@ -6,11 +6,13 @@ class_name creature_spawn_script
 @onready var character = creature_resource.character
 @onready var body = creature_resource.body
 @onready var components = creature_resource.components
+@onready var modifiers = creature_resource.modifiers
 
 const creature_spawn_beam = preload("res://Combat Scene/scenes/creaturespawnbeam.tscn")
 const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
 const creature_action_timer = preload("res://CreatureParts/creature_action_timer.tscn")
 const creature_spawn_particles = preload("res://Combat Scene/scenes/particle scenes/CreatureSpawnParticles.tscn")
+const health_bar = preload("res://Combat Scene/scenes/health_bars/health_bar.tscn")
 
 var creature_transform_basis_instance: Node3D
 var creature_action_timer_instance: Timer
@@ -19,10 +21,11 @@ var components_instance: Node
 var force_component_instance: Node
 var health_component_instance: Node
 var spawn_particles_instance: Node3D
+var health_bar_instance: Node3D
 
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
-var DependencyArray = ["creature_transform_basis", "creature_action_timer"]
+var DependencyArray = ["creature_transform_basis", "creature_action_timer", "health"]
 var component_references = ["Components", "ForceComponent", "HealthComponent"]
 
 func _wait(seconds):
@@ -47,12 +50,32 @@ func _spawn_thing(_thing, _parent, _position, _rotation):
 	thing_instance.rotation = _rotation
 	return thing_instance
 
+func _calculate_health(cell_count):
+	if cell_count == 1:
+		return 12
+	
+	return (_calculate_health(cell_count - 1) + (cell_count - 1))
+
 func _attach_dependencies(component, Dependency):
 	match Dependency:
 		"creature_transform_basis":
 			component.creature_transform_basis = creature_transform_basis_instance
 		"creature_action_timer":
 			component.creature_action_timer = creature_action_timer_instance
+		"health":
+			var mult = 1
+			var add = 0
+			for mod in modifiers:
+				if mod.mod_type == "health":
+					if mod.mult:
+						mult *= mod.mod_value
+					else:
+						add += mod.mod_value
+			
+			var num_of_cells = len(creature_resource.creature_data_array)
+			var base_health = _calculate_health(num_of_cells)
+			component.health = mult * (base_health + add)
+			
 
 func _check_dependencies(component):
 	for Dependency in DependencyArray:
@@ -219,8 +242,11 @@ func _on_spawn_delay_timeout():
 	await(_spawn_beam())
 	_spawn_creature()
 	_attach_components()
+	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
 	force_component_instance = components_instance.find_child("ForceComponent")
 	health_component_instance = components_instance.find_child("HealthComponent")
+	health_component_instance.health_bar = health_bar_instance
+	health_component_instance.InitHealth()
 	for part in component_reference_parts:
 		_check_component_references(part)
 	await(_wait(2.5))

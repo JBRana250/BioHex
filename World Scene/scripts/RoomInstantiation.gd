@@ -162,11 +162,6 @@ func _instantiate_odd_row_rooms(row):
 		#Set room position
 		room_instance.position = world_dist
 		
-		#Set room attributes
-		var attributes = room_instance.get_node("Components").get_node("RoomAttributes")
-		attributes.room_pos = room_pos
-		attributes.row_num = row
-		attributes.res_path = CombatRoomReferences.spikewalker3
 
 func _instantiate_rooms_in_row(row):
 	#first determine if row num is even or odd

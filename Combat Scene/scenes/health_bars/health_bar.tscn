@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqlbgpjn1umpr"]
+
+[ext_resource type="Texture2D" uid="uid://ds5vjje85oqm4" path="res://Combat Scene/scenes/health_bars/whitesquare.png" id="1_ce5yc"]
+[ext_resource type="Script" path="res://Combat Scene/scenes/health_bars/healthbarscript.gd" id="1_egjjr"]
+
+[node name="HealthBar" type="Node3D" node_paths=PackedStringArray("health_label", "health_sprite")]
+script = ExtResource("1_egjjr")
+health_label = NodePath("Health")
+health_sprite = NodePath("HealthBarSprite")
+health_bar_sprite_max_length = 300.0
+
+[node name="Health" type="Label3D" parent="."]
+billboard = 1
+render_priority = 1
+modulate = Color(0, 0, 0, 1)
+text = "{current_health} / {max_health}"
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(300, 0, 0, 0, 30, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0, 1, 0, 1)
+billboard = 1
+texture = ExtResource("1_ce5yc")
