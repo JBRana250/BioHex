@@ -2,6 +2,8 @@ extends Node
 
 class_name creature_spawn_script
 
+@export var base_damage: float = 5
+
 @export var creature_resource: Creature_Resource
 @onready var character = creature_resource.character
 @onready var body = creature_resource.body
@@ -12,7 +14,8 @@ const creature_spawn_beam = preload("res://Combat Scene/scenes/creaturespawnbeam
 const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
 const creature_action_timer = preload("res://CreatureParts/creature_action_timer.tscn")
 const creature_spawn_particles = preload("res://Combat Scene/scenes/particle scenes/CreatureSpawnParticles.tscn")
-const health_bar = preload("res://Combat Scene/scenes/health_bars/health_bar.tscn")
+const health_bar = preload("res://Combat Scene/scenes/bars/health_bars/health_bar.tscn")
+const mana_bar = preload("res://Combat Scene/scenes/bars/mana_bars/mana_bar.tscn")
 
 var creature_transform_basis_instance: Node3D
 var creature_action_timer_instance: Timer
@@ -20,12 +23,17 @@ var character_instance: CharacterBody3D
 var components_instance: Node
 var force_component_instance: Node
 var health_component_instance: Node
+var mana_component_instance: Node
+var damage_component_instance: Node
 var spawn_particles_instance: Node3D
 var health_bar_instance: Node3D
+var mana_bar_instance: Node3D
+var melee_weapons: Node3D
+var ranged_weapons: Node3D
 
 #an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
 var component_reference_parts = []
-var DependencyArray = ["creature_transform_basis", "creature_action_timer", "health"]
+var DependencyArray = ["creature_transform_basis", "creature_action_timer", "melee_weapons", "ranged_weapons", "health", "damage"]
 var component_references = ["Components", "ForceComponent", "HealthComponent"]
 
 func _wait(seconds):
@@ -62,6 +70,10 @@ func _attach_dependencies(component, Dependency):
 			component.creature_transform_basis = creature_transform_basis_instance
 		"creature_action_timer":
 			component.creature_action_timer = creature_action_timer_instance
+		"melee_weapons":
+			component.melee_weapons = melee_weapons
+		"ranged_weapons":
+			component.ranged_weapons = ranged_weapons
 		"health":
 			var mult = 1
 			var add = 0
@@ -75,7 +87,17 @@ func _attach_dependencies(component, Dependency):
 			var num_of_cells = len(creature_resource.creature_data_array)
 			var base_health = _calculate_health(num_of_cells)
 			component.health = mult * (base_health + add)
+		"damage":
+			var mult = 1
+			var add = 0
+			for mod in modifiers:
+				if mod.mod_type == "damage":
+					if mod.mult:
+						mult *= mod.mod_value
+					else:
+						add += mod.mod_value
 			
+			component.damage = mult * (base_damage + add)
 
 func _check_dependencies(component):
 	for Dependency in DependencyArray:
@@ -130,8 +152,8 @@ func _spawn_creature():
 	
 	# Instantiate body
 	var body_instance = _spawn_thing(body, character_instance, Vector3(), Vector3())
-	var ranged_weapons = body_instance.get_node("RangedWeapons")
-	var melee_weapons = body_instance.get_node("MeleeWeapons")
+	ranged_weapons = body_instance.get_node("RangedWeapons")
+	melee_weapons = body_instance.get_node("MeleeWeapons")
 	
 	#Instantiate transform basis and action timer
 	creature_transform_basis_instance = _spawn_thing(creature_transform_basis, get_tree().current_scene, Vector3(), Vector3())
@@ -242,11 +264,22 @@ func _on_spawn_delay_timeout():
 	await(_spawn_beam())
 	_spawn_creature()
 	_attach_components()
+	
 	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
+	mana_bar_instance = _spawn_thing(mana_bar, character_instance, Vector3(0,0.7,0), Vector3())
+	
 	force_component_instance = components_instance.find_child("ForceComponent")
 	health_component_instance = components_instance.find_child("HealthComponent")
+	mana_component_instance = components_instance.find_child("ManaComponent")
+	damage_component_instance = components_instance.find_child("DamageComponent")
+	
 	health_component_instance.health_bar = health_bar_instance
+	mana_component_instance.mana_bar = mana_bar_instance
+	
 	health_component_instance.InitHealth()
+	mana_component_instance.InitMana()
+	damage_component_instance.InitDamage()
+	
 	for part in component_reference_parts:
 		_check_component_references(part)
 	await(_wait(2.5))

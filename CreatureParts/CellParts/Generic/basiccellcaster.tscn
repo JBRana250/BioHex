@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8x1oxdqk483r"]
+[gd_scene load_steps=4 format=3 uid="uid://b8x1oxdqk483r"]
 
 [ext_resource type="PackedScene" uid="uid://didrf2sf1504f" path="res://Combat Scene/assets/cell parts/generalplayer/basiccellcaster.glb" id="1_3tn8p"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/RangedDamageComponent.gd" id="2_0ako2"]
+[ext_resource type="Script" path="res://CreatureParts/CellParts/Generic/basiccellcaster.gd" id="2_me5dp"]
 
-[node name="basiccellcaster" instance=ExtResource("1_3tn8p")]
+[node name="basiccellcaster" node_paths=PackedStringArray("ranged_damage_component") instance=ExtResource("1_3tn8p")]
+script = ExtResource("2_me5dp")
+ranged_damage_component = NodePath("Components/RangedDamageComponent")
+basiccellcaster_mult = 1.0
 
 [node name="reload_timer" type="Timer" parent="." index="2"]
 one_shot = true

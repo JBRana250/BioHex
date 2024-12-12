@@ -16,7 +16,7 @@ func _wait(seconds):
 	return
 
 func _ready():
-	DependencyArray = ["cam_pivot", "spring_arm", "camera_3d", "creature_transform_basis", "creature_action_timer", "health"]
+	DependencyArray = ["cam_pivot", "spring_arm", "camera_3d", "creature_transform_basis", "creature_action_timer", "melee_weapons", "ranged_weapons", "health", "damage"]
 	await(get_tree().current_scene.tree_exited) #this is so that we wait for the old scene to unload
 	cam_pivot_instance = _spawn_thing(cam_pivot, get_tree().current_scene, Vector3(), Vector3(deg_to_rad(-60), 0, 0))
 	for i in range(50):
@@ -35,6 +35,10 @@ func _attach_dependencies(component, Dependency):
 			component.creature_transform_basis = creature_transform_basis_instance
 		"creature_action_timer":
 			component.creature_action_timer = creature_action_timer_instance
+		"melee_weapons":
+			component.melee_weapons = melee_weapons
+		"ranged_weapons":
+			component.ranged_weapons = ranged_weapons
 		"health":
 			var mult = 1
 			var add = 0
@@ -48,6 +52,17 @@ func _attach_dependencies(component, Dependency):
 			var num_of_cells = len(creature_resource.creature_data_array)
 			var base_health = _calculate_health(num_of_cells)
 			component.health = mult * (base_health + add)
+		"damage":
+			var mult = 1
+			var add = 0
+			for mod in modifiers:
+				if mod.mod_type == "damage":
+					if mod.mult:
+						mult *= mod.mod_value
+					else:
+						add += mod.mod_value
+			
+			component.damage = mult * (base_damage + add)
 
 func _check_dependencies(component):
 	for Dependency in DependencyArray:
@@ -64,11 +79,22 @@ func _on_spawn_delay_timeout():
 	_spawn_creature()
 	await(_attach_camera())
 	_attach_components()
+	
 	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
+	mana_bar_instance = _spawn_thing(mana_bar, character_instance, Vector3(0,0.7,0), Vector3())
+	
 	force_component_instance = components_instance.find_child("ForceComponent")
 	health_component_instance = components_instance.find_child("HealthComponent")
+	mana_component_instance = components_instance.find_child("ManaComponent")
+	damage_component_instance = components_instance.find_child("DamageComponent")
+	
 	health_component_instance.health_bar = health_bar_instance
+	mana_component_instance.mana_bar = mana_bar_instance
+	
 	health_component_instance.InitHealth()
+	damage_component_instance.InitDamage()
+	mana_component_instance.InitMana()
+	
 	for part in component_reference_parts:
 		_check_component_references(part)
 	await(_wait(2.5))

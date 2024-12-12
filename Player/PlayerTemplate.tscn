@@ -80,6 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 2.55)
 [node name="outernail" parent="Body/MeleeWeapons" instance=ExtResource("5_eopfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 3.65)
 script = SubResource("GDScript_bye3k")
+damageDistance = ""
 alignment = "Player"
 damage = 1.5
 

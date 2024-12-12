@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxkoomuvq4ast"]
+
+[ext_resource type="Script" path="res://Combat Scene/scenes/bars/mana_bars/manabarscript.gd" id="1_fyycr"]
+[ext_resource type="Texture2D" uid="uid://ds5vjje85oqm4" path="res://Combat Scene/scenes/bars/whitesquare.png" id="2_b3dv4"]
+
+[node name="ManaBar" type="Node3D" node_paths=PackedStringArray("mana_label", "mana_sprite")]
+script = ExtResource("1_fyycr")
+mana_label = NodePath("Mana")
+mana_sprite = NodePath("ManaBarSprite")
+max_mana = 200.0
+mana_bar_sprite_max_length = 250.0
+current_mana_bar_length = 250.0
+
+[node name="Mana" type="Label3D" parent="."]
+billboard = 1
+render_priority = 1
+modulate = Color(0, 0, 0, 1)
+text = "{current_mana} / {max_mana}"
+
+[node name="ManaBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(300, 0, 0, 0, 30, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0, 0, 1, 1)
+billboard = 1
+texture = ExtResource("2_b3dv4")

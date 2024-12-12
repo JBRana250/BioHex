@@ -7,8 +7,8 @@ extends Node
 @export var health: float
 
 @export var current_health_ratio: float
-@export var health_bar_sprite_max_length: float
-@export var current_health_bar_length: float
+@export var health_bar_sprite_max_length: float = 100
+@export var current_health_bar_length: float = 100
 
 @export var health_color: Color
 

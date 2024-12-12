@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Creature_Resource" load_steps=20 format=3 uid="uid://dq5mxnsbq4s74"]
+[gd_resource type="Resource" script_class="Creature_Resource" load_steps=21 format=3 uid="uid://dq5mxnsbq4s74"]
 
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="1_a8mhm"]
 [ext_resource type="PackedScene" uid="uid://dquy7dajyjfhh" path="res://Player/Player.tscn" id="1_bdpuc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="12_vsmkt"]
 [ext_resource type="Script" path="res://Resources/Modifiers/modifier_resource.gd" id="14_wcrf3"]
 [ext_resource type="Resource" uid="uid://c0nlk4tnidlvf" path="res://Resources/Modifiers/baseplayerhealth.tres" id="15_p80qo"]
+[ext_resource type="Resource" uid="uid://2cfr8p85gkia" path="res://Resources/Modifiers/baseeplayerdamage.tres" id="16_jo6gl"]
 
 [sub_resource type="Resource" id="Resource_ot86j"]
 script = ExtResource("1_a8mhm")
@@ -60,4 +61,4 @@ owner_alignment = "Player"
 character = ExtResource("1_bdpuc")
 components = ExtResource("2_ntiph")
 body = ExtResource("1_xtbxf")
-modifiers = Array[ExtResource("14_wcrf3")]([ExtResource("15_p80qo")])
+modifiers = Array[ExtResource("14_wcrf3")]([ExtResource("15_p80qo"), ExtResource("16_jo6gl")])

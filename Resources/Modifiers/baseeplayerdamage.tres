@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://2cfr8p85gkia"]
+
+[ext_resource type="Script" path="res://Resources/Modifiers/modifier_resource.gd" id="1_y2cv8"]
+
+[resource]
+script = ExtResource("1_y2cv8")
+mod_name = "basedamage"
+mod_type = "damage"
+mod_value = 0.75
+mult = true

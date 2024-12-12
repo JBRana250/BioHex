@@ -6,5 +6,5 @@
 script = ExtResource("1_afk6g")
 mod_name = "basehealth"
 mod_type = "health"
-mod_value = 10.0
+mod_value = 5.0
 mult = true

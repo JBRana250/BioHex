@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy58jkfh1mnnc"]
+[gd_scene load_steps=14 format=3 uid="uid://dy58jkfh1mnnc"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="1_yt4j8"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="2_726qr"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="10_xoqkk"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureHealthComponent.gd" id="11_jts4o"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="12_abmdm"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureManaComponent.gd" id="13_p6ieq"]
 
 [node name="Components" type="Node"]
 
@@ -44,5 +46,12 @@ script = ExtResource("9_gqabf")
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("10_xoqkk")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
 script = ExtResource("11_jts4o")
+death_component = NodePath("../PlayerDeathComponent")
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("12_abmdm")
+
+[node name="ManaComponent" type="Node" parent="."]
+script = ExtResource("13_p6ieq")

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds5vjje85oqm4"
-path.s3tc="res://.godot/imported/whitesquare.png-603a7ca2bbd996caa3646b29d59035f9.s3tc.ctex"
+path.s3tc="res://.godot/imported/whitesquare.png-77575ac375d4db5e17fc62a89193af74.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Combat Scene/scenes/health_bars/whitesquare.png"
-dest_files=["res://.godot/imported/whitesquare.png-603a7ca2bbd996caa3646b29d59035f9.s3tc.ctex"]
+source_file="res://Combat Scene/scenes/bars/whitesquare.png"
+dest_files=["res://.godot/imported/whitesquare.png-77575ac375d4db5e17fc62a89193af74.s3tc.ctex"]
 
 [params]
 
