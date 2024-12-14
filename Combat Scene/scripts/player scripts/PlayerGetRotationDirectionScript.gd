@@ -1,5 +1,6 @@
 extends GetRotationDirectionScript
-var camera_3d: Camera3D
+
+@onready var camera_3d = creature.Dependencies["camera_3d"]
 
 func _GetRotationDirection():
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state

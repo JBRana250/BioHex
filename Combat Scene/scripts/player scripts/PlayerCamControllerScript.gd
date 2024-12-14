@@ -1,14 +1,12 @@
 extends Node
 
-@onready var creature = owner.get_parent()
-
-var cam_pivot: Node3D
-var creature_transform_basis: Node3D
-var spring_arm: SpringArm3D
-var camera_3d: Camera3D
+var creature
+@onready var cam_pivot: Node3D = creature.Dependencies["cam_pivot"]
+@onready var creature_transform_basis: Node3D = creature.Dependencies["creature_transform_basis"]
+@onready var spring_arm: SpringArm3D = creature.Dependencies["spring_arm"]
+@onready var camera_3d: Camera3D = creature.Dependencies["camera_3d"]
 
 @export var cam_rotation_speed: float = 0.15
-
 var cam_rotating: bool = false
 var prev_mouse_position = Vector2()
 var next_mouse_position = Vector2()

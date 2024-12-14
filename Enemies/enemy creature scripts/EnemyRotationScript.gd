@@ -1,6 +1,6 @@
 extends CreatureRotationScript
 
-var creature_transform_basis: Node3D
+@onready var creature_transform_basis: Node3D = creature.Dependencies["creature_transform_basis"]
 
 #Set parent's export variables to new values
 func _init():

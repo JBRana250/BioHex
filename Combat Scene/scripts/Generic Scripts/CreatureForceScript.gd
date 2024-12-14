@@ -2,7 +2,7 @@ extends Node
 
 class_name CreatureForceScript
 
-@onready var movement_component = owner.find_child("MovementComponent")
+@export var movement_component: Node
 
 var damping: float = 1
 

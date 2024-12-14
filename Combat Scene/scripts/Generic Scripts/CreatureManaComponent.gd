@@ -2,7 +2,9 @@ extends Node
 
 class_name CreatureManaComponent
 
-@export var mana_bar: Node3D
+var creature
+@onready var mana_bar: Node3D = creature.Dependencies["mana_bar"]
+
 @export var mana: float
 
 func InitMana():

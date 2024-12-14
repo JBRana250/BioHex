@@ -1,6 +1,8 @@
 extends Node
 
-class_name creature_spawn_script
+class_name creature_spawn_script 
+
+# This is only to be used as a base class. Use the children of this class (SpawnEnemy and SpawnPlayer) instead
 
 @export var base_damage: float = 5
 
@@ -18,6 +20,7 @@ const health_bar = preload("res://Combat Scene/scenes/bars/health_bars/health_ba
 const mana_bar = preload("res://Combat Scene/scenes/bars/mana_bars/mana_bar.tscn")
 
 var creature_transform_basis_instance: Node3D
+var body_instance: Node3D
 var creature_action_timer_instance: Timer
 var character_instance: CharacterBody3D
 var components_instance: Node
@@ -25,16 +28,15 @@ var force_component_instance: Node
 var health_component_instance: Node
 var mana_component_instance: Node
 var damage_component_instance: Node
+var death_component_instance: Node
 var spawn_particles_instance: Node3D
 var health_bar_instance: Node3D
 var mana_bar_instance: Node3D
-var melee_weapons: Node3D
-var ranged_weapons: Node3D
+var melee_weapons_instance: Node3D
+var ranged_weapons_instance: Node3D
+var dependency_component_instance: Node
 
-#an array that contains all the creature parts which need a reference to the Components of the creature, since Components is instantiated after the creature.
-var component_reference_parts = []
-var DependencyArray = ["creature_transform_basis", "creature_action_timer", "melee_weapons", "ranged_weapons", "health", "damage"]
-var component_references = ["Components", "ForceComponent", "HealthComponent"]
+var component_reference_parts: Array = []
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -64,50 +66,11 @@ func _calculate_health(cell_count):
 	
 	return (_calculate_health(cell_count - 1) + (cell_count - 1))
 
-func _attach_dependencies(component, Dependency):
-	match Dependency:
-		"creature_transform_basis":
-			component.creature_transform_basis = creature_transform_basis_instance
-		"creature_action_timer":
-			component.creature_action_timer = creature_action_timer_instance
-		"melee_weapons":
-			component.melee_weapons = melee_weapons
-		"ranged_weapons":
-			component.ranged_weapons = ranged_weapons
-		"health":
-			var mult = 1
-			var add = 0
-			for mod in modifiers:
-				if mod.mod_type == "health":
-					if mod.mult:
-						mult *= mod.mod_value
-					else:
-						add += mod.mod_value
-			
-			var num_of_cells = len(creature_resource.creature_data_array)
-			var base_health = _calculate_health(num_of_cells)
-			component.health = mult * (base_health + add)
-		"damage":
-			var mult = 1
-			var add = 0
-			for mod in modifiers:
-				if mod.mod_type == "damage":
-					if mod.mult:
-						mult *= mod.mod_value
-					else:
-						add += mod.mod_value
-			
-			component.damage = mult * (base_damage + add)
-
-func _check_dependencies(component):
-	for Dependency in DependencyArray:
-		if Dependency in component:
-			_attach_dependencies(component, Dependency)
-
 func _attach_components():
 	components_instance = components.instantiate()
 	for component in components_instance.get_children():
-		_check_dependencies(component)
+		if "creature" in component:
+			component.creature = character_instance
 	character_instance.add_child(components_instance)
 
 func _get_number_sign(number):
@@ -151,13 +114,17 @@ func _spawn_creature():
 	character_instance = _spawn_thing(character, get_tree().current_scene, owner.position, Vector3())
 	
 	# Instantiate body
-	var body_instance = _spawn_thing(body, character_instance, Vector3(), Vector3())
-	ranged_weapons = body_instance.get_node("RangedWeapons")
-	melee_weapons = body_instance.get_node("MeleeWeapons")
+	body_instance = _spawn_thing(body, character_instance, Vector3(), Vector3())
+	ranged_weapons_instance = body_instance.get_node("RangedWeapons")
+	melee_weapons_instance = body_instance.get_node("MeleeWeapons")
 	
-	#Instantiate transform basis and action timer
+	# Instantiate transform basis and action timer
 	creature_transform_basis_instance = _spawn_thing(creature_transform_basis, get_tree().current_scene, Vector3(), Vector3())
 	creature_action_timer_instance = _spawn_thing(creature_action_timer, character_instance, Vector3(), Vector3())
+	
+	# Instantiate Health and Mana bars
+	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
+	mana_bar_instance = _spawn_thing(mana_bar, character_instance, Vector3(0,0.7,0), Vector3())
 
 	# Iterate over creature_data, for each cell in creature data, instantiate it according to position.
 	for cell in creature_resource.creature_data_array:
@@ -168,6 +135,7 @@ func _spawn_creature():
 		var CBcell_instance = _spawn_thing(scene_resource.CBscene, character_instance, cell_pos, Vector3(deg_to_rad(90),deg_to_rad(-30),0))
 		var collision_component = CBcell_instance.get_child(0)
 		
+		collision_component.creature = character_instance
 		component_reference_parts.append(collision_component)
 		
 		collision_component.cellpart = cell_instance
@@ -182,7 +150,7 @@ func _spawn_creature():
 					# For now, just use a single temporary V3
 					var temp_position_vector = Vector3(cell_pos.x, 1, cell_pos.z)
 					scene_resource = core_component.scene_resource
-					var core_component_instance = _spawn_thing(scene_resource.scene, ranged_weapons, temp_position_vector, Vector3())
+					var core_component_instance = _spawn_thing(scene_resource.scene, ranged_weapons_instance, temp_position_vector, Vector3())
 					var CBcore_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, temp_position_vector, Vector3())
 					collision_component = CBcore_component_instance.get_child(0)
 					collision_component.cellpart = core_component_instance
@@ -192,8 +160,9 @@ func _spawn_creature():
 					var damage_component = core_component_instance.get_node("Components").get_node("RangedDamageComponent")
 					damage_component.damage = core_component.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
+			collision_component.creature = character_instance
 			component_reference_parts.append(collision_component)
-					
+
 		for inner_component in cell.inner_components:
 			pass
 			#no inner components for now
@@ -227,7 +196,7 @@ func _spawn_creature():
 							outer_component_pos.z += 0.54
 							outer_component_rotation = Vector3(0, deg_to_rad(60), 0)
 					scene_resource = outer_component.scene_resource
-					var outer_component_instance = _spawn_thing(scene_resource.scene, melee_weapons, outer_component_pos, outer_component_rotation)
+					var outer_component_instance = _spawn_thing(scene_resource.scene, melee_weapons_instance, outer_component_pos, outer_component_rotation)
 					var CBouter_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, outer_component_pos, outer_component_rotation)
 					collision_component = CBouter_component_instance.get_child(0)
 					collision_component.cellpart = outer_component_instance
@@ -235,21 +204,8 @@ func _spawn_creature():
 					var damage_component = outer_component_instance.find_child("Components").get_node("MeleeDamageComponent")
 					damage_component.damage = outer_component.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
+			collision_component.creature = character_instance
 			component_reference_parts.append(collision_component)
-
-func _attach_component_reference(part, comp_ref):
-	match comp_ref:
-		"Components":
-			part.Components = components_instance
-		"ForceComponent":
-			part.ForceComponent = force_component_instance
-		"HealthComponent":
-			part.HealthComponent = health_component_instance
-
-func _check_component_references(part):
-	for comp_ref in component_references:
-		if comp_ref in part:
-			_attach_component_reference(part, comp_ref)
 
 func _spawn_beam():
 	var beam_instance = _spawn_thing(creature_spawn_beam, get_tree().current_scene, owner.position + Vector3(0,20,0), Vector3())
@@ -260,27 +216,66 @@ func _spawn_beam():
 	spawn_particles_instance = _spawn_thing(creature_spawn_particles, get_tree().current_scene, owner.position, Vector3())
 	spawn_particles_instance.get_child(0).emitting = true
 
+func _calculate_modified_health():
+	var mult = 1
+	var add = 0
+	for mod in modifiers:
+		if mod.mod_type == "health":
+			if mod.mult:
+				mult *= mod.mod_value
+			else:
+				add += mod.mod_value
+	
+	var num_of_cells = len(creature_resource.creature_data_array)
+	var base_health = _calculate_health(num_of_cells)
+	return mult * (base_health + add)
+
+func _calculate_modified_damage():
+	var mult = 1
+	var add = 0
+	for mod in modifiers:
+		if mod.mod_type == "damage":
+			if mod.mult:
+				mult *= mod.mod_value
+			else:
+				add += mod.mod_value
+	
+	return mult * (base_damage + add)
+
+func _attach_component_dependencies():
+	character_instance.Dependencies["body"] = body_instance
+	character_instance.Dependencies["creature_transform_basis"] = creature_transform_basis_instance
+	character_instance.Dependencies["melee_weapons"] = melee_weapons_instance
+	character_instance.Dependencies["ranged_weapons"] = ranged_weapons_instance
+	character_instance.Dependencies["health_bar"] = health_bar_instance
+	character_instance.Dependencies["mana_bar"] = mana_bar_instance
+
+func _attach_part_dependencies():
+	character_instance.Dependencies["force_component"] = force_component_instance
+	character_instance.Dependencies["health_component"] = health_component_instance
+	character_instance.Dependencies["death_component"] = death_component_instance
+
+
 func _on_spawn_delay_timeout():
-	await(_spawn_beam())
-	_spawn_creature()
-	_attach_components()
-	
-	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
-	mana_bar_instance = _spawn_thing(mana_bar, character_instance, Vector3(0,0.7,0), Vector3())
-	
 	force_component_instance = components_instance.find_child("ForceComponent")
 	health_component_instance = components_instance.find_child("HealthComponent")
 	mana_component_instance = components_instance.find_child("ManaComponent")
 	damage_component_instance = components_instance.find_child("DamageComponent")
+	death_component_instance = components_instance.find_child("DeathComponent")
+	
+	_attach_part_dependencies()
+	for part in component_reference_parts:
+		part._attach_dependencies()
 	
 	health_component_instance.health_bar = health_bar_instance
 	mana_component_instance.mana_bar = mana_bar_instance
+	
+	health_component_instance.health = _calculate_modified_health()
+	damage_component_instance.damage = _calculate_modified_damage()
 	
 	health_component_instance.InitHealth()
 	mana_component_instance.InitMana()
 	damage_component_instance.InitDamage()
 	
-	for part in component_reference_parts:
-		_check_component_references(part)
 	await(_wait(2.5))
 	spawn_particles_instance.queue_free()

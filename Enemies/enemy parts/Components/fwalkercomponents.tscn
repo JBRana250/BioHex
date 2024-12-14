@@ -17,31 +17,35 @@
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("1_yvum8")
 
-[node name="RotationComponent" type="Node" parent="."]
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
 script = ExtResource("2_218gw")
+get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 
 [node name="GetRotationDirectionComponent" type="Node3D" parent="."]
 script = ExtResource("3_lamu3")
 
-[node name="EnemyMoveForwardComponent" type="Node" parent="."]
+[node name="EnemyMoveForwardComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "rotation_component")]
 script = ExtResource("4_sfo2y")
+movement_component = NodePath("../MovementComponent")
+rotation_component = NodePath("../RotationComponent")
 
-[node name="EnemyDeathComponent" type="Node" parent="."]
+[node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("5_6jtrm")
 
 [node name="EnemySizeComponent" type="Node" parent="."]
 script = ExtResource("6_v4ihp")
 size = 1.0
 
-[node name="ForceComponent" type="Node" parent="."]
+[node name="ForceComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component")]
 script = ExtResource("7_p56cn")
+movement_component = NodePath("../MovementComponent")
 
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("8_v3v8g")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
 script = ExtResource("9_bjh6q")
-death_component = NodePath("../EnemyDeathComponent")
+death_component = NodePath("../DeathComponent")
 
 [node name="DamageComponent" type="Node" parent="."]
 script = ExtResource("10_jhwpc")

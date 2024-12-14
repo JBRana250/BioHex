@@ -16,86 +16,29 @@ func _wait(seconds):
 	return
 
 func _ready():
-	DependencyArray = ["cam_pivot", "spring_arm", "camera_3d", "creature_transform_basis", "creature_action_timer", "melee_weapons", "ranged_weapons", "health", "damage"]
 	await(get_tree().current_scene.tree_exited) #this is so that we wait for the old scene to unload
 	cam_pivot_instance = _spawn_thing(cam_pivot, get_tree().current_scene, Vector3(), Vector3(deg_to_rad(-60), 0, 0))
 	for i in range(50):
 		cam_pivot_instance.position = cam_pivot_instance.position.lerp(owner.position, cam_lerp_weight * get_process_delta_time())
 		await(_wait(0.01))
 
-func _attach_dependencies(component, Dependency):
-	match Dependency:
-		"cam_pivot":
-			component.cam_pivot = cam_pivot_instance
-		"spring_arm":
-			component.spring_arm = cam_pivot_instance.get_child(0)
-		"camera_3d":
-			component.camera_3d = cam_pivot_instance.get_child(0).get_child(0)
-		"creature_transform_basis":
-			component.creature_transform_basis = creature_transform_basis_instance
-		"creature_action_timer":
-			component.creature_action_timer = creature_action_timer_instance
-		"melee_weapons":
-			component.melee_weapons = melee_weapons
-		"ranged_weapons":
-			component.ranged_weapons = ranged_weapons
-		"health":
-			var mult = 1
-			var add = 0
-			for mod in modifiers:
-				if mod.mod_type == "health":
-					if mod.mult:
-						mult *= mod.mod_value
-					else:
-						add += mod.mod_value
-			
-			var num_of_cells = len(creature_resource.creature_data_array)
-			var base_health = _calculate_health(num_of_cells)
-			component.health = mult * (base_health + add)
-		"damage":
-			var mult = 1
-			var add = 0
-			for mod in modifiers:
-				if mod.mod_type == "damage":
-					if mod.mult:
-						mult *= mod.mod_value
-					else:
-						add += mod.mod_value
-			
-			component.damage = mult * (base_damage + add)
-
-func _check_dependencies(component):
-	for Dependency in DependencyArray:
-		if Dependency in component:
-			_attach_dependencies(component, Dependency)
-
 func _attach_camera():
 	# Attach camera to base creature
 	var cam_pivot_remote_instance = _spawn_thing(cam_pivot_remote, character_instance, Vector3(), Vector3())
 	cam_pivot_remote_instance.remote_path = "../../CameraPivot"
 	
+func _attach_camera_dependencies():
+	character_instance.Dependencies["cam_pivot"] = cam_pivot_instance
+	character_instance.Dependencies["spring_arm"] = cam_pivot_instance.get_child(0)
+	character_instance.Dependencies["camera_3d"] = cam_pivot_instance.get_child(0).get_child(0)
+	
+	
 func _on_spawn_delay_timeout():
 	await(_spawn_beam())
 	_spawn_creature()
+	_attach_component_dependencies()
 	await(_attach_camera())
+	_attach_camera_dependencies()
 	_attach_components()
 	
-	health_bar_instance = _spawn_thing(health_bar, character_instance, Vector3(0,1,0), Vector3())
-	mana_bar_instance = _spawn_thing(mana_bar, character_instance, Vector3(0,0.7,0), Vector3())
-	
-	force_component_instance = components_instance.find_child("ForceComponent")
-	health_component_instance = components_instance.find_child("HealthComponent")
-	mana_component_instance = components_instance.find_child("ManaComponent")
-	damage_component_instance = components_instance.find_child("DamageComponent")
-	
-	health_component_instance.health_bar = health_bar_instance
-	mana_component_instance.mana_bar = mana_bar_instance
-	
-	health_component_instance.InitHealth()
-	damage_component_instance.InitDamage()
-	mana_component_instance.InitMana()
-	
-	for part in component_reference_parts:
-		_check_component_references(part)
-	await(_wait(2.5))
-	spawn_particles_instance.queue_free()
+	super() #calls original function in base class creature_spawn_script

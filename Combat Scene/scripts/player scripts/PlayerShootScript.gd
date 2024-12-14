@@ -1,12 +1,11 @@
 extends Node
 
-@onready var creature = owner.get_parent()
+var creature
+@onready var ranged_weapons = creature.Dependencies["ranged_weapons"]
 
 const basic_bullet = preload("res://Combat Scene/scenes/projectiles/basicprojectile.tscn")
-@onready var ranged_weapons = $"../../Body/RangedWeapons"
 
 @export var firing: bool = false
-
 var bullet_speed: float = 1500
 
 func globalSetFiring(isFiring):

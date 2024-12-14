@@ -1,14 +1,12 @@
 extends Node
 
-@onready var creature = owner.get_parent()
+var creature
+@onready var ranged_weapons: Node3D = creature.Dependencies["ranged_weapons"]
+@export var get_rotation_direction_component: Node3D
 
 @export var ranged_rotation_speed: float = 5
 @export var rotationclampfloat: float = 0.1
 @export var ranged_weapons_dir = Vector2(0,1)
-
-@onready var ranged_weapons: Node3D = $"../../Body/RangedWeapons"
-@onready var get_rotation_direction_component = $"../GetRotationDirectionComponent"
-
 
 func _RotateVector(vector_to_rotate, angle):
 	#rotate vector by angle

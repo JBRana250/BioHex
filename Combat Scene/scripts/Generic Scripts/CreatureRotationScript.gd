@@ -1,10 +1,9 @@
 extends Node
 class_name CreatureRotationScript
 
-@onready var creature = owner.get_parent()
-
-@onready var body = $"../../Body"
-@onready var get_rotation_direction_component = $"../GetRotationDirectionComponent"
+var creature
+@onready var body = creature.Dependencies["body"]
+@export var get_rotation_direction_component: Node3D
 
 @export var rotation_speed: float = 4
 @export var rotationclampfloat: float = 0.1

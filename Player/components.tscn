@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dy58jkfh1mnnc"]
 
-[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="1_yt4j8"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="2_726qr"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureMovementScript.gd" id="1_jswkr"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureRotationScript.gd" id="2_h3ctj"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerCamControllerScript.gd" id="3_ih44n"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRangedControllerScript.gd" id="4_wkr0s"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerGetRotationDirectionScript.gd" id="5_nfxhs"]
@@ -16,17 +16,20 @@
 
 [node name="Components" type="Node"]
 
-[node name="MovementComponent" type="Node" parent="."]
-script = ExtResource("1_yt4j8")
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("force_component")]
+script = ExtResource("1_jswkr")
+force_component = NodePath("../ForceComponent")
 
-[node name="RotationComponent" type="Node" parent="."]
-script = ExtResource("2_726qr")
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
+script = ExtResource("2_h3ctj")
+get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 
 [node name="PlayerCameraController" type="Node" parent="."]
 script = ExtResource("3_ih44n")
 
-[node name="RangedWeaponsRotater" type="Node" parent="."]
+[node name="RangedWeaponsRotater" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
 script = ExtResource("4_wkr0s")
+get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 
 [node name="GetRotationDirectionComponent" type="Node3D" parent="."]
 script = ExtResource("5_nfxhs")
@@ -34,21 +37,25 @@ script = ExtResource("5_nfxhs")
 [node name="RangedWeaponsShooter" type="Node" parent="."]
 script = ExtResource("6_7r5lx")
 
-[node name="PlayerInputComponent" type="Node" parent="."]
+[node name="PlayerInputComponent" type="Node" parent="." node_paths=PackedStringArray("ranged_weapons_shooter", "movement_component", "player_camera_controller")]
 script = ExtResource("7_0ln76")
+ranged_weapons_shooter = NodePath("../RangedWeaponsShooter")
+movement_component = NodePath("../MovementComponent")
+player_camera_controller = NodePath("../PlayerCameraController")
 
-[node name="PlayerDeathComponent" type="Node" parent="."]
+[node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("8_d7tmd")
 
-[node name="ForceComponent" type="Node" parent="."]
+[node name="ForceComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component")]
 script = ExtResource("9_gqabf")
+movement_component = NodePath("../MovementComponent")
 
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("10_xoqkk")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
 script = ExtResource("11_jts4o")
-death_component = NodePath("../PlayerDeathComponent")
+death_component = NodePath("../DeathComponent")
 
 [node name="DamageComponent" type="Node" parent="."]
 script = ExtResource("12_abmdm")

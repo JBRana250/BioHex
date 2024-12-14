@@ -2,9 +2,10 @@ extends Node
 
 class_name CreatureSpawnComponentScript
 
-@onready var creature = owner.get_parent()
-const on_spawn_material = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
+var creature
+@onready var body = creature.Dependencies["body"]
 
+const on_spawn_material = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
 var creature_parts = []
 
 func _wait(seconds):
@@ -47,7 +48,7 @@ class creature_part:
 	#_mesh.set_surface_override_material(0, material)
 
 func _get_creature_parts():
-	for child in creature.get_node("Body").get_children():
+	for child in body.get_children():
 		match child.name:
 			"MeleeWeapons":
 				for melee_weapon in child.get_children():

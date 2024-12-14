@@ -1,4 +1,8 @@
 extends Node
+
+var creature
+@onready var body: Node3D = creature.Dependencies["body"]
+
 @onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
 
 @export var already_dead: bool = false
@@ -39,11 +43,11 @@ func Death():
 	
 	already_dead = true
 	
-	for child in get_parent().get_parent().get_node("Body").get_children():
+	for child in body.get_children():
 		if child is Node3D:
 			_emit_death_particles(child)
 
 		#queue free the child
 		child.queue_free()
 
-	get_parent().get_parent().queue_free()
+	creature.queue_free()

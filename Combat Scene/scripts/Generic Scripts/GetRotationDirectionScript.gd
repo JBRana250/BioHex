@@ -1,7 +1,7 @@
 extends Node3D
 class_name GetRotationDirectionScript
 
-@onready var creature = owner.get_parent()
+var creature
 
 signal rotate_rangedweapons(player_mousevector, delta)
 

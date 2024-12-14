@@ -1,13 +1,14 @@
 extends Node
 class_name CreatureColBoxScript
 
+var creature
+var ForceComponent: Node
+var HealthComponent: Node
+
 var cellpart: Node3D
 var health: float
 @onready var onHitMaterial = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
 @onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
-
-var ForceComponent: Node
-var HealthComponent: Node
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -17,6 +18,10 @@ func _wait(seconds):
 	t.start()
 	await(t.timeout)
 	return
+
+func _attach_dependencies():
+	ForceComponent = creature.Dependencies["force_component"]
+	HealthComponent = creature.Dependencies["health_component"]
 
 func _emit_death_particles(part):
 	#instantiate particle system

@@ -1,7 +1,9 @@
 extends Node
-@onready var movement_component = $"../MovementComponent"
-@onready var rotation_component = $"../RotationComponent"
-@onready var body = $"../../Body"
+
+var creature
+@onready var body = creature.Dependencies["body"]
+@export var movement_component: Node
+@export var rotation_component: Node
 
 
 func _process(_delta):

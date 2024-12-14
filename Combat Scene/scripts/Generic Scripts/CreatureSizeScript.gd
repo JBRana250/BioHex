@@ -1,6 +1,6 @@
 extends Node
 
-@onready var creature = owner.get_parent()
+var creature
 
 @export var size: float = 0.75
 

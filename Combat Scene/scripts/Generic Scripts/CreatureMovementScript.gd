@@ -1,10 +1,9 @@
 extends Node
 class_name CreatureMovementScript
 
-@onready var creature = owner.get_parent()
-@onready var force_component = owner.find_child("ForceComponent")
-
-var creature_transform_basis: Node3D
+var creature
+@onready var creature_transform_basis: Node3D = creature.Dependencies["creature_transform_basis"]
+@export var force_component: Node
 
 @export var motion = Vector3()
 

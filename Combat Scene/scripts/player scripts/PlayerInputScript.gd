@@ -1,7 +1,8 @@
 extends Node
-@onready var ranged_weapons_shooter = $"../RangedWeaponsShooter"
-@onready var movement_component = $"../MovementComponent"
-@onready var player_camera_controller = $"../PlayerCameraController"
+
+@export var ranged_weapons_shooter: Node
+@export var movement_component: Node
+@export var player_camera_controller: Node
 
 @export var input_dir: Vector2
 @export var campos: int = 10

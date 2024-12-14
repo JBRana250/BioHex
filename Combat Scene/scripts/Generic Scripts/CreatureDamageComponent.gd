@@ -2,9 +2,12 @@ extends Node
 
 class_name CreatureDamageComponent
 
+var creature
+@onready var body = creature.Dependencies["body"]
+@onready var melee_weapons: Node3D = creature.Dependencies["melee_weapons"]
+@onready var ranged_weapons: Node3D = creature.Dependencies["ranged_weapons"]
+
 @export var damage: float
-@export var melee_weapons: Node3D
-@export var ranged_weapons: Node3D
 
 func InitDamage():
 	for melee_weapon in melee_weapons.get_children():
