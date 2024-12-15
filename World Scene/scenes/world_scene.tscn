@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjmvrs3wcx88l"]
+[gd_scene load_steps=7 format=3 uid="uid://cjmvrs3wcx88l"]
 
 [ext_resource type="PackedScene" uid="uid://ct13fqjcthvwa" path="res://Combat Scene/scenes/room scenes/ground.tscn" id="1_65dwk"]
 [ext_resource type="Script" path="res://World Scene/scripts/PathMapCreation.gd" id="1_g0lae"]
 [ext_resource type="Script" path="res://World Scene/scripts/RoomInstantiation.gd" id="2_bm426"]
 [ext_resource type="PackedScene" uid="uid://cyqmqfqsqmndg" path="res://World Scene/CombatRoomReferences.tscn" id="4_k5d42"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/DisplayWorldSceneUI.gd" id="5_yk4rv"]
+[ext_resource type="Script" path="res://World Scene/scripts/WorldStarter.gd" id="6_k8i4c"]
 
 [node name="world" type="Node3D"]
 
@@ -46,3 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.40306)
 
 [node name="DisplayWorldSceneUI" type="Node" parent="."]
 script = ExtResource("5_yk4rv")
+
+[node name="WorldStarter" type="Node" parent="."]
+script = ExtResource("6_k8i4c")

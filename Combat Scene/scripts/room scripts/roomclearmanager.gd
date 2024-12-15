@@ -89,7 +89,9 @@ func _calculate_and_increase_resources():
 func onEnemyDeath(_event_data):
 	num_of_enemies -= 1
 	if num_of_enemies == 0:
+		EventManager.unsubscribe("EnemyDefeated", onEnemyDeath)
 		var resources_gained = _calculate_and_increase_resources()
 		victory_ui.resources_gained = resources_gained
 		victory_ui.globalShowVictoryUI()
-		EventManager.unsubscribe("EnemyDefeated", onEnemyDeath)
+		EventManager.broadcast_event("CombatRoomCleared", {})
+		

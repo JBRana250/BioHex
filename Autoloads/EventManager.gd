@@ -11,8 +11,9 @@ class Event:
 
 var LeavingScene: Event = Event.new("LeavingScene")
 var EnemyDefeated: Event = Event.new("EnemyDefeated")
+var CombatRoomCleared: Event = Event.new("CombatRoomCleared")
 
-var Events: Array[Event] = [LeavingScene, EnemyDefeated]
+var Events: Array[Event] = [LeavingScene, EnemyDefeated, CombatRoomCleared]
 
 func _get_event_from_name(event_name: String) -> Event:
 	for event in Events:
@@ -35,4 +36,7 @@ func broadcast_event(event_name: String, event_data: Dictionary):
 		print("no recievers")
 		return
 	for reciever in event.recievers:
+		if reciever == null:
+			print_debug("null reciever")
+			return
 		reciever.call(event_data)

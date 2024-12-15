@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dt723stno31q4"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/OnClickComponentScript.gd" id="1_50x30"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/NewSceneOnClick.gd" id="1_4tax0"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_q87da"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="3_el0w4"]
 [ext_resource type="PackedScene" uid="uid://b8ndfv45p4yrx" path="res://World Scene/scenes/rooms/room_mesh/combatroom_mesh.tscn" id="4_ncx3n"]
@@ -19,8 +19,9 @@ margin = 0.08
 
 [node name="Components" type="Node" parent="."]
 
-[node name="OnClickComponent" type="Node" parent="Components"]
-script = ExtResource("1_50x30")
+[node name="OnClickComponent" type="Node" parent="Components" node_paths=PackedStringArray("attributes")]
+script = ExtResource("1_4tax0")
+attributes = NodePath("../RoomAttributes")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_q87da")

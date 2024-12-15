@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkti7wrvy0ntp"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasure_keysneeded.gd" id="1_othu5"]
-[ext_resource type="Texture2D" uid="uid://cgmlqfdr21lja" path="res://World Scene/assets/biohex chest locked.png" id="1_w45e7"]
-[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="3_j5imq"]
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasureclick.gd" id="3_rbjr1"]
-[ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="4_73yf0"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasure_keysneeded.gd" id="1_cgcmd"]
+[ext_resource type="Texture2D" uid="uid://cgmlqfdr21lja" path="res://World Scene/assets/biohex chest locked.png" id="2_2qew1"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasureclick.gd" id="3_0j76a"]
+[ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="4_15lf0"]
+[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="5_wj06o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjgv8"]
 
@@ -16,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_othu5")
+script = ExtResource("1_cgcmd")
 label_keys_needed = NodePath("CenterContainer/VBoxContainer/UnderTreasure/Label2")
 label_keys_have = NodePath("CenterContainer/VBoxContainer/UnderTreasure/Label")
 
@@ -53,8 +53,8 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tjgv8")
-icon = ExtResource("1_w45e7")
-script = ExtResource("3_rbjr1")
+icon = ExtResource("2_2qew1")
+script = ExtResource("3_0j76a")
 under_treasure = NodePath("../UnderTreasure")
 num_of_drops = 5
 common_drops = 5
@@ -95,8 +95,8 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tjgv8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tjgv8")
-icon = ExtResource("4_73yf0")
-script = ExtResource("3_j5imq")
+icon = ExtResource("4_15lf0")
+script = ExtResource("5_wj06o")
 scene_path = "res://World Scene/scenes/world_scene.tscn"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="CenterContainer/VBoxContainer/Button" method="_on_pressed"]

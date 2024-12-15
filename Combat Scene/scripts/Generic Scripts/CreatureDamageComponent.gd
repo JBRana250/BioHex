@@ -9,7 +9,8 @@ var creature
 
 @export var damage: float
 
-func InitDamage():
+func InitDamage(_damage):
+	damage = _damage
 	for melee_weapon in melee_weapons.get_children():
 		melee_weapon.base_damage = damage
 	for ranged_weapon in ranged_weapons.get_children():

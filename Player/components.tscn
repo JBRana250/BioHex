@@ -10,9 +10,9 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="8_d7tmd"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="10_xoqkk"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureHealthComponent.gd" id="11_jts4o"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerHealthComponent.gd" id="11_5p4g1"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="12_abmdm"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureManaComponent.gd" id="13_p6ieq"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerManaComponent.gd" id="13_j3yxs"]
 
 [node name="Components" type="Node"]
 
@@ -20,9 +20,10 @@
 script = ExtResource("1_jswkr")
 force_component = NodePath("../ForceComponent")
 
-[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component", "mana_component")]
 script = ExtResource("2_h3ctj")
 get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
+mana_component = NodePath("../ManaComponent")
 
 [node name="PlayerCameraController" type="Node" parent="."]
 script = ExtResource("3_ih44n")
@@ -34,14 +35,16 @@ get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 [node name="GetRotationDirectionComponent" type="Node3D" parent="."]
 script = ExtResource("5_nfxhs")
 
-[node name="RangedWeaponsShooter" type="Node" parent="."]
+[node name="RangedWeaponsShooter" type="Node" parent="." node_paths=PackedStringArray("mana_component")]
 script = ExtResource("6_7r5lx")
+mana_component = NodePath("../ManaComponent")
 
-[node name="PlayerInputComponent" type="Node" parent="." node_paths=PackedStringArray("ranged_weapons_shooter", "movement_component", "player_camera_controller")]
+[node name="PlayerInputComponent" type="Node" parent="." node_paths=PackedStringArray("ranged_weapons_shooter", "movement_component", "player_camera_controller", "mana_component")]
 script = ExtResource("7_0ln76")
 ranged_weapons_shooter = NodePath("../RangedWeaponsShooter")
 movement_component = NodePath("../MovementComponent")
 player_camera_controller = NodePath("../PlayerCameraController")
+mana_component = NodePath("../ManaComponent")
 
 [node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("8_d7tmd")
@@ -54,11 +57,12 @@ movement_component = NodePath("../MovementComponent")
 script = ExtResource("10_xoqkk")
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
-script = ExtResource("11_jts4o")
+script = ExtResource("11_5p4g1")
 death_component = NodePath("../DeathComponent")
 
 [node name="DamageComponent" type="Node" parent="."]
 script = ExtResource("12_abmdm")
 
 [node name="ManaComponent" type="Node" parent="."]
-script = ExtResource("13_p6ieq")
+script = ExtResource("13_j3yxs")
+mana_efficiency = 5.0

@@ -5,6 +5,7 @@ class_name creature_spawn_script
 # This is only to be used as a base class. Use the children of this class (SpawnEnemy and SpawnPlayer) instead
 
 @export var base_damage: float = 5
+@export var base_mana: float = 100
 
 @export var creature_resource: Creature_Resource
 @onready var character = creature_resource.character
@@ -241,6 +242,18 @@ func _calculate_modified_damage():
 				add += mod.mod_value
 	
 	return mult * (base_damage + add)
+	
+func _calculate_modified_mana():
+	var mult = 1
+	var add = 0
+	for mod in modifiers:
+		if mod.mod_type == "mana":
+			if mod.mult:
+				mult *= mod.mod_value
+			else:
+				add += mod.mod_value
+	
+	return mult * (base_mana + add)
 
 func _attach_component_dependencies():
 	character_instance.Dependencies["body"] = body_instance
@@ -253,6 +266,7 @@ func _attach_component_dependencies():
 func _attach_part_dependencies():
 	character_instance.Dependencies["force_component"] = force_component_instance
 	character_instance.Dependencies["health_component"] = health_component_instance
+	character_instance.Dependencies["mana_component"] = mana_component_instance
 	character_instance.Dependencies["death_component"] = death_component_instance
 
 
@@ -270,12 +284,9 @@ func _on_spawn_delay_timeout():
 	health_component_instance.health_bar = health_bar_instance
 	mana_component_instance.mana_bar = mana_bar_instance
 	
-	health_component_instance.health = _calculate_modified_health()
-	damage_component_instance.damage = _calculate_modified_damage()
-	
-	health_component_instance.InitHealth()
-	mana_component_instance.InitMana()
-	damage_component_instance.InitDamage()
+	health_component_instance.InitHealth(_calculate_modified_health())
+	mana_component_instance.InitMana(_calculate_modified_mana())
+	damage_component_instance.InitDamage(_calculate_modified_damage())
 	
 	await(_wait(2.5))
 	spawn_particles_instance.queue_free()

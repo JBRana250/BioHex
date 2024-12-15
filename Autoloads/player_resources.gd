@@ -10,6 +10,11 @@ extends Node
 @export var keys: int
 @export var pkey: int
 
+@export var health: int
+@export var mana: int
+
+@export var fresh_player: bool = true
+
 func globalIncreaseGold(value: int):
 	gold += value
 
@@ -65,6 +70,3 @@ func globalDecreaseKeys(value: int):
 	keys -= value
 	if keys < 0:
 		keys = 0
-
-func globalPrintGold():
-	print_debug(gold)
