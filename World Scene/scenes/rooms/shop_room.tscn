@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ci2xa56mip1yb"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/NewSceneOnClick.gd" id="1_kxy4a"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/UIDisplayOnClick.gd" id="1_ai5iw"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_4uwld"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAppearance.gd" id="3_72bls"]
 [ext_resource type="PackedScene" uid="uid://rg1pv88u0b2v" path="res://World Scene/scenes/rooms/room_mesh/shoproom_mesh.tscn" id="4_02dwk"]
@@ -20,11 +20,12 @@ margin = 0.08
 [node name="Components" type="Node" parent="."]
 
 [node name="OnClickComponent" type="Node" parent="Components" node_paths=PackedStringArray("attributes")]
-script = ExtResource("1_kxy4a")
+script = ExtResource("1_ai5iw")
 attributes = NodePath("../RoomAttributes")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_4uwld")
+res_path = "res://World Scene/scenes/rooms/ui/shop.tscn"
 
 [node name="Appearance" type="Node" parent="Components" node_paths=PackedStringArray("attributes", "room_mesh")]
 script = ExtResource("3_72bls")
@@ -32,3 +33,5 @@ attributes = NodePath("../RoomAttributes")
 room_mesh = NodePath("../../room_mesh")
 
 [node name="room_mesh" parent="." instance=ExtResource("4_02dwk")]
+
+[connection signal="input_event" from="Area3D" to="Components/OnClickComponent" method="_on_area_3d_input_event"]

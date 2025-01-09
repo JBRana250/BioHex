@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://3y6yff0n7fqg"]
+
+[ext_resource type="Texture2D" uid="uid://djb6kll24wtlk" path="res://Items/Item Sprites/biohex_broken_scale.svg" id="1_15sf2"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_iyuo5"]
+
+[resource]
+script = ExtResource("2_iyuo5")
+item_name = "Broken Scale"
+item_sprite = ExtResource("1_15sf2")
+item_description = "0.9x max health, 1.25x speed"
+category = Array[String](["Health", "Speed"])
+rarity = 1.0
+item_price = 2.0

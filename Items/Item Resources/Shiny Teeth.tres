@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://c0gd5t4vtjbu2"]
+
+[ext_resource type="Texture2D" uid="uid://d31w1tajfissj" path="res://Items/Item Sprites/biohex_shiny_teeth.svg" id="1_88cjl"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_1s3wl"]
+
+[resource]
+script = ExtResource("2_1s3wl")
+item_name = "Shiny Teeth"
+item_sprite = ExtResource("1_88cjl")
+item_description = " + 2 base damage, when clearing rooms you have 25% chance to get an extra coin"
+category = Array[String](["Damage", "Gold"])
+rarity = 2.0
+item_price = 5.0

@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://tcidgd4uv5tt"
+path="res://.godot/imported/biohex_apprentice wand.svg-72991f246d8660ca8328c004d1907604.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_apprentice wand.svg"
+dest_files=["res://.godot/imported/biohex_apprentice wand.svg-72991f246d8660ca8328c004d1907604.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

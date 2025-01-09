@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://fs5pb6j2h1n7"]
+
+[ext_resource type="Texture2D" uid="uid://kk6sw8t5qdgu" path="res://Items/Item Sprites/biohex_adept wand.svg" id="1_c680a"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_q02c6"]
+
+[resource]
+script = ExtResource("2_q02c6")
+item_name = "Adept Wand"
+item_sprite = ExtResource("1_c680a")
+item_description = "recover 0.1% of your mana whenever you deal damage to an enemy"
+category = Array[String](["Mana"])
+rarity = 2.0
+item_price = 5.0

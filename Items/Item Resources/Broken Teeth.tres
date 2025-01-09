@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b2qowuq8u8vcf"]
+
+[ext_resource type="Texture2D" uid="uid://cq6a8jhyc3l4f" path="res://Items/Item Sprites/biohex_broken_teeth.svg" id="1_ornw6"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_hgvpi"]
+
+[resource]
+script = ExtResource("2_hgvpi")
+item_name = "Broken Teeth"
+item_sprite = ExtResource("1_ornw6")
+item_description = " - 2 base damage, 1.5x speed"
+category = Array[String](["Damage", "Speed"])
+rarity = 1.0
+item_price = 2.0

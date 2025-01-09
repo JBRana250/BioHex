@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://yl7q5fcnbuxn"]
+
+[ext_resource type="Texture2D" uid="uid://bpdc84vkmyfxl" path="res://Items/Item Sprites/biohex_broken_claws.svg" id="1_yn2wp"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_c0dac"]
+
+[resource]
+script = ExtResource("2_c0dac")
+item_name = "Broken Claws"
+item_sprite = ExtResource("1_yn2wp")
+item_description = " - 1 base damage, 1.25x speed"
+category = Array[String](["Damage", "Speed"])
+rarity = 1.0
+item_price = 2.0

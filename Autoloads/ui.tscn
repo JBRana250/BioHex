@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2hqx1ejlcwr"]
+[gd_scene load_steps=3 format=3 uid="uid://d2hqx1ejlcwr"]
 
 [ext_resource type="Script" path="res://Autoloads/SceneUICleanupScript.gd" id="1_bi13o"]
+[ext_resource type="Script" path="res://Autoloads/ui.gd" id="1_fba5a"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_fba5a")
 
 [node name="Components" type="Node" parent="."]
 

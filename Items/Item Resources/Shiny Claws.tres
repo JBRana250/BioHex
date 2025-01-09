@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b1wi7adk6oqtf"]
+
+[ext_resource type="Texture2D" uid="uid://dns2tgfnuarbr" path="res://Items/Item Sprites/biohex_shiny_claws.svg" id="1_l3huc"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_spbc8"]
+
+[resource]
+script = ExtResource("2_spbc8")
+item_name = "Shiny Claws"
+item_sprite = ExtResource("1_l3huc")
+item_description = " + 1 base damage, when clearing rooms you have 25% chance to get an extra coin"
+category = Array[String](["Damage", "Gold"])
+rarity = 2.0
+item_price = 5.0

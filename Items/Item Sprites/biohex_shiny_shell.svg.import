@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://ieshcpon7be0"
+path="res://.godot/imported/biohex_shiny_shell.svg-96663bd5f29309e7d7ef041a155cc792.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_shiny_shell.svg"
+dest_files=["res://.godot/imported/biohex_shiny_shell.svg-96663bd5f29309e7d7ef041a155cc792.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

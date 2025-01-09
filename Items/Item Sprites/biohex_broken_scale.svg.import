@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://djb6kll24wtlk"
+path="res://.godot/imported/biohex_broken_scale.svg-d69cc6207c52896b322abd2ac5da1313.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_broken_scale.svg"
+dest_files=["res://.godot/imported/biohex_broken_scale.svg-d69cc6207c52896b322abd2ac5da1313.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

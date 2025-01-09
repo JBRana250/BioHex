@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://ckqe3otx1tov2"
+path="res://.godot/imported/biohex_angular_teeth.svg-001d880ba8a0da647f5083f281f81140.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_angular_teeth.svg"
+dest_files=["res://.godot/imported/biohex_angular_teeth.svg-001d880ba8a0da647f5083f281f81140.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

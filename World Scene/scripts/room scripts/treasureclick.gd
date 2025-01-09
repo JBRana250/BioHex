@@ -11,12 +11,12 @@ const resource_gained_ui = preload("res://Combat Scene/scenes/ResourceGained.tsc
 @export var legendary_drops: int
 
 @export var weights: Dictionary = {
-	"Gold": 5,
+	"Gold": 10,
 	"Claw": 1,
 	"Hoof": 1,
 	"Scale": 1,
-	"Shard": 1,
-	"Essence": 1
+	"Shard": 3,
+	"Essence": 3
 }
 
 func _get_rand_resource():
@@ -64,17 +64,17 @@ func _calculate_and_increase_resources():
 		var resource_type = _get_rand_resource()
 		match resource_type:
 			"Gold":
-				PlayerResources.globalIncreaseGold(1)
+				PlayerResources.gold += 1
 			"Claw":
-				PlayerResources.globalIncreaseClaws(1)
+				PlayerResources.claws += 1
 			"Hoof":
-				PlayerResources.globalIncreaseHoofs(1)
+				PlayerResources.hoofs += 1
 			"Scale":
-				PlayerResources.globalIncreaseScales(1)
+				PlayerResources.scales += 1
 			"Shard":
-				PlayerResources.globalIncreaseShards(1)
+				PlayerResources.shards += 1
 			"Essence":
-				PlayerResources.globalIncreaseEssence(1)
+				PlayerResources.essence += 1
 			_:
 				print_debug("invalid resource gained?!?")
 		
@@ -96,6 +96,7 @@ func _on_pressed() -> void:
 		child.queue_free()
 	
 	var resources_gained = _calculate_and_increase_resources()
+	UI.currently_active_ui._set_resources()
 	
 	var amount_gained = 0
 	

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://8jevvm5nvl2u"]
+
+[ext_resource type="Texture2D" uid="uid://002iaas7tgwa" path="res://Items/Item Sprites/biohex_sharp_claws.svg" id="1_g58kw"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_lfehn"]
+
+[resource]
+script = ExtResource("2_lfehn")
+item_name = "Sharp Claws"
+item_sprite = ExtResource("1_g58kw")
+item_description = " 1.5x damage"
+category = Array[String](["Damage"])
+rarity = 2.0
+item_price = 10.0

@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://cwdi7nvkdc48r"
+path="res://.godot/imported/biohex_archmage_hat.svg-1b7aab5aaee60a219ba36858309e6c7d.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_archmage_hat.svg"
+dest_files=["res://.godot/imported/biohex_archmage_hat.svg-1b7aab5aaee60a219ba36858309e6c7d.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

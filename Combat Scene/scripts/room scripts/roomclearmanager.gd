@@ -61,24 +61,24 @@ func _calculate_and_increase_resources():
 			var resource_type = _get_rand_resource(weights)
 			match resource_type:
 				"Gold":
-					PlayerResources.globalIncreaseGold(1)
+					PlayerResources.gold += 1
 				"Claw":
-					PlayerResources.globalIncreaseClaws(1)
+					PlayerResources.claws += 1
 				"Hoof":
-					PlayerResources.globalIncreaseHoofs(1)
+					PlayerResources.hoofs += 1
 				"Scale":
-					PlayerResources.globalIncreaseScales(1)
+					PlayerResources.scales += 1
 				"Shard":
-					PlayerResources.globalIncreaseShards(1)
+					PlayerResources.shards += 1
 				"Essence":
-					PlayerResources.globalIncreaseEssence(1)
+					PlayerResources.essence += 1
 				_:
 					print_debug("invalid resource gained?!?")
 			
 			resources_gained[resource_type] += 1
 	
 	if _get_key():
-		PlayerResources.globalIncreaseKeys(1)
+		PlayerResources.keys += 1
 		PlayerResources.pkey = 0
 		resources_gained["Key"] = 1
 	else:

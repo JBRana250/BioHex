@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b6vc4l4lxm111"]
+
+[ext_resource type="Texture2D" uid="uid://d0jmj0jy62xvr" path="res://Items/Item Sprites/biohex_adept_hat.svg" id="1_yqieq"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_6g85x"]
+
+[resource]
+script = ExtResource("2_6g85x")
+item_name = "Adept Hat"
+item_sprite = ExtResource("1_yqieq")
+item_description = " + 50 max mana, recover 10% mana at end of each combat"
+category = Array[String](["Mana"])
+rarity = 2.0
+item_price = 5.0

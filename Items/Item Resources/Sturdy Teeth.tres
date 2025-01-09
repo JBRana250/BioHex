@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cmwmri0jmv2cs"]
+
+[ext_resource type="Texture2D" uid="uid://be3vriujno7hc" path="res://Items/Item Sprites/biohex_sturdy_teeth.svg" id="1_aqqa6"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_crggb"]
+
+[resource]
+script = ExtResource("2_crggb")
+item_name = "Sturdy Teeth"
+item_sprite = ExtResource("1_aqqa6")
+item_description = " + 2 base damage, + 10 base health"
+category = Array[String](["Damage", "Health"])
+rarity = 4.0
+item_price = 5.0

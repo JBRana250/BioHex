@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://ccm6162u1ln18"]
+
+[ext_resource type="Texture2D" uid="uid://ctrw4phkjvjwr" path="res://Items/Item Sprites/biohex_angular_scale.svg" id="1_p5wws"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_46j3w"]
+
+[resource]
+script = ExtResource("2_46j3w")
+item_name = "Angular Scale"
+item_sprite = ExtResource("1_p5wws")
+item_description = "1.1x max health, + 1 base speed"
+category = Array[String](["Health", "Speed"])
+rarity = 3.0
+item_price = 5.0

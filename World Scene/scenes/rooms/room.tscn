@@ -19,8 +19,9 @@ margin = 0.08
 
 [node name="Components" type="Node" parent="."]
 
-[node name="OnClickComponent" type="Node" parent="Components"]
+[node name="OnClickComponent" type="Node" parent="Components" node_paths=PackedStringArray("attributes")]
 script = ExtResource("1_j8n8f")
+attributes = NodePath("../RoomAttributes")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_ep05j")

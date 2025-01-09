@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://bc1g1b3gbmwo0"
+path="res://.godot/imported/biohex_angular_claws.svg-532dbc58023db6254ec37867ef40e2d1.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_angular_claws.svg"
+dest_files=["res://.godot/imported/biohex_angular_claws.svg-532dbc58023db6254ec37867ef40e2d1.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

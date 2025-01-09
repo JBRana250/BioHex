@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://pkoyrqn61ij8"]
+[gd_scene load_steps=5 format=3 uid="uid://pkoyrqn61ij8"]
 
 [ext_resource type="Script" path="res://Title Screen/title_screen_scripts/titlescreen_camera_behaviour.gd" id="1_jy1bu"]
-[ext_resource type="PackedScene" uid="uid://cgbuclsa55ek0" path="res://Combat Scene/scenes/projectiles/basicbulletmesh.tscn" id="1_vejbm"]
-[ext_resource type="Script" path="res://Title Screen/title_screen_scripts/title_screen_rotation.gd" id="2_x0idx"]
+[ext_resource type="PackedScene" uid="uid://rd7n0e221bum" path="res://Title Screen/biohex_icosphere.tscn" id="3_88aet"]
 [ext_resource type="Script" path="res://Title Screen/title_screen_scripts/display_title_screen_UI.gd" id="4_csusi"]
 
 [sub_resource type="Environment" id="Environment_p7myx"]
@@ -16,17 +15,11 @@ glow_bloom = 0.1
 
 [node name="title_screen" type="Node3D"]
 
-[node name="basicbullet" parent="." instance=ExtResource("1_vejbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-script = ExtResource("2_x0idx")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="basicbullet"]
-
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.52596)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 script = ExtResource("1_jy1bu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,3 +27,6 @@ environment = SubResource("Environment_p7myx")
 
 [node name="DisplayTitleScreenUI" type="Node" parent="."]
 script = ExtResource("4_csusi")
+
+[node name="BiohexIcosphere" parent="." instance=ExtResource("3_88aet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)

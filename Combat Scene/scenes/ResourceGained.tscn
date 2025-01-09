@@ -32,4 +32,4 @@ text = "+1"
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("2_bxx8m")
-expand_mode = 5
+stretch_mode = 5

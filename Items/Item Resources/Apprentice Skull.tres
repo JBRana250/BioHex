@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b6khqy6aet13i"]
+
+[ext_resource type="Texture2D" uid="uid://756d3qu0hqq4" path="res://Items/Item Sprites/biohex_apprentice skull.svg" id="1_d6msf"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_axhiq"]
+
+[resource]
+script = ExtResource("2_axhiq")
+item_name = "Apprentice Skull"
+item_sprite = ExtResource("1_d6msf")
+item_description = "recover 2.5% of your mana whenever you kill an enemy"
+category = Array[String](["Mana", "OnKill"])
+rarity = 3.0
+item_price = 3.0

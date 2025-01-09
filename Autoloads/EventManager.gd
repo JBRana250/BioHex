@@ -36,7 +36,4 @@ func broadcast_event(event_name: String, event_data: Dictionary):
 		print("no recievers")
 		return
 	for reciever in event.recievers:
-		if reciever == null:
-			print_debug("null reciever")
-			return
 		reciever.call(event_data)

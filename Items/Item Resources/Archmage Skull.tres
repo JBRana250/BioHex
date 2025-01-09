@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dalprid8rxk2k"]
+
+[ext_resource type="Texture2D" uid="uid://dbu8jmofvq3l1" path="res://Items/Item Sprites/biohex_archmage skull.svg" id="1_dei28"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_a0t0h"]
+
+[resource]
+script = ExtResource("2_a0t0h")
+item_name = "Archmage Skull"
+item_sprite = ExtResource("1_dei28")
+item_description = "recover 10% of your mana and get 1.5x damage for 10 seconds (stacks) whenever you kill an enemy"
+category = Array[String](["Mana", "OnKill"])
+rarity = 1.0
+item_price = 15.0

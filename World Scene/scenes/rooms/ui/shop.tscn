@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd4sifqins71d"]
+
+[ext_resource type="Script" path="res://World Scene/scenes/rooms/ui/shop.gd" id="1_k6cdl"]
+[ext_resource type="Texture2D" uid="uid://ciyqcytga8nwh" path="res://Evolution Scene/Assets/UI/TopCreaturePartsBar/BioHex Panel Texture.svg" id="1_mvwgx"]
+[ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="3_0gioy"]
+[ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="4_ct1p7"]
+[ext_resource type="PackedScene" uid="uid://copggjqr2x20j" path="res://Items/random_item_getter.tscn" id="6_6i1s1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5xlpp"]
+texture = ExtResource("1_mvwgx")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7x6sr"]
+font_size = 70
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qw234"]
+
+[node name="Shop" type="Control" node_paths=PackedStringArray("display_vbox", "random_item_getter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k6cdl")
+display_vbox = NodePath("PanelContainer/MarginContainer/VBoxContainer/Display/ScrollContainer/VBoxContainer")
+random_item_getter = NodePath("RandomItemGetter")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5xlpp")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Shop
+"
+label_settings = SubResource("LabelSettings_7x6sr")
+
+[node name="Menu" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Materials"
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Items"
+
+[node name="Display" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Display"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Display/ScrollContainer"]
+layout_mode = 2
+
+[node name="Exit" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Exit"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qw234")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qw234")
+icon = ExtResource("3_0gioy")
+script = ExtResource("4_ct1p7")
+scene_path = "res://World Scene/scenes/world_scene.tscn"
+
+[node name="RandomItemGetter" parent="." instance=ExtResource("6_6i1s1")]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" to="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]

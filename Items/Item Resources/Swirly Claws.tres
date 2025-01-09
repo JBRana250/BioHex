@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://car2xem3i4op7"]
+
+[ext_resource type="Texture2D" uid="uid://du3mq05slc1y8" path="res://Items/Item Sprites/biohex_swirly_claws.svg" id="1_3r7kl"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_3m3sv"]
+
+[resource]
+script = ExtResource("2_3m3sv")
+item_name = "Swirly Claws"
+item_sprite = ExtResource("1_3r7kl")
+item_description = " + 1 base damage, 2x rotation speed"
+category = Array[String](["Damage", "RotationSpeed"])
+rarity = 2.0
+item_price = 3.0

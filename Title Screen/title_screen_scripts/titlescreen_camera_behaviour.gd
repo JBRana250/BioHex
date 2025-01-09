@@ -8,13 +8,22 @@ extends Camera3D
 
 @onready var camera_pivot = get_parent()
 
+@export var enabled: bool = true
+
+
+func _ready():
+	Globals.camera = self
 
 func _SetCamRotation(isRotating, prev_mouse_pos = Vector2()):
+	if !enabled:
+		return
 	cam_rotating = isRotating
 	prev_mouse_position = prev_mouse_pos
 
 
 func _input(_event):
+	if !enabled:
+		return
 	if Input.is_action_pressed("zoom_out"):
 		position.z += 0.1
 
@@ -30,6 +39,8 @@ func _input(_event):
 	position.z = clamp(position.z, 3, 4)
 
 func _process(delta):
+	if !enabled:
+		return
 	if(cam_rotating):
 		next_mouse_position = get_viewport().get_mouse_position()
 		camera_pivot.rotation.y += (next_mouse_position.x - prev_mouse_position.x) * -cam_rotation_speed * delta

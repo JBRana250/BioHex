@@ -39,12 +39,6 @@ func _input(_event):
 	if Input.is_action_pressed("zoom_in"):
 		_ChangeCamDistance(-1)
 
-	if Input.is_action_just_pressed("right_click"):
-		player_camera_controller.globalSetCamRotation(true, get_viewport().get_mouse_position())
-
-	if Input.is_action_just_released("right_click"):
-		player_camera_controller.globalSetCamRotation(false)
-
 	#Movement input
 	input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	_move_creature(input_dir)

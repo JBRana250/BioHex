@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cf2p4nhkonrk3"]
+
+[ext_resource type="Texture2D" uid="uid://dw2udtcvt7m1n" path="res://Items/Item Sprites/biohex_archmage wand.svg" id="1_alhfg"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_1o7b0"]
+
+[resource]
+script = ExtResource("2_1o7b0")
+item_name = "Archmage Wand"
+item_sprite = ExtResource("1_alhfg")
+item_description = "recover 1% of your mana whenever you deal damage to an enemy"
+category = Array[String](["Mana"])
+rarity = 1.0
+item_price = 15.0

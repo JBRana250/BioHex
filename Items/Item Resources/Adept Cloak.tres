@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dluovsn2lrgrd"]
+
+[ext_resource type="Texture2D" uid="uid://x2qd3sp386kk" path="res://Items/Item Sprites/biohex_adept cloak.svg" id="1_ybrbn"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_8nqi6"]
+
+[resource]
+script = ExtResource("2_8nqi6")
+item_name = "Adept Cloak"
+item_sprite = ExtResource("1_ybrbn")
+item_description = "1.5x mana efficiency"
+category = Array[String](["Mana"])
+rarity = 2.0
+item_price = 5.0

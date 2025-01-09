@@ -1,8 +1,8 @@
 extends Node
 
 const WORLD_SCENE_UI = preload("res://World Scene/scenes/world_scene_ui.tscn")
-var menu_instance: Control
 
 func _ready():
-	menu_instance = WORLD_SCENE_UI.instantiate()
-	Globals.user_interface.add_child(menu_instance)
+	var ui_instance = WORLD_SCENE_UI.instantiate()
+	UI.add_child(ui_instance)
+	UI.currently_active_ui = ui_instance

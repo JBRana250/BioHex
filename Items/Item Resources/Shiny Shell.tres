@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://v0hugc84cosb"]
+
+[ext_resource type="Texture2D" uid="uid://ieshcpon7be0" path="res://Items/Item Sprites/biohex_shiny_shell.svg" id="1_1b4d4"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_ovr8m"]
+
+[resource]
+script = ExtResource("2_ovr8m")
+item_name = "Shiny Shell"
+item_sprite = ExtResource("1_1b4d4")
+item_description = "1.25x max health, when clearing rooms you have 25% chance to get an extra coin"
+category = Array[String](["Health", "Gold"])
+rarity = 2.0
+item_price = 5.0

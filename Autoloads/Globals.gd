@@ -2,8 +2,6 @@ extends Node
 
 #This script stores all data that is needed across scenes.
 
-@onready var user_interface: CanvasLayer = get_tree().root.get_node("UI")
-
 # Combat Scene Data
 var camera: Camera3D
 var player: CharacterBody3D

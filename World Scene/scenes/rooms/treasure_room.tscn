@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://v3pevxdkmsuo"]
 
-[ext_resource type="Script" path="res://World Scene/scripts/room scripts/UIDisplayOnClick.gd" id="1_0i7d7"]
+[ext_resource type="Script" path="res://World Scene/scripts/room scripts/TreasureUIDisplayOnClick.gd" id="1_dqyum"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/RoomAttributes.gd" id="2_qkm31"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/TreasureRoomAppearance.gd" id="4_e1e71"]
 [ext_resource type="PackedScene" uid="uid://d32meai6vu2to" path="res://World Scene/scenes/rooms/room_mesh/treasure_room_mesh.tscn" id="5_fsvxe"]
@@ -20,12 +20,12 @@ margin = 0.08
 [node name="Components" type="Node" parent="."]
 
 [node name="OnClickComponent" type="Node" parent="Components" node_paths=PackedStringArray("attributes")]
-script = ExtResource("1_0i7d7")
-ui_res_path = "res://World Scene/scenes/rooms/ui/treasure.tscn"
+script = ExtResource("1_dqyum")
 attributes = NodePath("../RoomAttributes")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_qkm31")
+res_path = "res://World Scene/scenes/rooms/ui/treasure.tscn"
 
 [node name="Appearance" type="Node" parent="Components" node_paths=PackedStringArray("attributes", "room_mesh")]
 script = ExtResource("4_e1e71")

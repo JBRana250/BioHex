@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://dw2udtcvt7m1n"
+path="res://.godot/imported/biohex_archmage wand.svg-10832a3f8ad8b60676147654a0e2f6b4.res"
+group_file="res://Items/atlas/items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Item Sprites/biohex_archmage wand.svg"
+dest_files=["res://.godot/imported/biohex_archmage wand.svg-10832a3f8ad8b60676147654a0e2f6b4.res"]
+
+[params]
+
+atlas_file="res://Items/atlas/items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true
