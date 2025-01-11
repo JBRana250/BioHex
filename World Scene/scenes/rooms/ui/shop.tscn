@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd4sifqins71d"]
+[gd_scene load_steps=10 format=3 uid="uid://cd4sifqins71d"]
 
 [ext_resource type="Script" path="res://World Scene/scenes/rooms/ui/shop.gd" id="1_k6cdl"]
 [ext_resource type="Texture2D" uid="uid://ciyqcytga8nwh" path="res://Evolution Scene/Assets/UI/TopCreaturePartsBar/BioHex Panel Texture.svg" id="1_mvwgx"]
 [ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="3_0gioy"]
+[ext_resource type="Script" path="res://Shop/switch_display.gd" id="3_fs34k"]
 [ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="4_ct1p7"]
 [ext_resource type="PackedScene" uid="uid://copggjqr2x20j" path="res://Items/random_item_getter.tscn" id="6_6i1s1"]
 
@@ -82,19 +83,23 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="MatButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Materials"
+script = ExtResource("3_fs34k")
+display_type = "mats"
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2"]
+[node name="ItemsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Items"
+script = ExtResource("3_fs34k")
+display_type = "items"
 
 [node name="Display" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -143,4 +148,6 @@ scene_path = "res://World Scene/scenes/world_scene.tscn"
 
 [node name="RandomItemGetter" parent="." instance=ExtResource("6_6i1s1")]
 
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer/MatButton" to="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer/MatButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2/ItemsButton" to="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2/ItemsButton" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" to="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]

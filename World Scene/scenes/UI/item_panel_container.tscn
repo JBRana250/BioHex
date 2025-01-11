@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5qubfcyor02j"]
+
+[ext_resource type="Texture2D" uid="uid://bpdc84vkmyfxl" path="res://Items/Item Sprites/biohex_broken_claws.svg" id="1_vswe8"]
+[ext_resource type="Script" path="res://World Scene/scenes/UI/item_panel_container.gd" id="1_xmhxv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76eob"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("item_texture")]
+custom_minimum_size = Vector2(100, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_76eob")
+script = ExtResource("1_xmhxv")
+item_texture = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_vswe8")
+expand_mode = 4
+stretch_mode = 3

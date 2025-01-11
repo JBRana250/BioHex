@@ -13,4 +13,6 @@ extends Node
 @export var health: int
 @export var mana: int
 
+@export var player_items: Array[ItemResource]
+
 @export var fresh_player: bool = true

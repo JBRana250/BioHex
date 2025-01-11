@@ -1,22 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://q2rhch26spnj"]
+[gd_scene load_steps=7 format=3 uid="uid://gi4xehlx01ey"]
 
-[ext_resource type="Script" path="res://Shop/shop_item.gd" id="1_lnbc0"]
-[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="1_slvv4"]
-[ext_resource type="Texture2D" uid="uid://dbu8jmofvq3l1" path="res://Items/Item Sprites/biohex_archmage skull.svg" id="2_cldqc"]
-[ext_resource type="Script" path="res://Shop/shop_item_buy_button.gd" id="4_l66pa"]
+[ext_resource type="Script" path="res://Shop/shop_material.gd" id="1_n8xiw"]
+[ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="1_ugmw7"]
+[ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_lfkhl"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_rejfm"]
+[ext_resource type="Script" path="res://Shop/shop_material_buy_button.gd" id="5_hcoly"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_utgo8"]
+[sub_resource type="LabelSettings" id="LabelSettings_sr2bx"]
 font_size = 32
 
-[node name="ShopItem" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "item_name_label", "item_description_label", "item_price_label")]
+[node name="ShopMaterial" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "material_name_label", "material_stock_label", "material_price_label")]
 custom_minimum_size = Vector2(500, 200)
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_lnbc0")
-texture_rect = NodePath("hboxcontainer/MarginContainer2/PanelContainer/MarginContainer/ItemTexture")
-item_name_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/ItemName")
-item_description_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/ItemDescription")
-item_price_label = NodePath("hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer/ItemPrice")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_n8xiw")
+texture_rect = NodePath("hboxcontainer/MarginContainer2/PanelContainer/MarginContainer/MatTexture")
+material_name_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/MaterialName")
+material_stock_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/MaterialStock")
+material_price_label = NodePath("hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer/MatPrice")
+materials_resource = ExtResource("2_lfkhl")
 
 [node name="hboxcontainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -42,9 +44,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ItemTexture" type="TextureRect" parent="hboxcontainer/MarginContainer2/PanelContainer/MarginContainer"]
+[node name="MatTexture" type="TextureRect" parent="hboxcontainer/MarginContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_cldqc")
+texture = ExtResource("1_ugmw7")
 stretch_mode = 5
 
 [node name="MarginContainer3" type="MarginContainer" parent="hboxcontainer"]
@@ -68,16 +70,15 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ItemName" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MaterialName" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Item Name"
-label_settings = SubResource("LabelSettings_utgo8")
+text = "Claws"
+label_settings = SubResource("LabelSettings_sr2bx")
 
-[node name="ItemDescription" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MaterialStock" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Item Description
-"
+text = "Stock : 2"
 autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="hboxcontainer"]
@@ -107,15 +108,15 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ItemPrice" type="Label" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="MatPrice" type="Label" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "20"
+text = "2"
 
 [node name="TextureRect" type="TextureRect" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 32.5)
 layout_mode = 2
-texture = ExtResource("1_slvv4")
+texture = ExtResource("2_rejfm")
 expand_mode = 3
 stretch_mode = 5
 
@@ -124,6 +125,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Buy"
-script = ExtResource("4_l66pa")
+script = ExtResource("5_hcoly")
 
 [connection signal="pressed" from="hboxcontainer/MarginContainer/VBoxContainer2/Button" to="hboxcontainer/MarginContainer/VBoxContainer2/Button" method="_on_pressed"]

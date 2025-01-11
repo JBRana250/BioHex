@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MatResource" load_steps=9 format=3 uid="uid://dcpjklrfnhrsj"]
+
+[ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="1_gji3k"]
+[ext_resource type="Script" path="res://Resources/MatResource/mat_resource.gd" id="1_gsf4r"]
+[ext_resource type="Texture2D" uid="uid://dw01c133twydp" path="res://In-Game Resource Sprite/Biohex Essence Sprite.png" id="2_bd0hd"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="3_xadjb"]
+[ext_resource type="Texture2D" uid="uid://cminnbvk8aonk" path="res://In-Game Resource Sprite/Biohex Hoof Sprite.png" id="4_v8ppv"]
+[ext_resource type="Texture2D" uid="uid://bq60qlieohsi4" path="res://In-Game Resource Sprite/Biohex Key Sprite.png" id="5_jn1j5"]
+[ext_resource type="Texture2D" uid="uid://dimcf7eqwq7u0" path="res://In-Game Resource Sprite/Biohex Scale Sprite.png" id="6_4haf5"]
+[ext_resource type="Texture2D" uid="uid://bbyj3x0nkrmh4" path="res://In-Game Resource Sprite/Biohex Shard Sprite.png" id="8_sroee"]
+
+[resource]
+script = ExtResource("1_gsf4r")
+gold_sprite = ExtResource("3_xadjb")
+claws_sprite = ExtResource("1_gji3k")
+claws_price = 1
+hoofs_sprite = ExtResource("4_v8ppv")
+hoofs_price = 1
+scales_sprite = ExtResource("6_4haf5")
+scales_price = 1
+shards_sprite = ExtResource("8_sroee")
+shards_price = 2
+essence_sprite = ExtResource("2_bd0hd")
+essence_price = 2
+key_sprite = ExtResource("5_jn1j5")
+key_price = 3
