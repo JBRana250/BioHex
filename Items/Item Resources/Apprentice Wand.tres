@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://c2ykct3c817xj"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://c2ykct3c817xj"]
 
 [ext_resource type="Texture2D" uid="uid://tcidgd4uv5tt" path="res://Items/Item Sprites/biohex_apprentice wand.svg" id="1_r2lpv"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_e7owy"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_uegst"]
+
+[sub_resource type="Resource" id="Resource_j68vg"]
+script = ExtResource("2_e7owy")
+mod_type = "max_mana_percent_on_deal_damage"
+operation = "add"
+value = 0.01
 
 [resource]
 script = ExtResource("2_uegst")
@@ -11,3 +18,4 @@ item_description = "recover 0.01% of your mana whenever you deal damage to an en
 category = Array[String](["Mana"])
 rarity = 3.0
 item_price = 3.0
+mods = Array[ExtResource("2_e7owy")]([SubResource("Resource_j68vg")])

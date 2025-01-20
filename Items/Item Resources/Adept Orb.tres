@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cnodcvri2t8ox"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://cnodcvri2t8ox"]
 
 [ext_resource type="Texture2D" uid="uid://x2fkihgom3xm" path="res://Items/Item Sprites/biohex_adept_orb.svg" id="1_xkh68"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_l3mdx"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_xfuea"]
+
+[sub_resource type="Resource" id="Resource_dcxoi"]
+script = ExtResource("2_xfuea")
+mod_type = "max_mana"
+operation = "add"
+value = 100.0
+
+[sub_resource type="Resource" id="Resource_mqbfj"]
+script = ExtResource("2_xfuea")
+mod_type = "max_mana_based_damage"
+operation = "add"
+value = 0.02
 
 [resource]
 script = ExtResource("2_l3mdx")
 item_name = "Adept Orb"
 item_sprite = ExtResource("1_xkh68")
-item_description = " + 100 max mana, for each max mana you have you gain 0.02 damage"
+item_description = " + 100 base max mana, for each max mana you have you gain 0.02 damage"
 category = Array[String](["Mana"])
 rarity = 2.0
 item_price = 5.0
+mods = Array[ExtResource("2_xfuea")]([SubResource("Resource_dcxoi"), SubResource("Resource_mqbfj")])

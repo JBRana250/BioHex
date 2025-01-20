@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://o7utj70xb1p5"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://o7utj70xb1p5"]
 
 [ext_resource type="Texture2D" uid="uid://cvfcyuori6xdw" path="res://Items/Item Sprites/biohex_apprentice_orb.svg" id="1_1e0jr"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_bmub3"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_qio7m"]
+
+[sub_resource type="Resource" id="Resource_u2dov"]
+script = ExtResource("2_qio7m")
+mod_type = "max_mana"
+operation = "add"
+value = 50.0
+
+[sub_resource type="Resource" id="Resource_koyww"]
+script = ExtResource("2_qio7m")
+mod_type = "max_mana_based_damage"
+operation = "add"
+value = 0.01
 
 [resource]
 script = ExtResource("2_bmub3")
 item_name = "Apprentice Orb"
 item_sprite = ExtResource("1_1e0jr")
-item_description = "  + 50 max mana, for each max mana you have you gain 0.01 damage"
+item_description = "  + 50 base max mana, for each max mana you have you gain 0.01 damage"
 category = Array[String](["Mana"])
 rarity = 3.0
 item_price = 3.0
+mods = Array[ExtResource("2_qio7m")]([SubResource("Resource_u2dov"), SubResource("Resource_koyww")])

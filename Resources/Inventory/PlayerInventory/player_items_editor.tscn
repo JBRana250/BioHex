@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbjndydh8f85u"]
+
+[ext_resource type="Script" path="res://Resources/Inventory/PlayerInventory/player_items_editor.gd" id="1_00j3q"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_r668s"]
+
+[node name="PlayerItemsEditor" type="Node"]
+script = ExtResource("1_00j3q")
+player_inventory = ExtResource("2_r668s")

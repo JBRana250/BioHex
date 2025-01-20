@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://d17mqeqgjig8x"]
+
+[ext_resource type="Script" path="res://Resources/Inventory/creature_stat_calculator.gd" id="1_i48jq"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_10qbu"]
+[ext_resource type="Resource" uid="uid://dhwss7lpjf1ye" path="res://Resources/Inventory/PlayerInventory/InitialPlayer/initial_player.tres" id="3_f2m0c"]
+
+[node name="CreatureStatCalculator" type="Node"]
+script = ExtResource("1_i48jq")
+creature_inventory = ExtResource("2_10qbu")
+initial_creature = ExtResource("3_f2m0c")

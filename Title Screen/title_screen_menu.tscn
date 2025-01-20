@@ -42,7 +42,7 @@ horizontal_alignment = 1
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="MarginContainer/CenterContainer"]
+[node name="PlayButton" type="Button" parent="MarginContainer/CenterContainer" node_paths=PackedStringArray("run_starter")]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0, 0, 0.65098, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0.992157, 1)
@@ -63,6 +63,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_nv1to")
 text = "PLAY"
 icon_alignment = 1
 script = ExtResource("1_has7x")
+run_starter = NodePath("")
 scene_path = "res://World Scene/scenes/world_scene.tscn"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/PlayButton" to="MarginContainer/CenterContainer/PlayButton" method="_on_pressed"]

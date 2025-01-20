@@ -174,8 +174,7 @@ func _extend_even_row_rooms(row):
 			else:
 				#print("room not created with probability %f" % probability)
 				eligible_extension_positions_left -= 1
-		print()
-	
+
 func _extend_odd_row_rooms(row):
 	var row_y_coordinate = float(row-1) / float(2)
 	
@@ -235,8 +234,7 @@ func _extend_odd_row_rooms(row):
 			else:
 				#print("room not created with probability %f" % probability)
 				eligible_extension_positions_left -= 1
-		print()
-	
+
 func _extend_rooms_in_row(row):
 	#first determine if row num is even or odd
 	if row & 1: # & in this situation means bitwize operator, basically determines if the number is odd and returns true if so.

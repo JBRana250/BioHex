@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://q2rhch26spnj"]
+[gd_scene load_steps=9 format=3 uid="uid://q2rhch26spnj"]
 
 [ext_resource type="Script" path="res://Shop/shop_item.gd" id="1_lnbc0"]
 [ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="1_slvv4"]
 [ext_resource type="Texture2D" uid="uid://dbu8jmofvq3l1" path="res://Items/Item Sprites/biohex_archmage skull.svg" id="2_cldqc"]
 [ext_resource type="Script" path="res://Shop/shop_item_buy_button.gd" id="4_l66pa"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="5_fkdpu"]
+[ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="6_q16cu"]
+[ext_resource type="PackedScene" uid="uid://dbjndydh8f85u" path="res://Resources/Inventory/PlayerInventory/player_items_editor.tscn" id="7_73ktw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_utgo8"]
 font_size = 32
@@ -119,11 +122,16 @@ texture = ExtResource("1_slvv4")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="hboxcontainer/MarginContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="hboxcontainer/MarginContainer/VBoxContainer2" node_paths=PackedStringArray("player_items_editor")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Buy"
 script = ExtResource("4_l66pa")
+player_items_editor = NodePath("PlayerItemsEditor")
+player_inventory = ExtResource("5_fkdpu")
+shop_inventory = ExtResource("6_q16cu")
+
+[node name="PlayerItemsEditor" parent="hboxcontainer/MarginContainer/VBoxContainer2/Button" instance=ExtResource("7_73ktw")]
 
 [connection signal="pressed" from="hboxcontainer/MarginContainer/VBoxContainer2/Button" to="hboxcontainer/MarginContainer/VBoxContainer2/Button" method="_on_pressed"]

@@ -1,7 +1,20 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cqyje1ulfymo2"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://cqyje1ulfymo2"]
 
 [ext_resource type="Texture2D" uid="uid://bc1g1b3gbmwo0" path="res://Items/Item Sprites/biohex_angular_claws.svg" id="1_0xj71"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_bd3s1"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_r84dw"]
+
+[sub_resource type="Resource" id="Resource_gfhlp"]
+script = ExtResource("2_r84dw")
+mod_type = "damage"
+operation = "add"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_mnnnv"]
+script = ExtResource("2_r84dw")
+mod_type = "speed"
+operation = "add"
+value = 1.0
 
 [resource]
 script = ExtResource("2_bd3s1")
@@ -11,3 +24,4 @@ item_description = " + 1 base damage, + 1 base speed"
 category = Array[String](["Damage", "Speed"])
 rarity = 3.0
 item_price = 5.0
+mods = Array[ExtResource("2_r84dw")]([SubResource("Resource_gfhlp"), SubResource("Resource_mnnnv")])

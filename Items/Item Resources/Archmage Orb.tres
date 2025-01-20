@@ -1,7 +1,20 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://d0dhr4hpfisau"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://d0dhr4hpfisau"]
 
 [ext_resource type="Texture2D" uid="uid://ccac1pqbmjip8" path="res://Items/Item Sprites/biohex_archmage's orb.svg" id="1_jvlp5"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_17un2"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_71rhw"]
+
+[sub_resource type="Resource" id="Resource_jhv7v"]
+script = ExtResource("2_17un2")
+mod_type = "max_mana"
+operation = "mult"
+value = 1.5
+
+[sub_resource type="Resource" id="Resource_5ucvg"]
+script = ExtResource("2_17un2")
+mod_type = "max_mana_based_damage"
+operation = "add"
+value = 0.03
 
 [resource]
 script = ExtResource("2_71rhw")
@@ -10,4 +23,5 @@ item_sprite = ExtResource("1_jvlp5")
 item_description = " 1.5x max mana, for each max mana you have you gain 0.03 damage"
 category = Array[String](["Mana"])
 rarity = 1.0
-item_price = 15.0
+item_price = 10.0
+mods = Array[ExtResource("2_17un2")]([SubResource("Resource_jhv7v"), SubResource("Resource_5ucvg")])

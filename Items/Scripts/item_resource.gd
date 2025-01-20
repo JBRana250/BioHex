@@ -8,3 +8,4 @@ class_name ItemResource
 @export var category: Array[String]
 @export var rarity: int
 @export var item_price: int
+@export var mods: Array[ModResource]

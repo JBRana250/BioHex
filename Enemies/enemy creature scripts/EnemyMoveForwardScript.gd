@@ -16,3 +16,5 @@ func _process(_delta):
 	var speed_decrement = angle * 5
 	
 	movement_component.max_speed = 7 - speed_decrement
+	if movement_component.max_speed < 0:
+		movement_component.max_speed = 0

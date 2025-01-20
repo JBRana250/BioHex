@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dti5d7nwtli4a"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dti5d7nwtli4a"]
 
 [ext_resource type="Texture2D" uid="uid://cie3tuvj2cbfm" path="res://Items/Item Sprites/biohex_shiny_scale.svg" id="1_pjcui"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_ah3jl"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_o0nid"]
+
+[sub_resource type="Resource" id="Resource_ylomx"]
+script = ExtResource("2_ah3jl")
+mod_type = "combat_end_coin_gain_percent"
+operation = "add"
+value = 25.0
+
+[sub_resource type="Resource" id="Resource_mlv2t"]
+script = ExtResource("2_ah3jl")
+mod_type = "defence"
+operation = "add"
+value = 1.0
 
 [resource]
 script = ExtResource("2_o0nid")
 item_name = "Shiny Scale"
 item_sprite = ExtResource("1_pjcui")
-item_description = "1.1x max health, when clearing rooms you have 25% chance to get an extra coin"
-category = Array[String](["Health", "Gold"])
+item_description = " + 1 defence, when clearing rooms you have 25% chance to get an extra coin"
+category = Array[String](["Defence", "Gold"])
 rarity = 2.0
 item_price = 5.0
+mods = Array[ExtResource("2_ah3jl")]([SubResource("Resource_ylomx"), SubResource("Resource_mlv2t")])

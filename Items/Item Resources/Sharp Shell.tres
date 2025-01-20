@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://djaxxljv7n87h"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://djaxxljv7n87h"]
 
 [ext_resource type="Texture2D" uid="uid://b0cdu755xpv46" path="res://Items/Item Sprites/biohex_sharp_shell.svg" id="1_4hs6a"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_2atsu"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_3taso"]
+
+[sub_resource type="Resource" id="Resource_hrwa4"]
+script = ExtResource("2_3taso")
+mod_type = "defence"
+operation = "add"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_dd38f"]
+script = ExtResource("2_3taso")
+mod_type = "damage"
+operation = "add"
+value = 1.0
 
 [resource]
 script = ExtResource("2_2atsu")
 item_name = "Sharp Shell"
 item_sprite = ExtResource("1_4hs6a")
-item_description = "1.25x max health, +1 base damage"
-category = Array[String](["Health", "Damage"])
+item_description = " + 2 defence, +1 base damage"
+category = Array[String](["Defence", "Gold"])
 rarity = 4.0
 item_price = 5.0
+mods = Array[ExtResource("2_3taso")]([SubResource("Resource_hrwa4"), SubResource("Resource_dd38f")])

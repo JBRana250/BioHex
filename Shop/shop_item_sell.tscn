@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu83vej0muhv0"]
+
+[ext_resource type="Script" path="res://Shop/shop_item.gd" id="1_brjb8"]
+[ext_resource type="Texture2D" uid="uid://dbu8jmofvq3l1" path="res://Items/Item Sprites/biohex_archmage skull.svg" id="2_pret3"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="3_w5nd4"]
+[ext_resource type="Script" path="res://Shop/shop_item_sell_button.gd" id="4_0l1hw"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="5_n43xu"]
+[ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="6_0r3k1"]
+[ext_resource type="PackedScene" uid="uid://dbjndydh8f85u" path="res://Resources/Inventory/PlayerInventory/player_items_editor.tscn" id="7_kqs8d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_utgo8"]
+font_size = 32
+
+[node name="ShopItemSell" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "item_name_label", "item_description_label", "item_price_label")]
+custom_minimum_size = Vector2(500, 200)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_brjb8")
+texture_rect = NodePath("hboxcontainer/MarginContainer2/PanelContainer/MarginContainer/ItemTexture")
+item_name_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/ItemName")
+item_description_label = NodePath("hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer/ItemDescription")
+item_price_label = NodePath("hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer/ItemPrice")
+
+[node name="hboxcontainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="hboxcontainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="hboxcontainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="hboxcontainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ItemTexture" type="TextureRect" parent="hboxcontainer/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_pret3")
+stretch_mode = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="hboxcontainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="hboxcontainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="hboxcontainer/MarginContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Item Name"
+label_settings = SubResource("LabelSettings_utgo8")
+
+[node name="ItemDescription" type="Label" parent="hboxcontainer/MarginContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Item Description
+"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="hboxcontainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="hboxcontainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="hboxcontainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemPrice" type="Label" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "20"
+
+[node name="TextureRect" type="TextureRect" parent="hboxcontainer/MarginContainer/VBoxContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 32.5)
+layout_mode = 2
+texture = ExtResource("3_w5nd4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="hboxcontainer/MarginContainer/VBoxContainer2" node_paths=PackedStringArray("player_items_editor")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Sell"
+script = ExtResource("4_0l1hw")
+player_items_editor = NodePath("PlayerItemsEditor")
+player_inventory = ExtResource("5_n43xu")
+shop_inventory = ExtResource("6_0r3k1")
+
+[node name="PlayerItemsEditor" parent="hboxcontainer/MarginContainer/VBoxContainer2/Button" instance=ExtResource("7_kqs8d")]
+
+[connection signal="pressed" from="hboxcontainer/MarginContainer/VBoxContainer2/Button" to="hboxcontainer/MarginContainer/VBoxContainer2/Button" method="_on_pressed"]

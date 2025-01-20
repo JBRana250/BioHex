@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd4sifqins71d"]
+[gd_scene load_steps=14 format=3 uid="uid://cd4sifqins71d"]
 
 [ext_resource type="Script" path="res://World Scene/scenes/rooms/ui/shop.gd" id="1_k6cdl"]
 [ext_resource type="Texture2D" uid="uid://ciyqcytga8nwh" path="res://Evolution Scene/Assets/UI/TopCreaturePartsBar/BioHex Panel Texture.svg" id="1_mvwgx"]
+[ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="2_i18x7"]
+[ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_xln5i"]
 [ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="3_0gioy"]
 [ext_resource type="Script" path="res://Shop/switch_display.gd" id="3_fs34k"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="3_uqf3v"]
 [ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="4_ct1p7"]
+[ext_resource type="Script" path="res://Shop/shop_mode_switch.gd" id="4_oq7rg"]
 [ext_resource type="PackedScene" uid="uid://copggjqr2x20j" path="res://Items/random_item_getter.tscn" id="6_6i1s1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5xlpp"]
@@ -29,6 +33,9 @@ grow_vertical = 2
 script = ExtResource("1_k6cdl")
 display_vbox = NodePath("PanelContainer/MarginContainer/VBoxContainer/Display/ScrollContainer/VBoxContainer")
 random_item_getter = NodePath("RandomItemGetter")
+material_resource = ExtResource("2_xln5i")
+shop_inventory = ExtResource("2_i18x7")
+player_inventory = ExtResource("3_uqf3v")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -69,6 +76,7 @@ label_settings = SubResource("LabelSettings_7x6sr")
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu"]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -100,6 +108,20 @@ theme_override_font_sizes/font_size = 32
 text = "Items"
 script = ExtResource("3_fs34k")
 display_type = "items"
+
+[node name="Space" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModeSwitch" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Sell"
+script = ExtResource("4_oq7rg")
 
 [node name="Display" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -150,4 +172,5 @@ scene_path = "res://World Scene/scenes/world_scene.tscn"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer/MatButton" to="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer/MatButton" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2/ItemsButton" to="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer2/ItemsButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer3/ModeSwitch" to="PanelContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer/PanelContainer3/ModeSwitch" method="_on_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" to="PanelContainer/MarginContainer/VBoxContainer/Exit/MarginContainer/HBoxContainer/Button2" method="_on_pressed"]

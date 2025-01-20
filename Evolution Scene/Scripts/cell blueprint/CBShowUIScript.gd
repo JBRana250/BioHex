@@ -5,7 +5,7 @@ var UI_instance: VBoxContainer
 
 func globalShowUI():
 	UI_instance = EVO_SCREEN_CELL_BLUEPRINT_UI.instantiate()
-	Globals.user_interface.get_node("EvoScreen UI").get_node("MarginContainer").add_child(UI_instance)
+	UI.currently_active_ui.margin_container.add_child(UI_instance)
 
 func globalHideUI():
 	if is_instance_valid(UI_instance):

@@ -1,0 +1,3 @@
+extends InitialCreatureResource
+
+class_name InitialEnemyResource

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyInventory" load_steps=3 format=3 uid="uid://bjvycjtsehkaw"]
+
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="1_45de7"]
+[ext_resource type="Script" path="res://Resources/Inventory/EnemyInventory/enemy_inventory.gd" id="2_6sexe"]
+
+[resource]
+script = ExtResource("2_6sexe")
+damage_mods = Array[ExtResource("1_45de7")]([])
+speed_mods = Array[ExtResource("1_45de7")]([])
+rotation_speed_mods = Array[ExtResource("1_45de7")]([])
+defence_mods = Array[ExtResource("1_45de7")]([])
+core_defence_mods = Array[ExtResource("1_45de7")]([])
+max_health_mods = Array[ExtResource("1_45de7")]([])
+max_mana_mods = Array[ExtResource("1_45de7")]([])
+mana_efficiency_mods = Array[ExtResource("1_45de7")]([])
+max_mana_based_damage_mods = Array[ExtResource("1_45de7")]([])
+max_mana_percent_on_deal_damage_mods = Array[ExtResource("1_45de7")]([])
+max_mana_percent_on_kill_mods = Array[ExtResource("1_45de7")]([])
+combat_end_mana_recovery_percent_mods = Array[ExtResource("1_45de7")]([])
+combat_end_coin_gain_percent_mods = Array[ExtResource("1_45de7")]([])
+health = 100.0
+mana = 100.0

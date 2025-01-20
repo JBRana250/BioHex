@@ -45,9 +45,18 @@
       "resource_path": {
         "visibility": 0
       }
+    },
+    "res://Items/Item Resources::mods/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
     }
   },
   "recent_paths": [
+    "res://Items/Item Resources::mods/",
     "res://Items/Item Resources/"
   ],
   "table_functions": {

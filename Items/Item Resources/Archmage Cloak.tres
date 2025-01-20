@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://m20aft4exxux"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://m20aft4exxux"]
 
 [ext_resource type="Texture2D" uid="uid://cgskn57jdbgys" path="res://Items/Item Sprites/biohex_archmage cloak.svg" id="1_dl07s"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_da7xw"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_gd6jh"]
+
+[sub_resource type="Resource" id="Resource_x7lma"]
+script = ExtResource("2_gd6jh")
+mod_type = "mana_efficiency"
+operation = "mult"
+value = 1.5
 
 [resource]
 script = ExtResource("2_da7xw")
 item_name = "Archmage Cloak"
 item_sprite = ExtResource("1_dl07s")
-item_description = "2.5x mana efficiency"
+item_description = "1.5x mana efficiency"
 category = Array[String](["Mana"])
 rarity = 1.0
-item_price = 15.0
+item_price = 10.0
+mods = Array[ExtResource("2_gd6jh")]([SubResource("Resource_x7lma")])

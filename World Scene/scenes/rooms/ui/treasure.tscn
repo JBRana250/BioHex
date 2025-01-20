@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkti7wrvy0ntp"]
+[gd_scene load_steps=10 format=3 uid="uid://bkti7wrvy0ntp"]
 
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasure_keysneeded.gd" id="1_cgcmd"]
 [ext_resource type="Texture2D" uid="uid://cgmlqfdr21lja" path="res://World Scene/assets/biohex chest locked.png" id="2_2qew1"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_6unc4"]
 [ext_resource type="Texture2D" uid="uid://ciyqcytga8nwh" path="res://Evolution Scene/Assets/UI/TopCreaturePartsBar/BioHex Panel Texture.svg" id="2_b0pbc"]
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasureclick.gd" id="3_0j76a"]
 [ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="4_15lf0"]
@@ -27,6 +28,7 @@ mouse_filter = 1
 script = ExtResource("1_cgcmd")
 label_keys_needed = NodePath("PanelContainer/MarginContainer/VBoxContainer/UnderTreasure/Label2")
 label_keys_have = NodePath("PanelContainer/MarginContainer/VBoxContainer/UnderTreasure/Label")
+player_inventory = ExtResource("2_6unc4")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -75,6 +77,7 @@ num_of_drops = 5
 common_drops = 5
 rare_drops = 10
 legendary_drops = 25
+player_inventory = ExtResource("2_6unc4")
 
 [node name="UnderTreasure" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

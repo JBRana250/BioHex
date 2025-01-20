@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="PlayerInventory" load_steps=5 format=3 uid="uid://cb8kjmwjph8n6"]
+
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="1_pwhhm"]
+[ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_vsp1r"]
+[ext_resource type="Script" path="res://Resources/Inventory/PlayerInventory/player_inventory.gd" id="3_ebior"]
+
+[sub_resource type="Resource" id="Resource_ha4dw"]
+script = ExtResource("1_pwhhm")
+mod_type = "max_health"
+operation = "mult"
+value = 5.0
+
+[resource]
+script = ExtResource("3_ebior")
+player_items = Array[ExtResource("2_vsp1r")]([])
+gold = 999
+claws = 0
+hoofs = 0
+scales = 0
+shards = 0
+essence = 0
+keys = 0
+fresh_player = true
+pkey = 0.0
+damage_mods = Array[ExtResource("1_pwhhm")]([])
+speed_mods = Array[ExtResource("1_pwhhm")]([])
+rotation_speed_mods = Array[ExtResource("1_pwhhm")]([])
+defence_mods = Array[ExtResource("1_pwhhm")]([])
+core_defence_mods = Array[ExtResource("1_pwhhm")]([])
+max_health_mods = Array[ExtResource("1_pwhhm")]([SubResource("Resource_ha4dw")])
+max_mana_mods = Array[ExtResource("1_pwhhm")]([])
+mana_efficiency_mods = Array[ExtResource("1_pwhhm")]([])
+max_mana_based_damage_mods = Array[ExtResource("1_pwhhm")]([])
+max_mana_percent_on_deal_damage_mods = Array[ExtResource("1_pwhhm")]([])
+max_mana_percent_on_kill_mods = Array[ExtResource("1_pwhhm")]([])
+combat_end_mana_recovery_percent_mods = Array[ExtResource("1_pwhhm")]([])
+combat_end_coin_gain_percent_mods = Array[ExtResource("1_pwhhm")]([])
+health = 0.0
+mana = 0.0

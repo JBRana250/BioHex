@@ -21,6 +21,10 @@ func _CalculateAngleBetweenVectors(vector1, vector2):
 	return atan2(det, dot) # atan2(y, x) or atan2(sin, cos). This will return an angle that will be positive for clockwise angles and negative for anticlockwise angles.
 
 func _physics_process(delta):
+	#check if there are any ranged weapons:
+	if ranged_weapons.get_children().is_empty():
+		return
+		
 	var player_mousevector = get_rotation_direction_component.globalGetRotationDirection()
 	#check if forward_dir is close to player_mousevector
 	#return out of function if ranged_weapons_dir is already close to player_mousevector

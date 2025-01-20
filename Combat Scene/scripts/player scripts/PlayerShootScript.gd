@@ -9,6 +9,8 @@ const basic_bullet = preload("res://Combat Scene/scenes/projectiles/basicproject
 @export var firing: bool = false
 var bullet_speed: float = 1500
 
+@export var on_deal_damage_component: Node
+
 func globalSetFiring(isFiring):
 	firing = isFiring
 
@@ -26,9 +28,6 @@ func _fire_weapon(weapon):
 	if mana_component.mana <= 0:
 		return
 	var projectile_instance = basic_bullet.instantiate()
-	
-	#set bullet's parent to be the world
-	get_tree().current_scene.add_child(projectile_instance)
 	
 	#set bullet's position
 	if weapon.find_children("", "Marker3D") == []:
@@ -49,6 +48,10 @@ func _fire_weapon(weapon):
 	
 	ProjectileDamageComponent.damage = RangedDamageComponent.damage
 	ProjectileDamageComponent.owner_alignment = RangedDamageComponent.owner_alignment
+	ProjectileDamageComponent.on_deal_damage_component = on_deal_damage_component
+	
+	#set bullet's parent to be the world
+	get_tree().current_scene.add_child(projectile_instance)
 	
 	mana_component.globalDecreaseMana(2.5)
 	

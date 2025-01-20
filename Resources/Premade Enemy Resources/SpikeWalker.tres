@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Creature_Resource" load_steps=16 format=3 uid="uid://be2nirta7ssjr"]
+[gd_resource type="Resource" script_class="Creature_Resource" load_steps=15 format=3 uid="uid://be2nirta7ssjr"]
 
 [ext_resource type="PackedScene" uid="uid://bkud2cpnpv0rj" path="res://CreatureParts/body.tscn" id="1_k5qa1"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/creature_resource.gd" id="1_vys3c"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="6_wnjl5"]
 [ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_nail_scene_resource.tres" id="7_j5nvx"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="8_hvx87"]
-[ext_resource type="Script" path="res://Resources/Modifiers/modifier_resource.gd" id="12_chkbm"]
 
 [sub_resource type="Resource" id="Resource_4egqg"]
 script = ExtResource("8_hvx87")
@@ -43,4 +42,3 @@ owner_alignment = "Enemy"
 character = ExtResource("2_aumin")
 components = ExtResource("3_0ix76")
 body = ExtResource("1_k5qa1")
-modifiers = Array[ExtResource("12_chkbm")]([])

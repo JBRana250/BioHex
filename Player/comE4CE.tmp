@@ -1,0 +1,71 @@
+[gd_scene load_steps=15 format=3 uid="uid://dy58jkfh1mnnc"]
+
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureMovementScript.gd" id="1_jswkr"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureRotationScript.gd" id="2_h3ctj"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerCamControllerScript.gd" id="3_ih44n"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRangedControllerScript.gd" id="4_wkr0s"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerGetRotationDirectionScript.gd" id="5_nfxhs"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerShootScript.gd" id="6_7r5lx"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerInputScript.gd" id="7_0ln76"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="8_d7tmd"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="10_xoqkk"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerHealthComponent.gd" id="11_5p4g1"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="12_abmdm"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/PlayerInventory/player_inventory.tres" id="12_ybf3n"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerManaComponent.gd" id="13_j3yxs"]
+
+[node name="Components" type="Node"]
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("force_component")]
+script = ExtResource("1_jswkr")
+force_component = NodePath("../ForceComponent")
+
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component", "mana_component")]
+script = ExtResource("2_h3ctj")
+get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
+mana_component = NodePath("../ManaComponent")
+
+[node name="PlayerCameraController" type="Node" parent="."]
+script = ExtResource("3_ih44n")
+
+[node name="RangedWeaponsRotater" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
+script = ExtResource("4_wkr0s")
+get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
+
+[node name="GetRotationDirectionComponent" type="Node3D" parent="."]
+script = ExtResource("5_nfxhs")
+
+[node name="RangedWeaponsShooter" type="Node" parent="." node_paths=PackedStringArray("mana_component")]
+script = ExtResource("6_7r5lx")
+mana_component = NodePath("../ManaComponent")
+
+[node name="PlayerInputComponent" type="Node" parent="." node_paths=PackedStringArray("ranged_weapons_shooter", "movement_component", "player_camera_controller", "mana_component")]
+script = ExtResource("7_0ln76")
+ranged_weapons_shooter = NodePath("../RangedWeaponsShooter")
+movement_component = NodePath("../MovementComponent")
+player_camera_controller = NodePath("../PlayerCameraController")
+mana_component = NodePath("../ManaComponent")
+
+[node name="DeathComponent" type="Node" parent="."]
+script = ExtResource("8_d7tmd")
+
+[node name="ForceComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component")]
+script = ExtResource("9_gqabf")
+movement_component = NodePath("../MovementComponent")
+
+[node name="SpawnComponent" type="Node" parent="."]
+script = ExtResource("10_xoqkk")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
+script = ExtResource("11_5p4g1")
+player_inventory = ExtResource("12_ybf3n")
+death_component = NodePath("../DeathComponent")
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("12_abmdm")
+
+[node name="ManaComponent" type="Node" parent="."]
+script = ExtResource("13_j3yxs")
+player_inventory = ExtResource("12_ybf3n")
+mana_efficiency = 5.0

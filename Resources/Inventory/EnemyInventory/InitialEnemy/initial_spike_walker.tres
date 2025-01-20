@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InitialEnemyResource" load_steps=2 format=3 uid="uid://cspn1r0jmn1wk"]
+
+[ext_resource type="Script" path="res://Resources/Inventory/EnemyInventory/initial_enemy.gd" id="1_iukfu"]
+
+[resource]
+script = ExtResource("1_iukfu")
+initial_mana = 100.0
+initial_damage = 5.0

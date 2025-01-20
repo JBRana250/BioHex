@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://qcmvjofpxdju"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://qcmvjofpxdju"]
 
 [ext_resource type="Texture2D" uid="uid://bvrq3pildfhd" path="res://Items/Item Sprites/biohex_sharp_teeth.svg" id="1_qh7bk"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_inxc1"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_jwf87"]
+
+[sub_resource type="Resource" id="Resource_a8rpk"]
+script = ExtResource("2_jwf87")
+mod_type = "damage"
+operation = "mult"
+value = 2.0
 
 [resource]
 script = ExtResource("2_inxc1")
@@ -10,4 +17,5 @@ item_sprite = ExtResource("1_qh7bk")
 item_description = " 2x damage"
 category = Array[String](["Damage"])
 rarity = 2.0
-item_price = 10.0
+item_price = 5.0
+mods = Array[ExtResource("2_jwf87")]([SubResource("Resource_a8rpk")])

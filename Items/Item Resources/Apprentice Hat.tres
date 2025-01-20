@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://daorilb211cvw"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://daorilb211cvw"]
 
 [ext_resource type="Texture2D" uid="uid://cybdxw0nbi3bt" path="res://Items/Item Sprites/biohex_apprentice_hat.svg" id="1_r8qji"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_0i4g1"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_l5u7f"]
+
+[sub_resource type="Resource" id="Resource_ae5ce"]
+script = ExtResource("2_0i4g1")
+mod_type = "max_mana"
+operation = "add"
+value = 25.0
+
+[sub_resource type="Resource" id="Resource_1k70c"]
+script = ExtResource("2_0i4g1")
+mod_type = "combat_end_mana_recovery_percent"
+operation = "add"
+value = 5.0
 
 [resource]
 script = ExtResource("2_l5u7f")
 item_name = "Apprentice Hat"
 item_sprite = ExtResource("1_r8qji")
-item_description = " + 25 max mana, recover 5% mana at end of each combat"
+item_description = " + 25 base max mana, recover 5% max mana at end of each combat"
 category = Array[String](["Mana"])
 rarity = 3.0
 item_price = 3.0
+mods = Array[ExtResource("2_0i4g1")]([SubResource("Resource_ae5ce"), SubResource("Resource_1k70c")])

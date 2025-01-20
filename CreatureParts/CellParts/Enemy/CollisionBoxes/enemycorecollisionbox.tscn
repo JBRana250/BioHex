@@ -10,3 +10,4 @@ margin = 0.08
 
 [node name="CreatureColComponent" type="Node" parent="."]
 script = ExtResource("1_6is28")
+is_core = true

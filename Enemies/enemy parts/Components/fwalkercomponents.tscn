@@ -1,5 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn1amqhps237y"]
+[gd_scene load_steps=17 format=3 uid="uid://dn1amqhps237y"]
 
+[ext_resource type="Script" path="res://Player/components.gd" id="1_0ke7y"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/OnDealDamageComponent.gd" id="1_7kw3v"]
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyMovementScript.gd" id="1_yvum8"]
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyRotationScript.gd" id="2_218gw"]
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyGetRotationDirection.gd" id="3_lamu3"]
@@ -11,15 +13,31 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureHealthComponent.gd" id="9_bjh6q"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="10_jhwpc"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureManaComponent.gd" id="11_cq12l"]
+[ext_resource type="Resource" uid="uid://bjvycjtsehkaw" path="res://Resources/Inventory/EnemyInventory/spike_walker_inventory.tres" id="13_fcki2"]
+[ext_resource type="PackedScene" uid="uid://d17mqeqgjig8x" path="res://Resources/Inventory/creature_stat_calculator.tscn" id="14_b1468"]
+[ext_resource type="Resource" uid="uid://cspn1r0jmn1wk" path="res://Resources/Inventory/EnemyInventory/InitialEnemy/initial_spike_walker.tres" id="15_b3rwa"]
 
-[node name="Components" type="Node"]
+[node name="Components" type="Node" node_paths=PackedStringArray("force_component", "health_component", "mana_component", "death_component", "on_deal_damage_component", "damage_component")]
+script = ExtResource("1_0ke7y")
+force_component = NodePath("ForceComponent")
+health_component = NodePath("HealthComponent")
+mana_component = NodePath("ManaComponent")
+death_component = NodePath("DeathComponent")
+on_deal_damage_component = NodePath("OnDealDamageComponent")
+damage_component = NodePath("DamageComponent")
 
-[node name="MovementComponent" type="Node" parent="."]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("force_component", "stat_calculator")]
 script = ExtResource("1_yvum8")
+force_component = NodePath("../ForceComponent")
+creature_inventory = ExtResource("13_fcki2")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component")]
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component", "mana_component", "stat_calculator")]
 script = ExtResource("2_218gw")
 get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
+mana_component = NodePath("../ManaComponent")
+creature_inventory = ExtResource("13_fcki2")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
 [node name="GetRotationDirectionComponent" type="Node3D" parent="."]
 script = ExtResource("3_lamu3")
@@ -43,12 +61,27 @@ movement_component = NodePath("../MovementComponent")
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("8_v3v8g")
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component", "stat_calculator")]
 script = ExtResource("9_bjh6q")
 death_component = NodePath("../DeathComponent")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="DamageComponent" type="Node" parent="."]
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator")]
 script = ExtResource("10_jhwpc")
+creature_inventory = ExtResource("13_fcki2")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="ManaComponent" type="Node" parent="."]
+[node name="ManaComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator")]
 script = ExtResource("11_cq12l")
+creature_inventory = ExtResource("13_fcki2")
+stat_calculator = NodePath("../CreatureStatCalculator")
+
+[node name="OnDealDamageComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator", "mana_component")]
+script = ExtResource("1_7kw3v")
+creature_inventory = ExtResource("13_fcki2")
+stat_calculator = NodePath("../CreatureStatCalculator")
+mana_component = NodePath("../ManaComponent")
+
+[node name="CreatureStatCalculator" parent="." instance=ExtResource("14_b1468")]
+creature_inventory = ExtResource("13_fcki2")
+initial_creature = ExtResource("15_b3rwa")

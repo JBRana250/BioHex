@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dk1r508r0nl25"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dk1r508r0nl25"]
 
 [ext_resource type="Texture2D" uid="uid://cnfef4ueorf71" path="res://Items/Item Sprites/biohex_sharp_scale.svg" id="1_7r2xi"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_53ff3"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_crhum"]
+
+[sub_resource type="Resource" id="Resource_hrwa4"]
+script = ExtResource("2_crhum")
+mod_type = "defence"
+operation = "add"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_dd38f"]
+script = ExtResource("2_crhum")
+mod_type = "damage"
+operation = "add"
+value = 1.0
 
 [resource]
 script = ExtResource("2_53ff3")
 item_name = "Sharp Scale"
 item_sprite = ExtResource("1_7r2xi")
-item_description = "1.1x max health, +1 base damage"
-category = Array[String](["Health", "Damag"])
+item_description = " + 1 defence, +1 base damage"
+category = Array[String](["Defence", "Gold"])
 rarity = 4.0
 item_price = 5.0
+mods = Array[ExtResource("2_crhum")]([SubResource("Resource_hrwa4"), SubResource("Resource_dd38f")])

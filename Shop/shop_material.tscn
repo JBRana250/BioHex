@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://gi4xehlx01ey"]
+[gd_scene load_steps=9 format=3 uid="uid://gi4xehlx01ey"]
 
 [ext_resource type="Script" path="res://Shop/shop_material.gd" id="1_n8xiw"]
-[ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="1_ugmw7"]
 [ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_lfkhl"]
 [ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_rejfm"]
+[ext_resource type="Texture2D" uid="uid://dimcf7eqwq7u0" path="res://In-Game Resource Sprite/Biohex Scale Sprite.png" id="3_rfng4"]
 [ext_resource type="Script" path="res://Shop/shop_material_buy_button.gd" id="5_hcoly"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="6_n2se6"]
+[ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="7_yciwn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sr2bx"]
 font_size = 32
@@ -34,11 +36,11 @@ theme_override_constants/margin_bottom = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="hboxcontainer/MarginContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="hboxcontainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -46,7 +48,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="MatTexture" type="TextureRect" parent="hboxcontainer/MarginContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("1_ugmw7")
+texture = ExtResource("3_rfng4")
 stretch_mode = 5
 
 [node name="MarginContainer3" type="MarginContainer" parent="hboxcontainer"]
@@ -126,5 +128,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Buy"
 script = ExtResource("5_hcoly")
+player_inventory = ExtResource("6_n2se6")
+shop_inventory = ExtResource("7_yciwn")
 
 [connection signal="pressed" from="hboxcontainer/MarginContainer/VBoxContainer2/Button" to="hboxcontainer/MarginContainer/VBoxContainer2/Button" method="_on_pressed"]

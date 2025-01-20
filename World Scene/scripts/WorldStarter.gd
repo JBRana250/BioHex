@@ -1,5 +1,7 @@
 extends Node
 
+@export var player_inventory: PlayerInventory
+
 @export var item_pool: ItemDatabase
 @export var item_database: ItemDatabase
 
@@ -10,7 +12,7 @@ func _ready():
 	if Globals.rooms_cleared == 0:
 		_start_world()
 	else:
-		PlayerResources.fresh_player = false
+		player_inventory.fresh_player = false
 	
 
 func _refresh_item_pool():
@@ -21,4 +23,4 @@ func _refresh_item_pool():
 	item_pool.rarity_five_items = item_database.rarity_five_items
 
 func _start_world():
-	PlayerResources.fresh_player = true
+	player_inventory.fresh_player = true

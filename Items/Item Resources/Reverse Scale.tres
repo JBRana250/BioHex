@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dgcdif1ugo43u"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dgcdif1ugo43u"]
 
 [ext_resource type="Texture2D" uid="uid://dpqqkyoqn46du" path="res://Items/Item Sprites/biohex_reverse_scale.svg" id="1_fa2ne"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_8q6j3"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_ql51i"]
+
+[sub_resource type="Resource" id="Resource_63rng"]
+script = ExtResource("2_ql51i")
+mod_type = "defence"
+operation = "mult"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_afxkh"]
+script = ExtResource("2_ql51i")
+mod_type = "core_defence"
+operation = "mult"
+value = 0.1
 
 [resource]
 script = ExtResource("2_8q6j3")
 item_name = "Reverse Scale"
 item_sprite = ExtResource("1_fa2ne")
-item_description = "2x max health, but your core takes 10x more damage"
+item_description = "2x defence, but your core has 10x less defence"
 category = Array[String](["Health"])
 rarity = 1.0
-item_price = 15.0
+item_price = 5.0
+mods = Array[ExtResource("2_ql51i")]([SubResource("Resource_63rng"), SubResource("Resource_afxkh")])

@@ -29,8 +29,6 @@ shape = SubResource("CapsuleShape3D_lfcn5")
 
 [node name="MeleeDamageComponent" type="Node" parent="outernailhitbox/Components"]
 script = ExtResource("2_13kds")
-damage = null
-owner_alignment = null
 
 [node name="outernail" parent="." instance=ExtResource("3_j0uma")]
 

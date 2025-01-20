@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmlma80cm6b2m"]
+[gd_scene load_steps=16 format=3 uid="uid://dmlma80cm6b2m"]
 
 [ext_resource type="Texture2D" uid="uid://bdc3k1r6e82wm" path="res://World Scene/assets/UI/BioHex Creature Editor Logo.svg" id="1_e0abs"]
 [ext_resource type="Script" path="res://World Scene/scripts/world_scene_ui.gd" id="1_px6c5"]
 [ext_resource type="Script" path="res://Generic/Scripts/TextureButtonNavToScene.gd" id="2_6svi2"]
 [ext_resource type="StyleBox" uid="uid://c6bo8aatd1w5x" path="res://World Scene/assets/UI/world_scene_resource_panel.tres" id="2_g0wjn"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_rdrh3"]
 [ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="3_e6182"]
 [ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="4_utp0r"]
 [ext_resource type="Texture2D" uid="uid://cminnbvk8aonk" path="res://In-Game Resource Sprite/Biohex Hoof Sprite.png" id="5_xvug7"]
@@ -42,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_px6c5")
+player_inventory = ExtResource("2_rdrh3")
 gold_label = NodePath("MarginContainer/PlayerResources/MarginContainer/VBoxContainer/Gold/MarginContainer/HBoxContainer/GoldLabel")
 claws_label = NodePath("MarginContainer/PlayerResources/MarginContainer/VBoxContainer/Claws/MarginContainer/HBoxContainer/ClawsLabel")
 hoofs_label = NodePath("MarginContainer/PlayerResources/MarginContainer/VBoxContainer/Hoofs/MarginContainer/HBoxContainer/HoofsLabel")

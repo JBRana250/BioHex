@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var player_inventory: PlayerInventory
+
 var Dependencies: Dictionary = {
 	
 }
@@ -9,6 +11,6 @@ func _ready():
 	EventManager.subscribe("CombatRoomCleared", onCombatRoomCleared)
 
 func onCombatRoomCleared(_event_data):
-	PlayerResources.health = Dependencies['health_component'].health
-	PlayerResources.mana = Dependencies['mana_component'].mana
+	player_inventory.health = Dependencies['health_component'].health
+	player_inventory.mana = Dependencies['mana_component'].mana
 	EventManager.unsubscribe("CombatRoomCleared", onCombatRoomCleared)

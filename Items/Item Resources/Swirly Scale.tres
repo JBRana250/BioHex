@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dfbeo05etccni"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dfbeo05etccni"]
 
 [ext_resource type="Texture2D" uid="uid://d1ax3xfocljwe" path="res://Items/Item Sprites/biohex_swirly_scale.svg" id="1_1w6t2"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_2c51g"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_2v6ug"]
+
+[sub_resource type="Resource" id="Resource_jbbkc"]
+script = ExtResource("2_2v6ug")
+mod_type = "rotation_speed"
+operation = "mult"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_kthn2"]
+script = ExtResource("2_2v6ug")
+mod_type = "defence"
+operation = "add"
+value = 1.0
 
 [resource]
 script = ExtResource("2_2c51g")
 item_name = "Swirly Scale"
 item_sprite = ExtResource("1_1w6t2")
-item_description = "1.1x max health, 2x rotation speed"
-category = Array[String](["Health", "RotationSpeed"])
+item_description = " + 1 defence, 2x rotation speed"
+category = Array[String](["Defence", "RotationSpeed"])
 rarity = 2
 item_price = 3.0
+mods = Array[ExtResource("2_2v6ug")]([SubResource("Resource_jbbkc"), SubResource("Resource_kthn2")])

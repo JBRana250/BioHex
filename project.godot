@@ -34,7 +34,6 @@ Globals="*res://Autoloads/Globals.gd"
 SceneSwitcher="*res://Autoloads/scene_switcher.gd"
 UI="*res://Autoloads/ui.tscn"
 EventManager="*res://Autoloads/EventManager.gd"
-PlayerResources="*res://Autoloads/player_resources.gd"
 
 [display]
 
@@ -44,6 +43,26 @@ window/size/viewport_height=1080
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Autoloads/": "gray",
+"res://Combat Scene/": "red",
+"res://CreatureParts/": "green",
+"res://Enemies/": "red",
+"res://Evolution Scene/": "yellow",
+"res://Generic/": "gray",
+"res://In-Game Resource Sprite/": "gray",
+"res://Items/": "teal",
+"res://Resources/": "orange",
+"res://RunStarter/": "gray",
+"res://Shop/": "yellow",
+"res://Test Assets/": "gray",
+"res://Title Screen/": "purple",
+"res://World Scene/": "pink",
+"res://addons/": "gray"
+}
 
 [input]
 

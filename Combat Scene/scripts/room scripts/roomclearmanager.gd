@@ -5,6 +5,10 @@ extends Node
 @export var num_of_enemies: int
 @export var victory_ui: Control
 
+@export var player_inventory: PlayerInventory
+
+@export var player_stat_calculator: Node
+
 func _ready():
 	EventManager.subscribe("EnemyDefeated", onEnemyDeath)
 
@@ -32,7 +36,7 @@ func _get_rand_resource(weights):
 
 func _get_key() -> bool:
 	var randnum = randi_range(0,100)
-	if PlayerResources.pkey > randnum:
+	if player_inventory.pkey > randnum:
 		return true
 	else:
 		return false
@@ -61,37 +65,69 @@ func _calculate_and_increase_resources():
 			var resource_type = _get_rand_resource(weights)
 			match resource_type:
 				"Gold":
-					PlayerResources.gold += 1
+					player_inventory.gold += 1
 				"Claw":
-					PlayerResources.claws += 1
+					player_inventory.claws += 1
 				"Hoof":
-					PlayerResources.hoofs += 1
+					player_inventory.hoofs += 1
 				"Scale":
-					PlayerResources.scales += 1
+					player_inventory.scales += 1
 				"Shard":
-					PlayerResources.shards += 1
+					player_inventory.shards += 1
 				"Essence":
-					PlayerResources.essence += 1
+					player_inventory.essence += 1
 				_:
 					print_debug("invalid resource gained?!?")
 			
 			resources_gained[resource_type] += 1
 	
 	if _get_key():
-		PlayerResources.keys += 1
-		PlayerResources.pkey = 0
+		player_inventory.keys += 1
+		player_inventory.pkey = 0
 		resources_gained["Key"] = 1
 	else:
-		PlayerResources.pkey += 25
+		player_inventory.pkey += 25
 	
 	return resources_gained
+
+func _recover_mana():
+	var mana_recovery_percent = player_stat_calculator._calculate_combat_end_mana_recovery_percent()
+	
+	var max_mana = player_stat_calculator._calculate_max_mana()
+	
+	var mana_recovered = max_mana * (mana_recovery_percent / 100)
+	
+	player_inventory.mana += mana_recovered
+
+func _gain_gold_random():
+	var coin_gain_percent = player_stat_calculator._calculate_combat_end_coin_gain_percent()
+	var coin_gain_percent_divided = coin_gain_percent / 100
+	var decimal = coin_gain_percent_divided - floor(coin_gain_percent_divided)
+	
+	var guaranteed_coins = coin_gain_percent_divided - decimal
+	
+	var rand_num = randi_range(1, 100)
+	
+	if rand_num >= (decimal * 100):
+		guaranteed_coins += 1
+	
+	player_inventory.gold += guaranteed_coins
+	return guaranteed_coins
 
 func onEnemyDeath(_event_data):
 	num_of_enemies -= 1
 	if num_of_enemies == 0:
+		#room has been cleared
 		EventManager.unsubscribe("EnemyDefeated", onEnemyDeath)
+		EventManager.broadcast_event("CombatRoomCleared", {})
+		
 		var resources_gained = _calculate_and_increase_resources()
+		
+		if !player_inventory.combat_end_mana_recovery_percent_mods.is_empty():
+			_recover_mana()
+		if !player_inventory.combat_end_coin_gain_percent_mods.is_empty():
+			resources_gained["Gold"] += _gain_gold_random()
+		
 		victory_ui.resources_gained = resources_gained
 		victory_ui.globalShowVictoryUI()
-		EventManager.broadcast_event("CombatRoomCleared", {})
 		

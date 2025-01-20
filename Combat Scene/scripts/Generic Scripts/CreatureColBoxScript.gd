@@ -5,10 +5,10 @@ var creature
 var ForceComponent: Node
 var HealthComponent: Node
 
+@export var is_core: bool = false
 var cellpart: Node3D
-var health: float
+
 @onready var onHitMaterial = preload("res://Combat Scene/assets/Materials/creaturepartonhit.tres")
-@onready var cellPartDestructionParticles = preload("res://Combat Scene/scenes/particle scenes/CellPartDestruction.tscn")
 
 func _wait(seconds):
 	var t = Timer.new()
@@ -19,40 +19,9 @@ func _wait(seconds):
 	await(t.timeout)
 	return
 
-func _attach_dependencies():
-	ForceComponent = creature.Dependencies["force_component"]
-	HealthComponent = creature.Dependencies["health_component"]
-
-func _emit_death_particles(part):
-	#instantiate particle system
-	var particle_instance = cellPartDestructionParticles.instantiate()
-	
-	#set particle system's parent to be the world
-	get_tree().current_scene.add_child(particle_instance)
-	
-	#set position of particle instance
-	particle_instance.global_position = part.global_position
-	
-	#start the particle generation
-	particle_instance.get_child(0).emitting = true
-	
-	#after 0.5s, queue free the particle instance
-	await(_wait(0.5))
-	particle_instance.queue_free()
-
-func _health_depleted():
-	_emit_death_particles(cellpart)
-		
-	#queue free the cell part and the col box
-	cellpart.queue_free()
-	get_parent().queue_free()
-
 func globalOnHit(damage, kb_force_name, kb_force_dir, kb_force_mag, kb_force_duration):
-	health -= damage
 	if kb_force_mag > 0:
 		ForceComponent.globalAddForce(kb_force_name, kb_force_dir, kb_force_mag, kb_force_duration)
-	if health <= 0:
-		_health_depleted()
 	
 	if !is_instance_valid(HealthComponent):
 		return
@@ -67,4 +36,7 @@ func globalOnHit(damage, kb_force_name, kb_force_dir, kb_force_mag, kb_force_dur
 			await(_wait(0.05))
 			child.set_surface_override_material(0, null)
 	
+func _attach_dependencies():
+	ForceComponent = creature.Dependencies["force_component"]
+	HealthComponent = creature.Dependencies["health_component"]
 	

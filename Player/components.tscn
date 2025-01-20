@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy58jkfh1mnnc"]
+[gd_scene load_steps=20 format=3 uid="uid://dy58jkfh1mnnc"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureMovementScript.gd" id="1_jswkr"]
+[ext_resource type="Script" path="res://Player/components.gd" id="1_th3rn"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureRotationScript.gd" id="2_h3ctj"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerCamControllerScript.gd" id="3_ih44n"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRangedControllerScript.gd" id="4_wkr0s"]
@@ -13,17 +14,33 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerHealthComponent.gd" id="11_5p4g1"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="12_abmdm"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerManaComponent.gd" id="13_j3yxs"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="14_04022"]
+[ext_resource type="PackedScene" uid="uid://d17mqeqgjig8x" path="res://Resources/Inventory/creature_stat_calculator.tscn" id="15_1lqep"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/on_kill_enemy_component.gd" id="15_x1l05"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/OnDealDamageComponent.gd" id="16_v7q71"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureOnAttackComponent.gd" id="17_uxl8n"]
 
-[node name="Components" type="Node"]
+[node name="Components" type="Node" node_paths=PackedStringArray("force_component", "health_component", "mana_component", "death_component", "on_deal_damage_component", "damage_component")]
+script = ExtResource("1_th3rn")
+force_component = NodePath("ForceComponent")
+health_component = NodePath("HealthComponent")
+mana_component = NodePath("ManaComponent")
+death_component = NodePath("DeathComponent")
+on_deal_damage_component = NodePath("OnDealDamageComponent")
+damage_component = NodePath("DamageComponent")
 
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("force_component")]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("force_component", "stat_calculator")]
 script = ExtResource("1_jswkr")
 force_component = NodePath("../ForceComponent")
+creature_inventory = ExtResource("14_04022")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component", "mana_component")]
+[node name="RotationComponent" type="Node" parent="." node_paths=PackedStringArray("get_rotation_direction_component", "mana_component", "stat_calculator")]
 script = ExtResource("2_h3ctj")
 get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 mana_component = NodePath("../ManaComponent")
+creature_inventory = ExtResource("14_04022")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
 [node name="PlayerCameraController" type="Node" parent="."]
 script = ExtResource("3_ih44n")
@@ -35,9 +52,10 @@ get_rotation_direction_component = NodePath("../GetRotationDirectionComponent")
 [node name="GetRotationDirectionComponent" type="Node3D" parent="."]
 script = ExtResource("5_nfxhs")
 
-[node name="RangedWeaponsShooter" type="Node" parent="." node_paths=PackedStringArray("mana_component")]
+[node name="RangedWeaponsShooter" type="Node" parent="." node_paths=PackedStringArray("mana_component", "on_deal_damage_component")]
 script = ExtResource("6_7r5lx")
 mana_component = NodePath("../ManaComponent")
+on_deal_damage_component = NodePath("../OnDealDamageComponent")
 
 [node name="PlayerInputComponent" type="Node" parent="." node_paths=PackedStringArray("ranged_weapons_shooter", "movement_component", "player_camera_controller", "mana_component")]
 script = ExtResource("7_0ln76")
@@ -56,13 +74,36 @@ movement_component = NodePath("../MovementComponent")
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("10_xoqkk")
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component")]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("death_component", "stat_calculator")]
 script = ExtResource("11_5p4g1")
+player_inventory = ExtResource("14_04022")
 death_component = NodePath("../DeathComponent")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="DamageComponent" type="Node" parent="."]
+[node name="DamageComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator")]
 script = ExtResource("12_abmdm")
+creature_inventory = ExtResource("14_04022")
+stat_calculator = NodePath("../CreatureStatCalculator")
 
-[node name="ManaComponent" type="Node" parent="."]
+[node name="ManaComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator")]
 script = ExtResource("13_j3yxs")
 mana_efficiency = 5.0
+creature_inventory = ExtResource("14_04022")
+stat_calculator = NodePath("../CreatureStatCalculator")
+
+[node name="OnKillEnemyComponent" type="Node" parent="." node_paths=PackedStringArray("player_stat_calculator", "mana_component")]
+script = ExtResource("15_x1l05")
+player_inventory = ExtResource("14_04022")
+player_stat_calculator = NodePath("../CreatureStatCalculator")
+mana_component = NodePath("../ManaComponent")
+
+[node name="OnDealDamageComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator", "mana_component")]
+script = ExtResource("16_v7q71")
+creature_inventory = ExtResource("14_04022")
+stat_calculator = NodePath("../CreatureStatCalculator")
+mana_component = NodePath("../ManaComponent")
+
+[node name="OnAttackComponent" type="Node" parent="."]
+script = ExtResource("17_uxl8n")
+
+[node name="CreatureStatCalculator" parent="." instance=ExtResource("15_1lqep")]

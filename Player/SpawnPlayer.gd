@@ -16,6 +16,7 @@ func _wait(seconds):
 	return
 
 func _ready():
+	
 	await(get_tree().current_scene.tree_exited) #this is so that we wait for the old scene to unload
 	cam_pivot_instance = _spawn_thing(cam_pivot, get_tree().current_scene, Vector3(), Vector3(deg_to_rad(-60), 0, 0))
 	for i in range(50):
@@ -32,6 +33,10 @@ func _attach_camera_dependencies():
 	character_instance.Dependencies["spring_arm"] = cam_pivot_instance.get_child(0)
 	character_instance.Dependencies["camera_3d"] = cam_pivot_instance.get_child(0).get_child(0)
 	
+func _attach_component_dependencies():
+	super()
+	
+
 	
 func _on_spawn_delay_timeout():
 	await(_spawn_beam())

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dquy7dajyjfhh"]
+[gd_scene load_steps=3 format=3 uid="uid://dquy7dajyjfhh"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerScript.gd" id="1_tgien"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_e5gt3"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_mask = 118
@@ -8,3 +9,4 @@ axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_tgien")
+player_inventory = ExtResource("2_e5gt3")

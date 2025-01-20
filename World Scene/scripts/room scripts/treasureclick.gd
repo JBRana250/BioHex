@@ -10,6 +10,8 @@ const resource_gained_ui = preload("res://Combat Scene/scenes/ResourceGained.tsc
 @export var rare_drops: int
 @export var legendary_drops: int
 
+@export var player_inventory: PlayerInventory
+
 @export var weights: Dictionary = {
 	"Gold": 10,
 	"Claw": 1,
@@ -64,17 +66,17 @@ func _calculate_and_increase_resources():
 		var resource_type = _get_rand_resource()
 		match resource_type:
 			"Gold":
-				PlayerResources.gold += 1
+				player_inventory.gold += 1
 			"Claw":
-				PlayerResources.claws += 1
+				player_inventory.claws += 1
 			"Hoof":
-				PlayerResources.hoofs += 1
+				player_inventory.hoofs += 1
 			"Scale":
-				PlayerResources.scales += 1
+				player_inventory.scales += 1
 			"Shard":
-				PlayerResources.shards += 1
+				player_inventory.shards += 1
 			"Essence":
-				PlayerResources.essence += 1
+				player_inventory.essence += 1
 			_:
 				print_debug("invalid resource gained?!?")
 		
@@ -83,12 +85,12 @@ func _calculate_and_increase_resources():
 	return resources_gained
 
 func _on_pressed() -> void:
-	if PlayerResources.keys < owner.keys_needed:
+	if player_inventory.keys < owner.keys_needed:
 		return
 	if opened:
 		return
 		
-	PlayerResources.keys -= owner.keys_needed
+	player_inventory.keys -= owner.keys_needed
 	owner._assign_key_labels()
 	icon = opened_treasure
 	

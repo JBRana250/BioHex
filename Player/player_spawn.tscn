@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://mrkwvfdcww8d"]
+[gd_scene load_steps=4 format=3 uid="uid://mrkwvfdcww8d"]
 
 [ext_resource type="Resource" uid="uid://dq5mxnsbq4s74" path="res://Player/PlayerCreatureData.tres" id="2_2b2tg"]
 [ext_resource type="Script" path="res://Player/SpawnPlayer.gd" id="2_j4bwf"]
+[ext_resource type="Resource" uid="uid://dhwss7lpjf1ye" path="res://Resources/Inventory/PlayerInventory/InitialPlayer/initial_player.tres" id="3_lkir2"]
 
 [node name="PlayerSpawn" type="Marker3D"]
 
@@ -9,6 +10,7 @@
 
 [node name="SpawnComponent" type="Node" parent="Components"]
 script = ExtResource("2_j4bwf")
+initial_player = ExtResource("3_lkir2")
 creature_resource = ExtResource("2_2b2tg")
 
 [node name="SpawnDelay" type="Timer" parent="."]

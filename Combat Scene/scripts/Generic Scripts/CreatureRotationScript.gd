@@ -7,10 +7,25 @@ var creature
 @export var mana_component: Node
 
 @export var rotation_speed: float = 4
+var base_rotation_speed: float
+
 @export var rotationclampfloat: float = 0.1
 
 @export var direction_to_rotate: Vector3
 @export var forward_dir: Vector3
+
+@export var creature_inventory: CreatureInventory
+@export var stat_calculator: Node
+
+func _ready():
+	base_rotation_speed = rotation_speed
+	_recalc_rotation_speed()
+	
+func _recalc_rotation_speed():
+	if creature_inventory.rotation_speed_mods.is_empty():
+		return
+		
+	rotation_speed = stat_calculator._calculate_rotation_speed(base_rotation_speed)
 
 func _CalculateAngleBetweenVectors(vector1, vector2):
 	var dot: float = vector1.x*vector2.x + vector1.y*vector2.y      # Dot product between [x1, y1] and [x2, y2]

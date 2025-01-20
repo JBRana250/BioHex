@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://44xva61htfj0"]
+[gd_scene load_steps=13 format=3 uid="uid://44xva61htfj0"]
 
 [ext_resource type="PackedScene" uid="uid://c5epxmcm7sld2" path="res://Combat Scene/scenes/room scenes/roomtemplate.tscn" id="1_qdwal"]
 [ext_resource type="PackedScene" uid="uid://c04aehk23h5bp" path="res://Combat Scene/scenes/world scenes/outerwater.tscn" id="2_xjo0g"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Resources/EnemyDrops/enemydropresource.gd" id="7_0axpp"]
 [ext_resource type="PackedScene" uid="uid://cf7id2jnknoyu" path="res://Combat Scene/scenes/VictoryUI.tscn" id="7_62rgd"]
 [ext_resource type="Resource" uid="uid://bjq0kl0nycslr" path="res://Resources/EnemyDrops/spikewalkerdrops.tres" id="8_2khsr"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="9_y7sh6"]
+[ext_resource type="PackedScene" uid="uid://d17mqeqgjig8x" path="res://Resources/Inventory/creature_stat_calculator.tscn" id="10_0mm5l"]
 
 [sub_resource type="Environment" id="Environment_kv8t8"]
 glow_enabled = true
@@ -48,11 +50,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.606, 0.25, 15.53)
 [node name="PlayerSpawn" parent="." instance=ExtResource("5_1dvp0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.199, 0.25, 0)
 
-[node name="RoomClearManager" type="Node" parent="." node_paths=PackedStringArray("victory_ui")]
+[node name="RoomClearManager" type="Node" parent="." node_paths=PackedStringArray("victory_ui", "player_stat_calculator")]
 script = ExtResource("6_ctret")
 Enemies = Array[ExtResource("7_0axpp")]([ExtResource("8_2khsr"), ExtResource("8_2khsr"), ExtResource("8_2khsr")])
 num_of_enemies = 3
 victory_ui = NodePath("../VictoryUi")
+player_inventory = ExtResource("9_y7sh6")
+player_stat_calculator = NodePath("PlayerStatCalculator")
+
+[node name="PlayerStatCalculator" parent="RoomClearManager" instance=ExtResource("10_0mm5l")]
 
 [node name="VictoryUi" parent="." instance=ExtResource("7_62rgd")]
 visible = false

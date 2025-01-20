@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://bce2apt1h6pqj"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://bce2apt1h6pqj"]
 
 [ext_resource type="Texture2D" uid="uid://cocetlr6ln2kt" path="res://Items/Item Sprites/biohex_broken_shell.svg" id="1_h7dnj"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_4ol8o"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_qfuij"]
+
+[sub_resource type="Resource" id="Resource_u2p71"]
+script = ExtResource("2_4ol8o")
+mod_type = "speed"
+operation = "mult"
+value = 1.5
+
+[sub_resource type="Resource" id="Resource_lblev"]
+script = ExtResource("2_4ol8o")
+mod_type = "defence"
+operation = "add"
+value = -2.0
 
 [resource]
 script = ExtResource("2_qfuij")
 item_name = "Broken Shell"
 item_sprite = ExtResource("1_h7dnj")
-item_description = "0.75x max health, 1.5x speed"
-category = Array[String](["Health", "Speed"])
+item_description = " - 2 base defence, 1.5x speed"
+category = Array[String](["Defence", "Speed"])
 rarity = 1.0
 item_price = 2.0
+mods = Array[ExtResource("2_4ol8o")]([SubResource("Resource_u2p71"), SubResource("Resource_lblev")])

@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://durfgcosxsbs6"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://durfgcosxsbs6"]
 
 [ext_resource type="Texture2D" uid="uid://m8togn21nwd" path="res://Items/Item Sprites/biohex_adept skull.svg" id="1_45i0d"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_04r17"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_qmivb"]
+
+[sub_resource type="Resource" id="Resource_8ut0w"]
+script = ExtResource("2_qmivb")
+mod_type = "max_mana_percent_on_kill"
+operation = "add"
+value = 5.0
 
 [resource]
 script = ExtResource("2_04r17")
@@ -11,3 +18,4 @@ item_description = "Recover 5% of your mana whenever you kill an enemy"
 category = Array[String](["Mana", "OnKill"])
 rarity = 2.0
 item_price = 5.0
+mods = Array[ExtResource("2_qmivb")]([SubResource("Resource_8ut0w")])

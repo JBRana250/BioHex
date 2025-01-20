@@ -11,7 +11,6 @@ class_name creature_spawn_script
 @onready var character = creature_resource.character
 @onready var body = creature_resource.body
 @onready var components = creature_resource.components
-@onready var modifiers = creature_resource.modifiers
 
 const creature_spawn_beam = preload("res://Combat Scene/scenes/creaturespawnbeam.tscn")
 const creature_transform_basis = preload("res://CreatureParts/creature_transform_basis.tscn")
@@ -60,12 +59,6 @@ func _spawn_thing(_thing, _parent, _position, _rotation):
 	thing_instance.position = _position
 	thing_instance.rotation = _rotation
 	return thing_instance
-
-func _calculate_health(cell_count):
-	if cell_count == 1:
-		return 12
-	
-	return (_calculate_health(cell_count - 1) + (cell_count - 1))
 
 func _attach_components():
 	components_instance = components.instantiate()
@@ -140,7 +133,9 @@ func _spawn_creature():
 		component_reference_parts.append(collision_component)
 		
 		collision_component.cellpart = cell_instance
-		collision_component.health = float(cell.health_resource.base_health)
+		
+		if collision_component.is_core:
+			collision_component.health = float(cell.health_resource.base_health)
 		
 		#Instantiate core component of cell (if any)
 		var core_component = cell.core_component
@@ -155,7 +150,6 @@ func _spawn_creature():
 					var CBcore_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, temp_position_vector, Vector3())
 					collision_component = CBcore_component_instance.get_child(0)
 					collision_component.cellpart = core_component_instance
-					collision_component.health = float(core_component.health_resource.base_health)
 					
 					# set damage attributes
 					var damage_component = core_component_instance.get_node("Components").get_node("RangedDamageComponent")
@@ -201,10 +195,11 @@ func _spawn_creature():
 					var CBouter_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, outer_component_pos, outer_component_rotation)
 					collision_component = CBouter_component_instance.get_child(0)
 					collision_component.cellpart = outer_component_instance
-					collision_component.health = float(outer_component.health_resource.base_health)
 					var damage_component = outer_component_instance.find_child("Components").get_node("MeleeDamageComponent")
 					damage_component.damage = outer_component.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
+					damage_component.character_instance = character_instance
+					component_reference_parts.append(damage_component)
 			collision_component.creature = character_instance
 			component_reference_parts.append(collision_component)
 
@@ -217,43 +212,16 @@ func _spawn_beam():
 	spawn_particles_instance = _spawn_thing(creature_spawn_particles, get_tree().current_scene, owner.position, Vector3())
 	spawn_particles_instance.get_child(0).emitting = true
 
-func _calculate_modified_health():
-	var mult = 1
-	var add = 0
-	for mod in modifiers:
-		if mod.mod_type == "health":
-			if mod.mult:
-				mult *= mod.mod_value
-			else:
-				add += mod.mod_value
+func _calculate_health(cell_count):
+	if cell_count == 1:
+		return 12
 	
+	return (_calculate_health(cell_count - 1) + (cell_count - 1))
+
+func _get_base_health():
 	var num_of_cells = len(creature_resource.creature_data_array)
 	var base_health = _calculate_health(num_of_cells)
-	return mult * (base_health + add)
-
-func _calculate_modified_damage():
-	var mult = 1
-	var add = 0
-	for mod in modifiers:
-		if mod.mod_type == "damage":
-			if mod.mult:
-				mult *= mod.mod_value
-			else:
-				add += mod.mod_value
-	
-	return mult * (base_damage + add)
-	
-func _calculate_modified_mana():
-	var mult = 1
-	var add = 0
-	for mod in modifiers:
-		if mod.mod_type == "mana":
-			if mod.mult:
-				mult *= mod.mod_value
-			else:
-				add += mod.mod_value
-	
-	return mult * (base_mana + add)
+	return base_health
 
 func _attach_component_dependencies():
 	character_instance.Dependencies["body"] = body_instance
@@ -264,18 +232,16 @@ func _attach_component_dependencies():
 	character_instance.Dependencies["mana_bar"] = mana_bar_instance
 
 func _attach_part_dependencies():
-	character_instance.Dependencies["force_component"] = force_component_instance
-	character_instance.Dependencies["health_component"] = health_component_instance
-	character_instance.Dependencies["mana_component"] = mana_component_instance
-	character_instance.Dependencies["death_component"] = death_component_instance
-
+	character_instance.Dependencies["force_component"] = components_instance.force_component
+	character_instance.Dependencies["health_component"] = components_instance.health_component
+	character_instance.Dependencies["mana_component"] = components_instance.mana_component
+	character_instance.Dependencies["death_component"] = components_instance.death_component
+	character_instance.Dependencies["on_deal_damage_component"] = components_instance.on_deal_damage_component
 
 func _on_spawn_delay_timeout():
-	force_component_instance = components_instance.find_child("ForceComponent")
-	health_component_instance = components_instance.find_child("HealthComponent")
-	mana_component_instance = components_instance.find_child("ManaComponent")
-	damage_component_instance = components_instance.find_child("DamageComponent")
-	death_component_instance = components_instance.find_child("DeathComponent")
+	health_component_instance = components_instance.health_component
+	mana_component_instance = components_instance.mana_component
+	damage_component_instance = components_instance.damage_component
 	
 	_attach_part_dependencies()
 	for part in component_reference_parts:
@@ -284,9 +250,9 @@ func _on_spawn_delay_timeout():
 	health_component_instance.health_bar = health_bar_instance
 	mana_component_instance.mana_bar = mana_bar_instance
 	
-	health_component_instance.InitHealth(_calculate_modified_health())
-	mana_component_instance.InitMana(_calculate_modified_mana())
-	damage_component_instance.InitDamage(_calculate_modified_damage())
+	health_component_instance.InitHealth(_get_base_health())
+	mana_component_instance.InitMana(base_mana)
+	damage_component_instance.InitDamage(base_damage)
 	
 	await(_wait(2.5))
 	spawn_particles_instance.queue_free()

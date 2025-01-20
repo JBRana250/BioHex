@@ -8,13 +8,21 @@ var creature
 @export var motion = Vector3()
 
 @export var acceleration: float = 100
+var base_accel: float
+
 @export var deceleration: float = 100
+var base_decel: float
 
 @export var max_speed: float = 10
+var base_speed: float
+
 @export var movement_dir = Vector2()
 
 @export var active_forces = {}
 @export var net_active_force: Vector3
+
+@export var creature_inventory: CreatureInventory
+@export var stat_calculator: Node
 
 class ActiveForce:
 	var direction: Vector3
@@ -22,6 +30,23 @@ class ActiveForce:
 	func _init(_direction, _magnitude):
 		direction = _direction
 		magnitude = _magnitude
+
+func _ready():
+	base_speed = max_speed
+	base_accel = acceleration
+	base_decel = deceleration
+	
+	_recalc_speed()
+
+func _recalc_speed():
+	if creature_inventory.speed_mods.is_empty():
+		return
+	
+	max_speed = stat_calculator._calculate_speed(base_speed)
+	var speed_difference = max_speed - base_speed
+	
+	acceleration = base_accel + (speed_difference * 10)
+	deceleration = base_decel + (speed_difference * 10)
 
 func globalSetMovementDirection(movement_direction):
 	movement_dir = movement_direction

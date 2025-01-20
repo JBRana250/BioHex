@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://3vy7jb322c5h"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://3vy7jb322c5h"]
 
 [ext_resource type="Texture2D" uid="uid://vg474ycx4qcl" path="res://Items/Item Sprites/biohex_angular_shell.svg" id="1_i3x1x"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_e0h56"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_fog4s"]
+
+[sub_resource type="Resource" id="Resource_wvm83"]
+script = ExtResource("2_fog4s")
+mod_type = "speed"
+operation = "add"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_on14g"]
+script = ExtResource("2_fog4s")
+mod_type = "defence"
+operation = "add"
+value = 2.0
 
 [resource]
 script = ExtResource("2_e0h56")
 item_name = "Angular Shell"
 item_sprite = ExtResource("1_i3x1x")
-item_description = "1.25x max health, +1 base speed"
-category = Array[String](["Health", "Speed"])
+item_description = " + 2 base defence, +1 base speed"
+category = Array[String](["Defence", "Speed"])
 rarity = 3.0
 item_price = 5.0
+mods = Array[ExtResource("2_fog4s")]([SubResource("Resource_wvm83"), SubResource("Resource_on14g")])

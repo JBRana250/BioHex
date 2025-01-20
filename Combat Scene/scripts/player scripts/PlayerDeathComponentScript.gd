@@ -32,6 +32,9 @@ func _emit_death_particles(part):
 	particle_instance.queue_free()
 
 func Death():
+	
+	EventManager.broadcast_event("PlayerDefeated", {})
+	
 	for child in body.get_children():
 		if child is Node3D:
 			_emit_death_particles(child)

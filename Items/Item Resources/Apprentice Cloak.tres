@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dljsoljowpshx"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://dljsoljowpshx"]
 
 [ext_resource type="Texture2D" uid="uid://ceshjwqgkhjpn" path="res://Items/Item Sprites/biohex_apprentice cloak.svg" id="1_v08ku"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_2ymaf"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_ml37k"]
+
+[sub_resource type="Resource" id="Resource_px8a8"]
+script = ExtResource("2_ml37k")
+mod_type = "mana_efficiency"
+operation = "add"
+value = 0.25
 
 [resource]
 script = ExtResource("2_2ymaf")
 item_name = "Apprentice Cloak"
 item_sprite = ExtResource("1_v08ku")
-item_description = "1.1x mana efficiency"
+item_description = " + 0.25 mana efficiency"
 category = Array[String](["Mana"])
 rarity = 3.0
 item_price = 3.0
+mods = Array[ExtResource("2_ml37k")]([SubResource("Resource_px8a8")])

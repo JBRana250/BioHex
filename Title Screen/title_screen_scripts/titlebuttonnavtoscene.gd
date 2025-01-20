@@ -1,5 +1,7 @@
 extends ButtonNavToSceneScript
 
+var already_pressed: bool = false
+
 func _wait(seconds):
 	var t = Timer.new()
 	t.set_wait_time(seconds)
@@ -10,6 +12,9 @@ func _wait(seconds):
 	return
 
 func _on_pressed():
+	if already_pressed:
+		return
+	already_pressed = true
 	var color_lerp_step = 0
 	var camera = Globals.camera
 	

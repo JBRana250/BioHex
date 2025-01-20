@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InitialPlayerResource" load_steps=2 format=3 uid="uid://dhwss7lpjf1ye"]
+
+[ext_resource type="Script" path="res://Resources/Inventory/PlayerInventory/InitialPlayer/initial_player.gd" id="1_yptv6"]
+
+[resource]
+script = ExtResource("1_yptv6")
+initial_mana = 100.0
+initial_damage = 5.0

@@ -1,21 +1,30 @@
 extends Button
 
+@export var player_inventory: PlayerInventory
+@export var shop_inventory: ShopInventory
+
 func _on_pressed() -> void:
-	if PlayerResources.gold >= owner.material_price:
-			PlayerResources.gold -= owner.material_price
+	if player_inventory.gold >= owner.material_price:
+			player_inventory.gold -= owner.material_price
 			match owner.mat:
 				"claws":
-					PlayerResources.claws += 1
+					player_inventory.claws += 1
+					shop_inventory.materials["claws"] -= 1
 				"hoofs":
-					PlayerResources.hoofs += 1
+					player_inventory.hoofs += 1
+					shop_inventory.materials["hoofs"] -= 1
 				"scales":
-					PlayerResources.scales += 1
+					player_inventory.scales += 1
+					shop_inventory.materials["scales"] -= 1
 				"shards":
-					PlayerResources.shards += 1
+					player_inventory.shards += 1
+					shop_inventory.materials["shards"] -= 1
 				"essence":
-					PlayerResources.essence += 1
+					player_inventory.essence += 1
+					shop_inventory.materials["essence"] -= 1
 				"keys":
-					PlayerResources.keys += 1
+					player_inventory.keys += 1
+					shop_inventory.materials["keys"] -= 1
 					
 			owner.stock -= 1
 			UI.currently_active_ui._set_resources()

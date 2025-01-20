@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://5tq3mm24786p"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://5tq3mm24786p"]
 
 [ext_resource type="Texture2D" uid="uid://b2rbsa10wkh3b" path="res://Items/Item Sprites/biohex_sturdy_scale.svg" id="1_evc0b"]
 [ext_resource type="Script" path="res://Items/Scripts/item_resource.gd" id="2_bu8e8"]
+[ext_resource type="Script" path="res://Items/Scripts/mod_resource.gd" id="2_cjyld"]
+
+[sub_resource type="Resource" id="Resource_b6x6o"]
+script = ExtResource("2_cjyld")
+mod_type = "defence"
+operation = "mult"
+value = 1.5
 
 [resource]
 script = ExtResource("2_bu8e8")
 item_name = "Sturdy Scale"
 item_sprite = ExtResource("1_evc0b")
-item_description = "1.3x max health"
-category = Array[String](["Health"])
+item_description = "1.5x defence"
+category = Array[String](["Defence"])
 rarity = 2.0
-item_price = 10.0
+item_price = 5.0
+mods = Array[ExtResource("2_cjyld")]([SubResource("Resource_b6x6o")])
