@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CreaturePartUIDatabase" load_steps=4 format=3 uid="uid://cjib6ia67gqb7"]
+
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_resource.gd" id="1_rl80c"]
+[ext_resource type="Resource" uid="uid://vaal0jeulpy" path="res://CreatureParts/CreaturePartUI/CreaturePartUIDatabase/OuterParts/OuterMeleeParts/outer_spike.tres" id="2_bjk46"]
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_database.gd" id="2_bv00y"]
+
+[resource]
+script = ExtResource("2_bv00y")
+creature_parts = Array[ExtResource("1_rl80c")]([ExtResource("2_bjk46")])

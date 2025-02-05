@@ -23,5 +23,5 @@ item_sprite = ExtResource("1_xkh68")
 item_description = " + 100 base max mana, for each max mana you have you gain 0.02 damage"
 category = Array[String](["Mana"])
 rarity = 2.0
-item_price = 5.0
+item_price = 10.0
 mods = Array[ExtResource("2_xfuea")]([SubResource("Resource_dcxoi"), SubResource("Resource_mqbfj")])

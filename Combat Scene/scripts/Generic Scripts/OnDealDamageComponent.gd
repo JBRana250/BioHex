@@ -25,7 +25,7 @@ func _ready():
 func _gain_mana():
 	var max_mana_percent_gained = stat_calculator._calculate_max_mana_percent_on_deal_damage()
 	var max_mana = stat_calculator._calculate_max_mana()
-	var mana_gained = max_mana * max_mana_percent_gained
+	var mana_gained = max_mana * (max_mana_percent_gained / 100)
 	mana_component.globalIncreaseMana(mana_gained)
 
 func globalDealDamage(_damage):

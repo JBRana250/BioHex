@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Outer_Component_Resource" load_steps=5 format=3 uid="uid://ch0g48iyrhhvd"]
+
+[ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_spike_damage_resource.tres" id="1_5tvc6"]
+[ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_spike_health_resource.tres" id="1_8huhv"]
+[ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_spike_scene_resource.tres" id="2_756en"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/outer_creature_part_resource.gd" id="3_i77qd"]
+
+[resource]
+script = ExtResource("3_i77qd")
+Name = "outernail"
+type = "melee_weapon"
+position = 1
+pos_to_origin = Vector2(0, -1)
+health_resource = ExtResource("1_8huhv")
+scene_resource = ExtResource("2_756en")
+damage_resource = ExtResource("1_5tvc6")

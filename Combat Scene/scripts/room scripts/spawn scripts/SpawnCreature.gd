@@ -138,65 +138,65 @@ func _spawn_creature():
 			collision_component.health = float(cell.health_resource.base_health)
 		
 		#Instantiate core component of cell (if any)
-		var core_component = cell.core_component
-		if core_component:
-			match core_component.type:
+		var core_creature_part = cell.core_creature_part
+		if core_creature_part:
+			match core_creature_part.type:
 				"ranged_weapon":
 					# Will have to create an array with the relative position vectors for the other core components.
 					# For now, just use a single temporary V3
 					var temp_position_vector = Vector3(cell_pos.x, 1, cell_pos.z)
-					scene_resource = core_component.scene_resource
-					var core_component_instance = _spawn_thing(scene_resource.scene, ranged_weapons_instance, temp_position_vector, Vector3())
-					var CBcore_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, temp_position_vector, Vector3())
-					collision_component = CBcore_component_instance.get_child(0)
-					collision_component.cellpart = core_component_instance
+					scene_resource = core_creature_part.scene_resource
+					var core_creature_part_instance = _spawn_thing(scene_resource.scene, ranged_weapons_instance, temp_position_vector, Vector3())
+					var CBcore_creature_part_instance = _spawn_thing(scene_resource.CBscene, character_instance, temp_position_vector, Vector3())
+					collision_component = CBcore_creature_part_instance.get_child(0)
+					collision_component.cellpart = core_creature_part_instance
 					
 					# set damage attributes
-					var damage_component = core_component_instance.get_node("Components").get_node("RangedDamageComponent")
-					damage_component.damage = core_component.damage_resource.base_damage
+					var damage_component = core_creature_part_instance.get_node("Components").get_node("RangedDamageComponent")
+					damage_component.damage = core_creature_part.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
 			collision_component.creature = character_instance
 			component_reference_parts.append(collision_component)
 
-		for inner_component in cell.inner_components:
+		for inner_creature_part in cell.inner_creature_parts:
 			pass
 			#no inner components for now
 			
-		for outer_component in cell.outer_components:
-			var outer_component_pos = cell_pos
-			var outer_component_rotation = Vector3()
-			match outer_component.type:
+		for outer_creature_part in cell.outer_creature_parts:
+			var outer_creature_part_pos = cell_pos
+			var outer_creature_part_rotation = Vector3()
+			match outer_creature_part.type:
 				"melee_weapon":
-					match outer_component.position:
+					match outer_creature_part.position:
 						1:
-							outer_component_pos.z += 1.1
-							outer_component_rotation = Vector3()
+							outer_creature_part_pos.z += 1.1
+							outer_creature_part_rotation = Vector3()
 						2:
-							outer_component_pos.x += -0.93 
-							outer_component_pos.z += 0.54
-							outer_component_rotation = Vector3(0, deg_to_rad(300), 0)
+							outer_creature_part_pos.x += -0.93 
+							outer_creature_part_pos.z += 0.54
+							outer_creature_part_rotation = Vector3(0, deg_to_rad(300), 0)
 						3:
-							outer_component_pos.x += -0.93 
-							outer_component_pos.z += -0.54
-							outer_component_rotation = Vector3(0, deg_to_rad(240), 0)
+							outer_creature_part_pos.x += -0.93 
+							outer_creature_part_pos.z += -0.54
+							outer_creature_part_rotation = Vector3(0, deg_to_rad(240), 0)
 						4:
-							outer_component_pos.z += -1.1
-							outer_component_rotation = Vector3(0, deg_to_rad(180), 0)
+							outer_creature_part_pos.z += -1.1
+							outer_creature_part_rotation = Vector3(0, deg_to_rad(180), 0)
 						5:
-							outer_component_pos.x += 0.93 
-							outer_component_pos.z += -0.54
-							outer_component_rotation = Vector3(0, deg_to_rad(120), 0)
+							outer_creature_part_pos.x += 0.93 
+							outer_creature_part_pos.z += -0.54
+							outer_creature_part_rotation = Vector3(0, deg_to_rad(120), 0)
 						6:
-							outer_component_pos.x += 0.93 
-							outer_component_pos.z += 0.54
-							outer_component_rotation = Vector3(0, deg_to_rad(60), 0)
-					scene_resource = outer_component.scene_resource
-					var outer_component_instance = _spawn_thing(scene_resource.scene, melee_weapons_instance, outer_component_pos, outer_component_rotation)
-					var CBouter_component_instance = _spawn_thing(scene_resource.CBscene, character_instance, outer_component_pos, outer_component_rotation)
-					collision_component = CBouter_component_instance.get_child(0)
-					collision_component.cellpart = outer_component_instance
-					var damage_component = outer_component_instance.find_child("Components").get_node("MeleeDamageComponent")
-					damage_component.damage = outer_component.damage_resource.base_damage
+							outer_creature_part_pos.x += 0.93 
+							outer_creature_part_pos.z += 0.54
+							outer_creature_part_rotation = Vector3(0, deg_to_rad(60), 0)
+					scene_resource = outer_creature_part.scene_resource
+					var outer_creature_part_instance = _spawn_thing(scene_resource.scene, melee_weapons_instance, outer_creature_part_pos, outer_creature_part_rotation)
+					var CBouter_creature_part_instance = _spawn_thing(scene_resource.CBscene, character_instance, outer_creature_part_pos, outer_creature_part_rotation)
+					collision_component = CBouter_creature_part_instance.get_child(0)
+					collision_component.cellpart = outer_creature_part_instance
+					var damage_component = outer_creature_part_instance.find_child("Components").get_node("MeleeDamageComponent")
+					damage_component.damage = outer_creature_part.damage_resource.base_damage
 					damage_component.owner_alignment = creature_resource.owner_alignment
 					damage_component.character_instance = character_instance
 					component_reference_parts.append(damage_component)

@@ -118,8 +118,10 @@ func _randomize_mat_prices():
 
 func _randomize_item_prices():
 	for item in shop_inventory.items:
-		var rand_num = randi_range(-2,2)
+		var rand_num = randi_range(-1,3)
 		item.item_price += rand_num
+		if item.item_price < 1:
+			item.item_price = 1
 
 func _randomize_shop():
 	shop_inventory.items.clear()

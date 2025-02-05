@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CreaturePartUIResource" load_steps=3 format=3 uid="uid://vaal0jeulpy"]
+
+[ext_resource type="Resource" uid="uid://cyaylrsb1wbi8" path="res://Resources/Creature Resources/CreaturePartResources/OuterPartResources/outer_spike.tres" id="1_11wrn"]
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_resource.gd" id="1_oxrbb"]
+
+[resource]
+script = ExtResource("1_oxrbb")
+creature_part_name = "Outer Spike"
+creature_part_description = "A spike that sticks out of one of your cell's sides"
+creature_part_resource = ExtResource("1_11wrn")
+creature_part_craft_cost = {
+"Claws": 3,
+"Essence": 0,
+"Hoofs": 0,
+"Scales": 1,
+"Shards": 0
+}

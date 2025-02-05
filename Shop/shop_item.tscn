@@ -12,7 +12,7 @@
 font_size = 32
 
 [node name="ShopItem" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "item_name_label", "item_description_label", "item_price_label")]
-custom_minimum_size = Vector2(500, 200)
+custom_minimum_size = Vector2(550, 200)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_lnbc0")

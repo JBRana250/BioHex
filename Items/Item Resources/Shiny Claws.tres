@@ -23,5 +23,5 @@ item_sprite = ExtResource("1_l3huc")
 item_description = " + 1 base damage, when clearing rooms you have 25% chance to get an extra coin"
 category = Array[String](["Damage", "Gold"])
 rarity = 2.0
-item_price = 5.0
+item_price = 10.0
 mods = Array[ExtResource("2_f5qyl")]([SubResource("Resource_ylomx"), SubResource("Resource_igf78")])

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Shop/shop_material.gd" id="1_n8xiw"]
 [ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_lfkhl"]
 [ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_rejfm"]
-[ext_resource type="Texture2D" uid="uid://dimcf7eqwq7u0" path="res://In-Game Resource Sprite/Biohex Scale Sprite.png" id="3_rfng4"]
+[ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="3_1fot1"]
 [ext_resource type="Script" path="res://Shop/shop_material_buy_button.gd" id="5_hcoly"]
 [ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="6_n2se6"]
 [ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="7_yciwn"]
@@ -12,7 +12,7 @@
 font_size = 32
 
 [node name="ShopMaterial" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "material_name_label", "material_stock_label", "material_price_label")]
-custom_minimum_size = Vector2(500, 200)
+custom_minimum_size = Vector2(550, 200)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_n8xiw")
@@ -28,7 +28,7 @@ layout_mode = 2
 [node name="MarginContainer2" type="MarginContainer" parent="hboxcontainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.25
+size_flags_stretch_ratio = 0.5
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -48,7 +48,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="MatTexture" type="TextureRect" parent="hboxcontainer/MarginContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("3_rfng4")
+size_flags_vertical = 3
+texture = ExtResource("3_1fot1")
 stretch_mode = 5
 
 [node name="MarginContainer3" type="MarginContainer" parent="hboxcontainer"]
@@ -86,6 +87,7 @@ autowrap_mode = 3
 [node name="MarginContainer" type="MarginContainer" parent="hboxcontainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CreaturePartUIResource" load_steps=3 format=3 uid="uid://4efyu67qecpx"]
+
+[ext_resource type="Resource" uid="uid://q2fnoosxhekw" path="res://Resources/Creature Resources/CreaturePartResources/CorePartResources/core_caster.tres" id="1_b1v2d"]
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_resource.gd" id="1_rw7g7"]
+
+[resource]
+script = ExtResource("1_rw7g7")
+creature_part_name = "Core Caster"
+creature_part_description = "A magical turret sitting atop your cell with 360 degrees of rotation."
+creature_part_resource = ExtResource("1_b1v2d")
+creature_part_craft_cost = {
+"Claws": 2,
+"Essence": 3,
+"Hoofs": 0,
+"Scales": 0,
+"Shards": 0
+}

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b61pljmp3yiug"]
+[gd_scene load_steps=7 format=3 uid="uid://b61pljmp3yiug"]
 
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/evolution_scene.gd" id="1_erolu"]
 [ext_resource type="PackedScene" uid="uid://beahacmwra6yt" path="res://Evolution Scene/Scenes/evo_scene_ground.tscn" id="1_jhend"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/evo_scene_cam_behaviour.gd" id="2_q6v7n"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/DisplayCreatureDataScript.gd" id="2_ye0f5"]
@@ -11,7 +12,9 @@ background_color = Color(0, 0.258824, 0.529412, 1)
 background_energy_multiplier = 0.5
 glow_enabled = true
 
-[node name="evolution_scene" type="Node3D"]
+[node name="evolution_scene" type="Node3D" node_paths=PackedStringArray("display_manager")]
+script = ExtResource("1_erolu")
+display_manager = NodePath("Interface/Components/DisplayManager")
 
 [node name="EvoSceneGround" parent="." instance=ExtResource("1_jhend")]
 
@@ -33,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 
 [node name="Components" type="Node" parent="Interface"]
 
-[node name="DisplayCreatureData" type="Node" parent="Interface/Components"]
+[node name="DisplayManager" type="Node" parent="Interface/Components"]
 script = ExtResource("2_ye0f5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

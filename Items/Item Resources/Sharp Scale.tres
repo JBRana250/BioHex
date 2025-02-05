@@ -23,5 +23,5 @@ item_sprite = ExtResource("1_7r2xi")
 item_description = " + 1 defence, +1 base damage"
 category = Array[String](["Defence", "Gold"])
 rarity = 4.0
-item_price = 5.0
+item_price = 10.0
 mods = Array[ExtResource("2_crhum")]([SubResource("Resource_hrwa4"), SubResource("Resource_dd38f")])

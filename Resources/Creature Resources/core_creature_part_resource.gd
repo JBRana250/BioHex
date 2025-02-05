@@ -1,6 +1,6 @@
-extends Resource
+extends Creature_Part_Resource
 
-class_name Core_Component_Resource
+class_name Core_Creature_Part_Resource
 
 @export var Name: String
 @export var type: String

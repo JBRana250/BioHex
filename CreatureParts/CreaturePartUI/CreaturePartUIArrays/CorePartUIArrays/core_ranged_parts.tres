@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CreaturePartUIDatabase" load_steps=4 format=3 uid="uid://c55ol1i8d2lo4"]
+
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_resource.gd" id="1_noppv"]
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_database.gd" id="2_6r5i1"]
+[ext_resource type="Resource" uid="uid://4efyu67qecpx" path="res://CreatureParts/CreaturePartUI/CreaturePartUIDatabase/CoreParts/CoreRangedParts/core_caster.tres" id="2_pa87y"]
+
+[resource]
+script = ExtResource("2_6r5i1")
+creature_parts = Array[ExtResource("1_noppv")]([ExtResource("2_pa87y")])

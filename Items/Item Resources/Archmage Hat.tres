@@ -23,5 +23,5 @@ item_sprite = ExtResource("1_dt7py")
 item_description = " 1.5x max mana, recover 25% of your mana at end of each combat"
 category = Array[String](["Mana"])
 rarity = 1.0
-item_price = 10.0
+item_price = 15.0
 mods = Array[ExtResource("2_vuget")]([SubResource("Resource_7uxm7"), SubResource("Resource_6tb1l")])

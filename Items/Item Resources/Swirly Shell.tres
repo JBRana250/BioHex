@@ -23,5 +23,5 @@ item_sprite = ExtResource("1_iskbs")
 item_description = " + 2 defence, 2x rotation speed"
 category = Array[String](["Defence", "RotationSpeed"])
 rarity = 2.0
-item_price = 3.0
+item_price = 6.0
 mods = Array[ExtResource("2_w71pn")]([SubResource("Resource_jbbkc"), SubResource("Resource_873b5")])

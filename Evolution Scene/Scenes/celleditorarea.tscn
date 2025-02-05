@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bimkuixjthv3l"]
+[gd_scene load_steps=6 format=3 uid="uid://bimkuixjthv3l"]
 
-[ext_resource type="PackedScene" uid="uid://bdsllr50qbwyb" path="res://Evolution Scene/Scenes/Cell Part Blueprints/cell blueprint/cellblueprintcolbox.tscn" id="1_m4kfs"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/celleditorarea.gd" id="1_6k1ww"]
+[ext_resource type="PackedScene" uid="uid://bdsllr50qbwyb" path="res://Evolution Scene/Scenes/Cell Part Blueprints/cell blueprint/cell_blueprint_colbox.tscn" id="1_m4kfs"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CEMouseInputScript.gd" id="2_ybg7q"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditorProperties.gd" id="3_4jk71"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditShowUIScript.gd" id="3_8uw8n"]
 
-[node name="celleditarea" type="Node3D"]
+[node name="celleditarea" type="Node3D" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component")]
+script = ExtResource("1_6k1ww")
+show_UI_component = NodePath("Components/ShowUIComponent")
+change_material_component = NodePath("Components/MouseInputComponent")
+mouse_input_component = NodePath("Components/MouseInputComponent")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -12,10 +18,13 @@
 
 [node name="Components" type="Node" parent="."]
 
-[node name="MouseInputComponent" type="Node3D" parent="Components"]
+[node name="MouseInputComponent" type="Node3D" parent="Components" node_paths=PackedStringArray("show_UI_component")]
 script = ExtResource("2_ybg7q")
+show_UI_component = NodePath("../ShowUIComponent")
 
-[node name="ShowUIComponent" type="Node" parent="Components"]
+[node name="ShowUIComponent" type="Node" parent="Components" node_paths=PackedStringArray("properties")]
+script = ExtResource("3_8uw8n")
+properties = NodePath("../Properties")
 
 [node name="Properties" type="Node" parent="Components"]
 script = ExtResource("3_4jk71")

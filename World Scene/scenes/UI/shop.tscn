@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cd4sifqins71d"]
 
-[ext_resource type="Script" path="res://World Scene/scenes/rooms/ui/shop.gd" id="1_k6cdl"]
+[ext_resource type="Script" path="res://World Scene/scenes/UI/shop.gd" id="1_k6cdl"]
 [ext_resource type="Texture2D" uid="uid://ciyqcytga8nwh" path="res://Evolution Scene/Assets/UI/TopCreaturePartsBar/BioHex Panel Texture.svg" id="1_mvwgx"]
 [ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="2_i18x7"]
 [ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_xln5i"]

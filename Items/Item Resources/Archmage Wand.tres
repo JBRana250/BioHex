@@ -17,5 +17,5 @@ item_sprite = ExtResource("1_alhfg")
 item_description = "recover 1% of your mana whenever you deal damage to an enemy"
 category = Array[String](["Mana"])
 rarity = 1.0
-item_price = 10.0
+item_price = 15.0
 mods = Array[ExtResource("2_m01k1")]([SubResource("Resource_034qp")])

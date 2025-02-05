@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1bjeqf1wubfm"]
+
+[ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/craft_cost/creature_part_blueprint_craft_cost.gd" id="1_0yhl3"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_wmtde"]
+
+[node name="CreaturePartBlueprintCraftCost" type="PanelContainer" node_paths=PackedStringArray("label", "texture_rect")]
+offset_right = 76.0
+offset_bottom = 56.0
+size_flags_horizontal = 3
+script = ExtResource("1_0yhl3")
+label = NodePath("MarginContainer/HBoxContainer/Label")
+texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_wmtde")
+expand_mode = 3
+stretch_mode = 5

@@ -17,5 +17,5 @@ item_sprite = ExtResource("1_g58kw")
 item_description = " 1.5x damage"
 category = Array[String](["Damage"])
 rarity = 2.0
-item_price = 5.0
+item_price = 10.0
 mods = Array[ExtResource("2_r8lqr")]([SubResource("Resource_0l02r")])

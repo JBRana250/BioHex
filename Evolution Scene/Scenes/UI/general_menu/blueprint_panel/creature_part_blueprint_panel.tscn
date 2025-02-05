@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://crhywd5vngo51"]
+
+[ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/blueprint_panel/creature_part_blueprint_panel.gd" id="1_ww2v7"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/creature_part_blueprint_button.gd" id="2_ptf6w"]
+[ext_resource type="Resource" uid="uid://dq5mxnsbq4s74" path="res://Player/PlayerCreatureData.tres" id="3_7oprr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahqfg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf6rs"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8iuiw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxyl5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynrh3"]
+bg_color = Color(0.194349, 0.194349, 0.194349, 1)
+
+[node name="CreaturePartBlueprintPanel" type="PanelContainer" node_paths=PackedStringArray("creature_part_name_label", "creature_part_description_label", "craft_cost_hbox")]
+custom_minimum_size = Vector2(700, 0)
+script = ExtResource("1_ww2v7")
+creature_part_name_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/creature_part_name")
+creature_part_description_label = NodePath("HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/creature_part_desc")
+craft_cost_hbox = NodePath("HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/CraftCost")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahqfg")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="creature_part_name" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "creature part name"
+label_settings = SubResource("LabelSettings_nf6rs")
+autowrap_mode = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8iuiw")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="creature_part_desc" type="Label" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "creature_part_description .........................................................................................................................."
+autowrap_mode = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CraftCost" type="HBoxContainer" parent="HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxyl5")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="HBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrh3")
+text = "Craft"
+script = ExtResource("2_ptf6w")
+player_creature_data = ExtResource("3_7oprr")
+
+[connection signal="pressed" from="HBoxContainer/PanelContainer3/MarginContainer/Button" to="HBoxContainer/PanelContainer3/MarginContainer/Button" method="_on_pressed"]

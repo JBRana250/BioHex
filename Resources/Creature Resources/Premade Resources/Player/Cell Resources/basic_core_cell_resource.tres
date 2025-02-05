@@ -2,16 +2,16 @@
 
 [ext_resource type="Resource" uid="uid://d3qn1sd08jd4w" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_core_cell_health_resource.tres" id="1_3swd2"]
 [ext_resource type="Resource" uid="uid://icaupj7fs4ci" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_core_cell_scene_resource.tres" id="2_epibl"]
-[ext_resource type="Script" path="res://Resources/Creature Resources/inner_component_resource.gd" id="2_meu23"]
-[ext_resource type="Script" path="res://Resources/Creature Resources/outer_component_resource.gd" id="3_d5nvn"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/inner_creature_part_resource.gd" id="2_meu23"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/outer_creature_part_resource.gd" id="3_d5nvn"]
 [ext_resource type="Script" path="res://Resources/Creature Resources/cell_resource.gd" id="3_oll48"]
-[ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_nail_damage_resource.tres" id="4_afujk"]
-[ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_nail_health_resource.tres" id="5_p5duc"]
-[ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_nail_scene_resource.tres" id="6_qakqr"]
+[ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_spike_damage_resource.tres" id="4_afujk"]
+[ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_spike_health_resource.tres" id="5_p5duc"]
+[ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_spike_scene_resource.tres" id="6_qakqr"]
 
-[sub_resource type="Resource" id="Resource_w4v5x"]
+[sub_resource type="Resource" id="Resource_y7heb"]
 script = ExtResource("3_d5nvn")
-Name = "outernail"
+Name = "outer_spike"
 type = "melee_weapon"
 position = 1
 pos_to_origin = Vector2(0, -1)
@@ -22,11 +22,10 @@ damage_resource = ExtResource("4_afujk")
 [resource]
 script = ExtResource("3_oll48")
 Name = "core"
-parent_cell_position_array = Array[Vector2]([])
-child_cell_position_array = Array[Vector2]([])
 position = Vector2(0, 0)
 weight = 0
-inner_components = Array[ExtResource("2_meu23")]([])
-outer_components = Array[ExtResource("3_d5nvn")]([SubResource("Resource_w4v5x")])
+adjacent_cell_array = Array[ExtResource("3_oll48")]([])
+inner_creature_parts = Array[ExtResource("2_meu23")]([])
+outer_creature_parts = Array[ExtResource("3_d5nvn")]([SubResource("Resource_y7heb")])
 health_resource = ExtResource("1_3swd2")
 scene_resource = ExtResource("2_epibl")

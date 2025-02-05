@@ -1,5 +1,29 @@
 {
   "column_properties": {
+    "res://CreatureParts/CreaturePartDatabase/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://CreatureParts/CreaturePartDatabase/CoreParts/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://CreatureParts/CreaturePartDatabase/OuterParts/OuterMeleeParts/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
     "res://Items/Item Resources/": {
       "category": {
         "visibility": 1
@@ -56,8 +80,9 @@
     }
   },
   "recent_paths": [
-    "res://Items/Item Resources::mods/",
-    "res://Items/Item Resources/"
+    "res://Items/Item Resources/",
+    "res://CreatureParts/CreaturePartDatabase/",
+    "res://CreatureParts/CreaturePartDatabase/CoreParts/"
   ],
   "table_functions": {
     "filter": [

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cafeaqdsf0b6u"
-path="res://.godot/imported/basiccellblueprint.glb-5ad5a3786fcccf7050cb3c324fa57a13.scn"
+path="res://.godot/imported/cell_blueprint.glb-44020c76451a555b9a98bc753cb58380.scn"
 
 [deps]
 
-source_file="res://Evolution Scene/Assets/Cell Part Blueprints/basiccellblueprint.glb"
-dest_files=["res://.godot/imported/basiccellblueprint.glb-5ad5a3786fcccf7050cb3c324fa57a13.scn"]
+source_file="res://Evolution Scene/Assets/Cell Part Blueprints/cell_blueprint.glb"
+dest_files=["res://.godot/imported/cell_blueprint.glb-44020c76451a555b9a98bc753cb58380.scn"]
 
 [params]
 

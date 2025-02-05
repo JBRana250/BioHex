@@ -13,11 +13,6 @@ func _SetCamRotation(isRotating, prev_mouse_pos = Vector2()):
 	prev_mouse_position = prev_mouse_pos
 
 func _input(_event):
-	if Input.is_action_pressed("zoom_out"):
-		position.z += 1
-
-	if Input.is_action_pressed("zoom_in"):
-		position.z -= 1
 		
 	if Input.is_action_just_pressed("right_click"):
 		_SetCamRotation(true, get_viewport().get_mouse_position())
@@ -25,7 +20,19 @@ func _input(_event):
 	if Input.is_action_just_released("right_click"):
 		_SetCamRotation(false)
 	
+	if Input.is_action_pressed("zoom_out"):
+		if Globals.inside_menu:
+			return
+		position.z += 1
+
+	if Input.is_action_pressed("zoom_in"):
+		if Globals.inside_menu:
+			return
+		position.z -= 1
+	
 	position.z = clamp(position.z, 10, 20)
+	
+	
 
 func _process(delta):
 	if(cam_rotating):

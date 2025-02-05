@@ -25,7 +25,7 @@ attributes = NodePath("../RoomAttributes")
 
 [node name="RoomAttributes" type="Node" parent="Components"]
 script = ExtResource("2_4uwld")
-res_path = "res://World Scene/scenes/rooms/ui/shop.tscn"
+res_path = "res://World Scene/scenes/UI/shop.tscn"
 
 [node name="Appearance" type="Node" parent="Components" node_paths=PackedStringArray("attributes", "room_mesh")]
 script = ExtResource("3_72bls")

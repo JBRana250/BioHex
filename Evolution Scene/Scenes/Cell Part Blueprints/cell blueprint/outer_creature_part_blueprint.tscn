@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://davyf1u7c27ry"]
+
+[ext_resource type="PackedScene" uid="uid://blndi4j2dywry" path="res://Evolution Scene/Assets/Cell Part Blueprints/outer_creature_part_blueprint.glb" id="1_0nncb"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/Blueprint.gd" id="2_xp8sd"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBSetMaterialScript.gd" id="3_os4o8"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBMouseInputScript.gd" id="4_a1cau"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBShowUIScript.gd" id="5_17nca"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/BlueprintProperties.gd" id="6_j7ymq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ta48r"]
+size = Vector3(0.721436, 0.236172, 0.307129)
+
+[node name="outer_creature_part_blueprint" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component", "properties") instance=ExtResource("1_0nncb")]
+script = ExtResource("2_xp8sd")
+show_UI_component = NodePath("Components/ShowUIComponent")
+change_material_component = NodePath("Cube_001")
+mouse_input_component = NodePath("Components/MouseInputComponent")
+properties = NodePath("Components/Properties")
+
+[node name="Cube_001" parent="." index="0"]
+transform = Transform3D(0, 0, 0.353959, 0, 0.118823, 0, -0.15138, 0, 0, 0, 0, -0.716)
+script = ExtResource("3_os4o8")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(0.999984, 0, 0, 0, 1, 0, 0, 0, 0.999984, 0, 0, -0.716)
+shape = SubResource("BoxShape3D_ta48r")
+
+[node name="Components" type="Node" parent="." index="2"]
+
+[node name="MouseInputComponent" type="Node3D" parent="Components" index="0" node_paths=PackedStringArray("mesh", "properties", "show_UI_component")]
+script = ExtResource("4_a1cau")
+mesh = NodePath("../../Cube_001")
+properties = NodePath("../Properties")
+show_UI_component = NodePath("../ShowUIComponent")
+
+[node name="ShowUIComponent" type="Node" parent="Components" index="1" node_paths=PackedStringArray("properties")]
+script = ExtResource("5_17nca")
+ui_scene_res_path = "res://Evolution Scene/Scenes/UI/outer_blueprint/evo_screen_outer_blueprint_ui.tscn"
+properties = NodePath("../Properties")
+
+[node name="Properties" type="Node" parent="Components" index="2"]
+script = ExtResource("6_j7ymq")
+creature_part_blueprint = true
+
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="onMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="onMouseExited"]

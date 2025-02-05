@@ -18,6 +18,7 @@ var rooms_cleared: int
 # Evolution Scene Data
 # camera ^
 var active_cell_blueprint: Node3D
+var inside_menu: bool = false
 
 # For now, just set it as preloaded resource
 @onready var player_creature_data: Resource = preload("res://Player/PlayerCreatureData.tres")

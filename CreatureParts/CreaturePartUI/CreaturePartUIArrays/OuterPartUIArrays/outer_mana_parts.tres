@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CreaturePartUIDatabase" load_steps=3 format=3 uid="uid://bkqpkkv4qs0ya"]
+
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_resource.gd" id="1_u28ka"]
+[ext_resource type="Script" path="res://CreatureParts/CreaturePartUI/creature_part_ui_database.gd" id="2_n4h8w"]
+
+[resource]
+script = ExtResource("2_n4h8w")
+creature_parts = Array[ExtResource("1_u28ka")]([])

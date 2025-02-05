@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://c1ss3qmqff4c1" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_caster_health_resource.tres" id="2_oyecw"]
 [ext_resource type="Resource" uid="uid://hbafppok3qxs" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/basic_caster_damage_resource.tres" id="2_sf06o"]
 [ext_resource type="Resource" uid="uid://b36lle7rtt2m6" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/basic_caster_scene_resource.tres" id="3_aliuw"]
-[ext_resource type="Script" path="res://Resources/Creature Resources/core_component_resource.gd" id="4_cihhl"]
+[ext_resource type="Script" path="res://Resources/Creature Resources/core_creature_part_resource.gd" id="4_cihhl"]
 
 [resource]
 script = ExtResource("4_cihhl")

@@ -13,7 +13,7 @@ value = 5.0
 [resource]
 script = ExtResource("3_ebior")
 player_items = Array[ExtResource("2_vsp1r")]([])
-gold = 999
+gold = 0
 claws = 0
 hoofs = 0
 scales = 0
