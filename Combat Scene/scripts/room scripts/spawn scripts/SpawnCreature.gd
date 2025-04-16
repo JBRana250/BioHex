@@ -103,6 +103,24 @@ func _unpack_cell_position(cell_pos: Vector2) -> Vector3:
 				unpacked_x_position = (cell_pos.x - step) * 3
 	return Vector3(unpacked_x_position, 0, unpacked_y_position)
 
+func _get_component_rotation_based_on_local_position(local_position: int) -> Vector3:
+	match local_position:
+		1:
+			return Vector3()
+		2:
+			return Vector3(0, deg_to_rad(300), 0)
+		3:
+			return Vector3(0, deg_to_rad(240), 0)
+		4:
+			return Vector3(0, deg_to_rad(180), 0)
+		5:
+			return Vector3(0, deg_to_rad(120), 0)
+		6:
+			return Vector3(0, deg_to_rad(60), 0)
+		_:
+			print_debug("invalid position: only 1 - 6 allowed. Position input: %s" % local_position)
+			return Vector3()
+
 func _spawn_creature():
 	# Instantiate base creature
 	character_instance = _spawn_thing(character, get_tree().current_scene, owner.position, Vector3())
@@ -142,12 +160,11 @@ func _spawn_creature():
 		if core_creature_part:
 			match core_creature_part.type:
 				"ranged_weapon":
-					# Will have to create an array with the relative position vectors for the other core components.
-					# For now, just use a single temporary V3
-					var temp_position_vector = Vector3(cell_pos.x, 1, cell_pos.z)
+					var relative_position_to_cell_resource = core_creature_part.rel_pos_to_cell_resource
+					var relative_position_to_cell = relative_position_to_cell_resource.rel_pos_to_cell_dict[1]
 					scene_resource = core_creature_part.scene_resource
-					var core_creature_part_instance = _spawn_thing(scene_resource.scene, ranged_weapons_instance, temp_position_vector, Vector3())
-					var CBcore_creature_part_instance = _spawn_thing(scene_resource.CBscene, character_instance, temp_position_vector, Vector3())
+					var core_creature_part_instance = _spawn_thing(scene_resource.scene, ranged_weapons_instance, relative_position_to_cell, Vector3())
+					var CBcore_creature_part_instance = _spawn_thing(scene_resource.CBscene, character_instance, relative_position_to_cell, Vector3())
 					collision_component = CBcore_creature_part_instance.get_child(0)
 					collision_component.cellpart = core_creature_part_instance
 					
@@ -167,30 +184,13 @@ func _spawn_creature():
 			var outer_creature_part_rotation = Vector3()
 			match outer_creature_part.type:
 				"melee_weapon":
-					match outer_creature_part.position:
-						1:
-							outer_creature_part_pos.z += 1.1
-							outer_creature_part_rotation = Vector3()
-						2:
-							outer_creature_part_pos.x += -0.93 
-							outer_creature_part_pos.z += 0.54
-							outer_creature_part_rotation = Vector3(0, deg_to_rad(300), 0)
-						3:
-							outer_creature_part_pos.x += -0.93 
-							outer_creature_part_pos.z += -0.54
-							outer_creature_part_rotation = Vector3(0, deg_to_rad(240), 0)
-						4:
-							outer_creature_part_pos.z += -1.1
-							outer_creature_part_rotation = Vector3(0, deg_to_rad(180), 0)
-						5:
-							outer_creature_part_pos.x += 0.93 
-							outer_creature_part_pos.z += -0.54
-							outer_creature_part_rotation = Vector3(0, deg_to_rad(120), 0)
-						6:
-							outer_creature_part_pos.x += 0.93 
-							outer_creature_part_pos.z += 0.54
-							outer_creature_part_rotation = Vector3(0, deg_to_rad(60), 0)
+					var relative_position_to_cell_resource = outer_creature_part.rel_pos_to_cell_resource
+					var relative_position_to_cell = relative_position_to_cell_resource.rel_pos_to_cell_dict[outer_creature_part.position]
+					outer_creature_part_pos += relative_position_to_cell
 					scene_resource = outer_creature_part.scene_resource
+					
+					outer_creature_part_rotation = _get_component_rotation_based_on_local_position(outer_creature_part.position)
+					
 					var outer_creature_part_instance = _spawn_thing(scene_resource.scene, melee_weapons_instance, outer_creature_part_pos, outer_creature_part_rotation)
 					var CBouter_creature_part_instance = _spawn_thing(scene_resource.CBscene, character_instance, outer_creature_part_pos, outer_creature_part_rotation)
 					collision_component = CBouter_creature_part_instance.get_child(0)

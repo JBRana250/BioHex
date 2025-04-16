@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bocin76hyur46"]
 
 [ext_resource type="PackedScene" uid="uid://bcqsiwg1jnp4o" path="res://Combat Scene/assets/cell parts/enemy/enemybasiccell.glb" id="1_56od2"]
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://Combat Scene/scenes/cell part scenes/outernailmod.tscn" id="2_n1qk7"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outer_spike.tscn" id="2_n1qk7"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/SetDamageAttributes.gd" id="3_3kfia"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyMovementScript.gd" id="4_wfdfc"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/enemy scripts/EnemyRotationScript.gd" id="5_7t5m3"]

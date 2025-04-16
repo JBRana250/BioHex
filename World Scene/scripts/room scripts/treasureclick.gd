@@ -12,6 +12,8 @@ const resource_gained_ui = preload("res://Combat Scene/scenes/ResourceGained.tsc
 
 @export var player_inventory: PlayerInventory
 
+@export var player_resources_changed: Event
+
 @export var weights: Dictionary = {
 	"Gold": 10,
 	"Claw": 1,
@@ -98,7 +100,8 @@ func _on_pressed() -> void:
 		child.queue_free()
 	
 	var resources_gained = _calculate_and_increase_resources()
-	UI.currently_active_ui._set_resources()
+	
+	player_resources_changed.emit_signal("event_triggered")
 	
 	var amount_gained = 0
 	

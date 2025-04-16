@@ -31,9 +31,8 @@ config/icon="res://icon.svg"
 
 DebugOverlay="*res://Autoloads/debug_overlay.tscn"
 Globals="*res://Autoloads/Globals.gd"
-SceneSwitcher="*res://Autoloads/scene_switcher.gd"
 UI="*res://Autoloads/ui.tscn"
-EventManager="*res://Autoloads/EventManager.gd"
+SceneSwitcher="*res://Autoloads/scene_switcher.tscn"
 
 [display]
 
@@ -51,6 +50,11 @@ folder_colors={
 "res://Combat Scene/": "red",
 "res://CreatureParts/": "green",
 "res://Enemies/": "red",
+"res://Events/": "gray",
+"res://Events/combat_events/": "red",
+"res://Events/evo_screen_events/": "yellow",
+"res://Events/player_inventory_events/": "teal",
+"res://Events/scene_events/": "gray",
 "res://Evolution Scene/": "yellow",
 "res://Generic/": "gray",
 "res://In-Game Resource Sprite/": "gray",

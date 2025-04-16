@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cittmbet5ywo"]
+[gd_scene load_steps=12 format=3 uid="uid://cittmbet5ywo"]
 
 [ext_resource type="Texture2D" uid="uid://cmmqodagwpscq" path="res://Evolution Scene/Assets/UI/cancel_button_2.png" id="1_2onee"]
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/blueprint_menu_ui.gd" id="1_f43b1"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/cell blueprint/cancel_add_creature_cell_button.gd" id="2_84fye"]
 [ext_resource type="Resource" uid="uid://cjib6ia67gqb7" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/OuterPartUIArrays/outer_melee_parts.tres" id="2_ss3no"]
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/category_button/evo_screen_blueprint_ui_category_button.gd" id="5_0aw6k"]
+[ext_resource type="Resource" uid="uid://d38jrky6a7ph6" path="res://Events/evo_screen_events/evo_ui_mouse_filter_change.tres" id="5_s1m3t"]
 [ext_resource type="Resource" uid="uid://csds41c0y53wi" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/OuterPartUIArrays/outer_ranged_parts.tres" id="6_u3lwt"]
 [ext_resource type="Resource" uid="uid://bkqpkkv4qs0ya" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/OuterPartUIArrays/outer_mana_parts.tres" id="7_23aq2"]
 [ext_resource type="Resource" uid="uid://cv3pqx1u0evpm" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/OuterPartUIArrays/outer_utility_parts.tres" id="8_8f4ys"]
@@ -14,146 +15,136 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnlwc"]
 bg_color = Color(0.54099, 0.540991, 0.54099, 1)
 
-[node name="EvoScreenOuterBlueprintUi" type="Control" node_paths=PackedStringArray("display_vbox")]
-layout_mode = 3
-anchors_preset = 15
+[node name="EvoScreenOuterBlueprintUI" type="PanelContainer" node_paths=PackedStringArray("display_vbox")]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 301.0
 grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("1_f43b1")
 initial_creature_part_ui_database = ExtResource("2_ss3no")
-display_vbox = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display/ScrollContainer/DisplayVbox")
+display_vbox = NodePath("MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display/ScrollContainer/DisplayVbox")
 creature_part_type = "outer"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-alignment = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="CenterContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CenterContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="CancelAddCellButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer2"]
+[node name="CancelAddCellButton" type="TextureButton" parent="MarginContainer/HBoxContainer/CenterContainer2"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("1_2onee")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_84fye")
+creature_part_button = true
+evo_ui_mouse_filter_change = ExtResource("5_s1m3t")
 
-[node name="Space" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Space" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.65
 theme_override_styles/panel = SubResource("StyleBoxFlat_y1lww")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Menu" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Menu" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jnlwc")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="melee_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer"]
+[node name="melee_button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer"]
 layout_mode = 2
 text = "Melee"
 script = ExtResource("5_0aw6k")
 creature_part_ui_database = ExtResource("2_ss3no")
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jnlwc")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ranged_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer"]
+[node name="ranged_button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 text = "Ranged"
 script = ExtResource("5_0aw6k")
 creature_part_ui_database = ExtResource("6_u3lwt")
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jnlwc")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="mana_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer"]
+[node name="mana_button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer"]
 layout_mode = 2
 text = "Mana"
 script = ExtResource("5_0aw6k")
 creature_part_ui_database = ExtResource("7_23aq2")
 
-[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jnlwc")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="utility_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer"]
+[node name="utility_button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer"]
 layout_mode = 2
 text = "Utility"
 script = ExtResource("5_0aw6k")
 creature_part_ui_database = ExtResource("8_8f4ys")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -161,31 +152,31 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Display" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="Display" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="DisplayVbox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display/ScrollContainer"]
+[node name="DisplayVbox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display/ScrollContainer"]
 layout_mode = 2
 
-[node name="Space2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
-
-[node name="Space3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Space2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" to="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer/melee_button" to="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer/melee_button" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" to="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" to="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer/utility_button" to="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer/utility_button" method="_on_pressed"]
+[node name="Space3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" to="MarginContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer/melee_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer3/MarginContainer/melee_button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer/utility_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer5/MarginContainer/utility_button" method="_on_pressed"]

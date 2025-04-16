@@ -4,28 +4,15 @@ extends Control
 
 @onready var item_panel_container = preload("res://World Scene/scenes/UI/item_panel_container.tscn")
 
-@export var gold_label: Label
-@export var claws_label: Label
-@export var hoofs_label: Label
-@export var scales_label: Label
-@export var shards_label: Label
-@export var essence_label: Label
-@export var keys_label: Label
-
 @export var player_items_vflow: VFlowContainer
 
-func _ready():
-	_set_resources()
+@export var player_items_changed: Event
 
-func _set_resources():
-	gold_label.text = str(player_inventory.gold)
-	claws_label.text = str(player_inventory.claws)
-	hoofs_label.text = str(player_inventory.hoofs)
-	scales_label.text = str(player_inventory.scales)
-	shards_label.text = str(player_inventory.shards)
-	essence_label.text = str(player_inventory.essence)
-	keys_label.text = str(player_inventory.keys)
-	
+func _ready():
+	player_items_changed.connect("event_triggered", set_items)
+	set_items()
+
+func set_items():
 	for item in player_items_vflow.get_children():
 		item.queue_free()
 	

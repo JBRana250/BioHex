@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr8qn62c5rrb8"]
+
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/RangedDamageComponent.gd" id="1_4imse"]
+[ext_resource type="Script" path="res://CreatureParts/CellParts/Generic/basic_cell_caster.gd" id="1_ngxei"]
+[ext_resource type="PackedScene" uid="uid://nfv7w7uxsgvj" path="res://CreatureParts/CellParts/Generic/Meshes/basic_cell_caster_mesh.tscn" id="2_ajf2s"]
+
+[node name="basic_cell_caster" type="Node3D" node_paths=PackedStringArray("creature_part_mesh", "ranged_damage_component")]
+script = ExtResource("1_ngxei")
+creature_part_mesh = NodePath("basic_cell_caster_mesh")
+ranged_damage_component = NodePath("Components/RangedDamageComponent")
+basiccellcaster_mult = 1.0
+base_damage = 1.0
+
+[node name="reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.56)
+
+[node name="Components" type="Node" parent="."]
+
+[node name="RangedDamageComponent" type="Node" parent="Components"]
+script = ExtResource("1_4imse")
+owner_alignment = ""
+
+[node name="basic_cell_caster_mesh" parent="." groups=["Mesh"] instance=ExtResource("2_ajf2s")]

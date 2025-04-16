@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0rfumhunbfp2"]
+[gd_scene load_steps=8 format=3 uid="uid://0rfumhunbfp2"]
 
 [ext_resource type="PackedScene" uid="uid://brl4uv3hl2vtj" path="res://Evolution Scene/Assets/Cell Part Blueprints/core_creature_part_blueprint.glb" id="1_677d1"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/Blueprint.gd" id="2_7g41e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBMouseInputScript.gd" id="4_rm3y6"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBShowUIScript.gd" id="5_j0ecy"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/BlueprintProperties.gd" id="6_ba3aw"]
+[ext_resource type="Resource" uid="uid://d38jrky6a7ph6" path="res://Events/evo_screen_events/evo_ui_mouse_filter_change.tres" id="6_up5op"]
 
 [node name="corecomponentblueprint" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component", "properties") instance=ExtResource("1_677d1")]
 script = ExtResource("2_7g41e")
@@ -36,6 +37,7 @@ show_UI_component = NodePath("../ShowUIComponent")
 script = ExtResource("5_j0ecy")
 ui_scene_res_path = "res://Evolution Scene/Scenes/UI/core_blueprint/evo_screen_core_blueprint_ui.tscn"
 properties = NodePath("../Properties")
+evo_ui_mouse_filter_change = ExtResource("6_up5op")
 
 [node name="Properties" type="Node" parent="Components" index="2"]
 script = ExtResource("6_ba3aw")

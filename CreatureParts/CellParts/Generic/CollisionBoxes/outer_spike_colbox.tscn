@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://y4bbc7gbolxh"]
 
-[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerouternail.gd" id="1_qp25f"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/player_outer_spike.gd" id="1_qp25f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mu226"]
 radius = 0.18

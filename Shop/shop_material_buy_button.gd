@@ -1,5 +1,7 @@
 extends Button
 
+@export var player_resources_changed: Event
+
 @export var player_inventory: PlayerInventory
 @export var shop_inventory: ShopInventory
 
@@ -27,7 +29,8 @@ func _on_pressed() -> void:
 					shop_inventory.materials["keys"] -= 1
 					
 			owner.stock -= 1
-			UI.currently_active_ui._set_resources()
+			
+			player_resources_changed.emit_signal("event_triggered")
 			
 			if owner.stock <= 0:
 				owner.queue_free()

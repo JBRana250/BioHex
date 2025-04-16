@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://clieiq0xms47h"]
+
+[ext_resource type="Script" path="res://Evolution Scene/Scenes/creature_part_editor_area.gd" id="1_icuxr"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CEMouseInputScript.gd" id="2_n4ag7"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditShowUIScript.gd" id="3_s0bsj"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditorProperties.gd" id="4_5fxnh"]
+
+[node name="CreaturePartEditorArea" type="Node3D" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component", "properties", "area_3D")]
+script = ExtResource("1_icuxr")
+show_UI_component = NodePath("Components/ShowUIComponent")
+change_material_component = NodePath("Components/MouseInputComponent")
+mouse_input_component = NodePath("Components/MouseInputComponent")
+properties = NodePath("Components/Properties")
+area_3D = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MouseInputComponent" type="Node3D" parent="Components" node_paths=PackedStringArray("show_UI_component")]
+script = ExtResource("2_n4ag7")
+show_UI_component = NodePath("../ShowUIComponent")
+is_creature_part_editor_area = true
+
+[node name="ShowUIComponent" type="Node" parent="Components" node_paths=PackedStringArray("properties")]
+script = ExtResource("3_s0bsj")
+properties = NodePath("../Properties")
+
+[node name="Properties" type="Node" parent="Components"]
+script = ExtResource("4_5fxnh")
+
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="onMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="onMouseExited"]

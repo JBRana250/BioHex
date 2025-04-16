@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dy58jkfh1mnnc"]
+[gd_scene load_steps=23 format=3 uid="uid://dy58jkfh1mnnc"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureMovementScript.gd" id="1_jswkr"]
 [ext_resource type="Script" path="res://Player/components.gd" id="1_th3rn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="9_gqabf"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="10_xoqkk"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerHealthComponent.gd" id="11_5p4g1"]
+[ext_resource type="Resource" uid="uid://b2uovehx08vg8" path="res://Events/combat_events/player_defeated.tres" id="11_ss87w"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="12_abmdm"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerManaComponent.gd" id="13_j3yxs"]
 [ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="14_04022"]
@@ -19,6 +20,8 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/on_kill_enemy_component.gd" id="15_x1l05"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/OnDealDamageComponent.gd" id="16_v7q71"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureOnAttackComponent.gd" id="17_uxl8n"]
+[ext_resource type="Resource" uid="uid://dkx2unyviksbt" path="res://Events/combat_events/enemy_defeated.tres" id="18_vos8v"]
+[ext_resource type="Resource" uid="uid://t66hkuyalg27" path="res://Events/combat_events/combat_room_cleared.tres" id="19_8awir"]
 
 [node name="Components" type="Node" node_paths=PackedStringArray("force_component", "health_component", "mana_component", "death_component", "on_deal_damage_component", "damage_component")]
 script = ExtResource("1_th3rn")
@@ -66,6 +69,7 @@ mana_component = NodePath("../ManaComponent")
 
 [node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("8_d7tmd")
+player_defeated = ExtResource("11_ss87w")
 
 [node name="ForceComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component")]
 script = ExtResource("9_gqabf")
@@ -96,6 +100,9 @@ script = ExtResource("15_x1l05")
 player_inventory = ExtResource("14_04022")
 player_stat_calculator = NodePath("../CreatureStatCalculator")
 mana_component = NodePath("../ManaComponent")
+enemy_defeated = ExtResource("18_vos8v")
+player_defeated = ExtResource("11_ss87w")
+combat_room_cleared = ExtResource("19_8awir")
 
 [node name="OnDealDamageComponent" type="Node" parent="." node_paths=PackedStringArray("stat_calculator", "mana_component")]
 script = ExtResource("16_v7q71")

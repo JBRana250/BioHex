@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1bjeqf1wubfm"]
 
-[ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/craft_cost/creature_part_blueprint_craft_cost.gd" id="1_0yhl3"]
-[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_wmtde"]
+[ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/craft_cost/blueprint_craft_cost.gd" id="1_q454i"]
+[ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_pdl2s"]
 
-[node name="CreaturePartBlueprintCraftCost" type="PanelContainer" node_paths=PackedStringArray("label", "texture_rect")]
+[node name="CraftCostModule" type="PanelContainer" node_paths=PackedStringArray("label", "texture_rect")]
 offset_right = 76.0
 offset_bottom = 56.0
 size_flags_horizontal = 3
-script = ExtResource("1_0yhl3")
+script = ExtResource("1_q454i")
 label = NodePath("MarginContainer/HBoxContainer/Label")
 texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
 
@@ -30,6 +30,6 @@ text = "1"
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("2_wmtde")
+texture = ExtResource("2_pdl2s")
 expand_mode = 3
 stretch_mode = 5

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Relative_Position_To_Cell_Resource" load_steps=2 format=3 uid="uid://c4ujk2domuc64"]
+
+[ext_resource type="Script" path="res://Resources/Creature Resources/rel_pos_to_cell_resource.gd" id="1_equww"]
+
+[resource]
+script = ExtResource("1_equww")
+rel_pos_to_cell_dict = {
+1: Vector3(0, 1, 0),
+2: Vector3(0, 1, 0),
+3: Vector3(0, 1, 0),
+4: Vector3(0, 1, 0),
+5: Vector3(0, 1, 0),
+6: Vector3(0, 1, 0)
+}

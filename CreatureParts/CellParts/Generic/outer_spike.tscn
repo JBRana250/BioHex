@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://s1hie80ofivg"]
+
+[ext_resource type="Script" path="res://CreatureParts/CellParts/Generic/outer_spike.gd" id="1_ja1dq"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/melee weapon scripts/meleeconnectsignals.gd" id="2_2cyub"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureMeleeScript.gd" id="3_a2ox4"]
+[ext_resource type="PackedScene" uid="uid://co3rsyuowdnkp" path="res://CreatureParts/CellParts/Generic/Meshes/outer_spike_mesh.tscn" id="4_53kve"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfcn5"]
+margin = 0.05
+radius = 0.19
+height = 0.47
+
+[node name="outer_spike" type="Node3D" node_paths=PackedStringArray("creature_part_mesh", "melee_damage_component")]
+script = ExtResource("1_ja1dq")
+creature_part_mesh = NodePath("outer_spike_mesh")
+melee_damage_component = NodePath("outer_spike_hitbox/Components/MeleeDamageComponent")
+outernail_damage_mult = 1.0
+base_damage = 1.0
+
+[node name="outer_spike_hitbox" type="Area3D" parent="." node_paths=PackedStringArray("MeleeDamageComponent")]
+collision_layer = 256
+collision_mask = 65
+priority = -1
+script = ExtResource("2_2cyub")
+MeleeDamageComponent = NodePath("Components/MeleeDamageComponent")
+
+[node name="outer_spike_hitbox" type="CollisionShape3D" parent="outer_spike_hitbox" groups=["Hitbox"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_lfcn5")
+
+[node name="Components" type="Node" parent="outer_spike_hitbox"]
+
+[node name="MeleeDamageComponent" type="Node" parent="outer_spike_hitbox/Components"]
+script = ExtResource("3_a2ox4")
+
+[node name="outer_spike_mesh" parent="." groups=["Mesh"] instance=ExtResource("4_53kve")]
+
+[connection signal="body_shape_entered" from="outer_spike_hitbox" to="outer_spike_hitbox" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="outer_spike_hitbox" to="outer_spike_hitbox" method="_on_body_shape_exited"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://co3rsyuowdnkp"]
+
+[ext_resource type="PackedScene" uid="uid://c0jtvr5xh7ec0" path="res://Combat Scene/assets/cell parts/generalplayer/outer_spike.glb" id="1_113nl"]
+
+[node name="outer_spike_mesh" instance=ExtResource("1_113nl")]

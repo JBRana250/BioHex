@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://crhywd5vngo51"]
+[gd_scene load_steps=12 format=3 uid="uid://crhywd5vngo51"]
 
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/blueprint_panel/creature_part_blueprint_panel.gd" id="1_ww2v7"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/creature_part_blueprint_button.gd" id="2_ptf6w"]
 [ext_resource type="Resource" uid="uid://dq5mxnsbq4s74" path="res://Player/PlayerCreatureData.tres" id="3_7oprr"]
+[ext_resource type="Resource" uid="uid://ctxproj4n0o83" path="res://Events/player_inventory_events/player_resources_changed.tres" id="3_h6hna"]
+[ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="4_modbv"]
+[ext_resource type="Resource" uid="uid://d38jrky6a7ph6" path="res://Events/evo_screen_events/evo_ui_mouse_filter_change.tres" id="6_fuwmx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahqfg"]
 
@@ -118,6 +121,9 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynrh3")
 text = "Craft"
 script = ExtResource("2_ptf6w")
+player_resources_changed = ExtResource("3_h6hna")
 player_creature_data = ExtResource("3_7oprr")
+player_inventory = ExtResource("4_modbv")
+evo_ui_mouse_filter_change = ExtResource("6_fuwmx")
 
 [connection signal="pressed" from="HBoxContainer/PanelContainer3/MarginContainer/Button" to="HBoxContainer/PanelContainer3/MarginContainer/Button" method="_on_pressed"]

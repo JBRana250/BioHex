@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://44xva61htfj0"]
+[gd_scene load_steps=15 format=3 uid="uid://44xva61htfj0"]
 
 [ext_resource type="PackedScene" uid="uid://c5epxmcm7sld2" path="res://Combat Scene/scenes/room scenes/roomtemplate.tscn" id="1_qdwal"]
 [ext_resource type="PackedScene" uid="uid://c04aehk23h5bp" path="res://Combat Scene/scenes/world scenes/outerwater.tscn" id="2_xjo0g"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://bjq0kl0nycslr" path="res://Resources/EnemyDrops/spikewalkerdrops.tres" id="8_2khsr"]
 [ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="9_y7sh6"]
 [ext_resource type="PackedScene" uid="uid://d17mqeqgjig8x" path="res://Resources/Inventory/creature_stat_calculator.tscn" id="10_0mm5l"]
+[ext_resource type="Resource" uid="uid://dkx2unyviksbt" path="res://Events/combat_events/enemy_defeated.tres" id="10_guekt"]
+[ext_resource type="Resource" uid="uid://t66hkuyalg27" path="res://Events/combat_events/combat_room_cleared.tres" id="11_66fwf"]
 
 [sub_resource type="Environment" id="Environment_kv8t8"]
 glow_enabled = true
@@ -57,6 +59,8 @@ num_of_enemies = 3
 victory_ui = NodePath("../VictoryUi")
 player_inventory = ExtResource("9_y7sh6")
 player_stat_calculator = NodePath("PlayerStatCalculator")
+enemy_defeated = ExtResource("10_guekt")
+combat_room_cleared = ExtResource("11_66fwf")
 
 [node name="PlayerStatCalculator" parent="RoomClearManager" instance=ExtResource("10_0mm5l")]
 

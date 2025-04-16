@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://nfv7w7uxsgvj"]
+
+[ext_resource type="PackedScene" uid="uid://didrf2sf1504f" path="res://Combat Scene/assets/cell parts/generalplayer/basiccellcaster.glb" id="1_al0gv"]
+
+[node name="basic_cell_caster_mesh" instance=ExtResource("1_al0gv")]

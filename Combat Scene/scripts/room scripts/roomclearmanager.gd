@@ -9,8 +9,11 @@ extends Node
 
 @export var player_stat_calculator: Node
 
+@export var enemy_defeated: Event
+@export var combat_room_cleared: Event
+
 func _ready():
-	EventManager.subscribe("EnemyDefeated", onEnemyDeath)
+	enemy_defeated.connect("event_triggered", onEnemyDeath)
 
 func _get_rand_resource(weights):
 	var gold_weight = weights["Gold"]
@@ -114,12 +117,12 @@ func _gain_gold_random():
 	player_inventory.gold += guaranteed_coins
 	return guaranteed_coins
 
-func onEnemyDeath(_event_data):
+func onEnemyDeath():
 	num_of_enemies -= 1
 	if num_of_enemies == 0:
 		#room has been cleared
-		EventManager.unsubscribe("EnemyDefeated", onEnemyDeath)
-		EventManager.broadcast_event("CombatRoomCleared", {})
+		enemy_defeated.disconnect("event_triggered", onEnemyDeath)
+		combat_room_cleared.emit_signal("event_triggered")
 		
 		var resources_gained = _calculate_and_increase_resources()
 		

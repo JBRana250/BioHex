@@ -7,6 +7,8 @@ var creature
 
 @export var already_dead: bool = false
 
+@export var enemy_defeated: Event
+
 func _wait(seconds):
 	var t = Timer.new()
 	t.set_wait_time(seconds)
@@ -39,7 +41,7 @@ func Death():
 		return
 	
 	#connect this so that the game knows the enemy died
-	EventManager.broadcast_event("EnemyDefeated", {})
+	enemy_defeated.emit_signal("event_triggered")
 	
 	already_dead = true
 	

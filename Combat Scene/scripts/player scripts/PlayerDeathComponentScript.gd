@@ -1,5 +1,7 @@
 extends Node
 
+@export var player_defeated: Event
+
 var creature
 @onready var body: Node3D = creature.Dependencies["body"]
 
@@ -33,7 +35,7 @@ func _emit_death_particles(part):
 
 func Death():
 	
-	EventManager.broadcast_event("PlayerDefeated", {})
+	player_defeated.emit_signal("event_triggered")
 	
 	for child in body.get_children():
 		if child is Node3D:

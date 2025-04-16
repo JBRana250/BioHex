@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://4qxtpb820wlg"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerScript.gd" id="1_ps455"]
-[ext_resource type="PackedScene" uid="uid://b8x1oxdqk483r" path="res://CreatureParts/CellParts/Generic/basiccellcaster.tscn" id="4_5ffb4"]
+[ext_resource type="PackedScene" path="res://CreatureParts/CellParts/Generic/basiccellcaster.tscn" id="4_5ffb4"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerMovementScript.gd" id="5_7mvi1"]
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outernail.tscn" id="5_eopfu"]
-[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/Generic/basiccellcore.tscn" id="5_wfkyi"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outer_spike.tscn" id="5_eopfu"]
+[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/Generic/basic_cell_core.tscn" id="5_wfkyi"]
 [ext_resource type="PackedScene" uid="uid://du1j44gmra2u0" path="res://CreatureParts/CellParts/Player/basiccell.tscn" id="6_01ucr"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playercorecell.gd" id="6_al8x0"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerRotationScript.gd" id="6_mn4wx"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerInputScript.gd" id="12_32yyw"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerDeathComponentScript.gd" id="14_enn3v"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playercellcaster.gd" id="14_xkxyf"]
-[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/playerouternail.gd" id="18_gm4cy"]
+[ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/cell part scripts/player_outer_spike.gd" id="18_gm4cy"]
 
 [sub_resource type="GDScript" id="GDScript_bye3k"]
 script/source = "extends Node3D

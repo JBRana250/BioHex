@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dquy7dajyjfhh"]
+[gd_scene load_steps=4 format=3 uid="uid://dquy7dajyjfhh"]
 
 [ext_resource type="Script" path="res://Combat Scene/scripts/player scripts/PlayerScript.gd" id="1_tgien"]
+[ext_resource type="Resource" uid="uid://t66hkuyalg27" path="res://Events/combat_events/combat_room_cleared.tres" id="2_5mafv"]
 [ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="2_e5gt3"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
@@ -9,4 +10,5 @@ axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_tgien")
+combat_room_cleared = ExtResource("2_5mafv")
 player_inventory = ExtResource("2_e5gt3")

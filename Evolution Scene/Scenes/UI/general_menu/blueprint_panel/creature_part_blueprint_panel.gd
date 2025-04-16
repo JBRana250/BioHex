@@ -1,6 +1,6 @@
 extends Node
 
-const craft_cost_scene = preload("res://Evolution Scene/Scenes/UI/general_menu/craft_cost/creature_part_blueprint_craft_cost.tscn")
+const craft_cost_scene = preload("res://Evolution Scene/Scenes/UI/general_menu/craft_cost/blueprint_craft_cost.tscn")
 
 @export var creature_part_name_label: Label
 @export var creature_part_description_label: Label

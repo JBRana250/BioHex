@@ -9,6 +9,7 @@ const EXISTING_CELL_ACTIVE = preload("res://Evolution Scene/Assets/Existing Cell
 
 var mouse_hovering: bool = false
 var is_active: bool = false
+@export var is_creature_part_editor_area: bool = false
 @onready var properties = get_parent().get_node("Properties")
 
 func _set_material_hover():
@@ -17,6 +18,8 @@ func _set_material_hover():
 
 func _set_material_idle():
 	for cell_mesh in properties.cell_meshes:
+		if is_creature_part_editor_area:
+			cell_mesh.set_surface_override_material(0, null)
 		if cell_mesh.is_in_group("base"):
 			cell_mesh.set_surface_override_material(0, EXISTING_CELL_IDLE)
 		elif cell_mesh.is_in_group("core"):

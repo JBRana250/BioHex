@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkti7wrvy0ntp"]
+[gd_scene load_steps=11 format=3 uid="uid://bkti7wrvy0ntp"]
 
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasure_keysneeded.gd" id="1_cgcmd"]
 [ext_resource type="Texture2D" uid="uid://cgmlqfdr21lja" path="res://World Scene/assets/biohex chest locked.png" id="2_2qew1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://World Scene/scripts/room scripts/treasureclick.gd" id="3_0j76a"]
 [ext_resource type="Texture2D" uid="uid://cfa8fx0r3u0i0" path="res://Combat Scene/assets/nextbutton.png" id="4_15lf0"]
 [ext_resource type="Script" path="res://Generic/Scripts/ButtonNavToScene.gd" id="5_wj06o"]
+[ext_resource type="Resource" uid="uid://ctxproj4n0o83" path="res://Events/player_inventory_events/player_resources_changed.tres" id="6_b4la8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msv0e"]
 texture = ExtResource("2_b0pbc")
@@ -78,6 +79,7 @@ common_drops = 5
 rare_drops = 10
 legendary_drops = 25
 player_inventory = ExtResource("2_6unc4")
+player_resources_changed = ExtResource("6_b4la8")
 
 [node name="UnderTreasure" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

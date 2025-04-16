@@ -4,6 +4,11 @@ const BASIC_CELL_HEALTH_RESOURCE = preload("res://Resources/Creature Resources/P
 const BASIC_CELL_SCENE_RESOURCE = preload("res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_cell_scene_resource.tres")
 
 @export var player_creature_data: Creature_Resource
+@export var player_inventory: PlayerInventory
+
+@export var craft_cost: HBoxContainer
+
+@export var player_resources_changed: Event
 
 func _check_if_adjacent_cell(original_cell_position: Vector2, checked_cell_position: Vector2) -> bool:
 	if int(original_cell_position.x) & 1: # if odd
@@ -22,7 +27,70 @@ func _check_if_adjacent_cell(original_cell_position: Vector2, checked_cell_posit
 				return true 
 	return false
 
+func check_if_enough_materials(craft_cost_dict: Dictionary) -> bool:
+	for craft_cost in craft_cost_dict.keys():
+		var craft_amount = craft_cost_dict[craft_cost]
+		if craft_amount == 0:
+			continue
+		match craft_cost:
+			"Gold":
+				if player_inventory.gold < craft_amount:
+					return false
+			"Claws":
+				if player_inventory.claws < craft_amount:
+					return false
+			"Hoofs":
+				if player_inventory.hoofs < craft_amount:
+					return false
+			"Scales":
+				if player_inventory.scales < craft_amount:
+					return false
+			"Shards":
+				if player_inventory.shards < craft_amount:
+					return false
+			"Essence":
+				if player_inventory.essence < craft_amount:
+					return false
+			"Keys":
+				if player_inventory.keys < craft_amount:
+					return false
+			_:
+				print_debug("invalid craft cost key")
+				return false
+	return true
+
+func decrease_materials(craft_cost_dict: Dictionary):
+	for craft_cost in craft_cost_dict.keys():
+		var craft_amount = craft_cost_dict[craft_cost]
+		if craft_amount == 0:
+			continue
+		match craft_cost:
+			"Gold":
+				player_inventory.gold -= craft_amount
+			"Claws":
+				player_inventory.claws -= craft_amount
+			"Hoofs":
+				player_inventory.hoofs -= craft_amount
+			"Scales":
+				player_inventory.scales -= craft_amount
+			"Shards":
+				player_inventory.shards -= craft_amount
+			"Essence":
+				player_inventory.essence -= craft_amount
+			"Keys":
+				player_inventory.keys -= craft_amount
+
 func _on_pressed():
+	
+	#check to see if player has enough resources
+	var craft_cost_dict = craft_cost.craft_cost_dict
+	
+	if check_if_enough_materials(craft_cost_dict) == false:
+		return
+	decrease_materials(craft_cost_dict)
+	player_resources_changed.emit_signal("event_triggered")
+	
+	
 	#Edit player creature data -- add in new cell
 	var new_cell = Cell_Resource.new()
 	var properties = Globals.active_cell_blueprint.get_node("Components/Properties")

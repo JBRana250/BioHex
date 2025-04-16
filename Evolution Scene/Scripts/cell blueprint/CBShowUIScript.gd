@@ -4,10 +4,14 @@ extends Node
 var UI_instance: Control
 @export var properties: Node
 
+@export var evo_ui_mouse_filter_change: EventWithParam
+
 func globalShowUI():
 	if ui_scene_res_path.is_empty():
 		print_debug("no ui scene res path provided")
 		return
+	if properties.creature_part_blueprint:
+		evo_ui_mouse_filter_change.event_triggered.emit("stop")
 	UI_instance = load(ui_scene_res_path).instantiate()
 	
 	if properties.creature_part_blueprint:
@@ -15,7 +19,7 @@ func globalShowUI():
 		UI_instance.current_part_position = properties.creature_part_position
 		UI_instance.display_parts()
 	
-	UI.currently_active_ui.add_child(UI_instance)
+	UI.currently_active_ui.display_vbox.add_child(UI_instance)
 	Globals.inside_menu = true
 
 func globalHideUI():

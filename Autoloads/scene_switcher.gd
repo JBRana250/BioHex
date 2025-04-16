@@ -1,5 +1,7 @@
 extends Node
 
+@export var leaving_scene: Event
+
 var current_scene = null
 
 func _ready():
@@ -10,7 +12,7 @@ func switch_scene(res_path):
 	call_deferred("_deferred_switch_scene", res_path)
 
 func _deferred_switch_scene(res_path):
-	EventManager.broadcast_event("LeavingScene", {"scene":current_scene})
+	leaving_scene.emit_signal("event_triggered")
 	current_scene.queue_free()
 	var scene = load(res_path)
 	current_scene = scene.instantiate()

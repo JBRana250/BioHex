@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cell_Resource" load_steps=10 format=3 uid="uid://sd7gemnfjca4"]
+[gd_resource type="Resource" script_class="Cell_Resource" load_steps=11 format=3 uid="uid://sd7gemnfjca4"]
 
 [ext_resource type="Resource" uid="uid://d3qn1sd08jd4w" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/basic_core_cell_health_resource.tres" id="1_3swd2"]
 [ext_resource type="Resource" uid="uid://icaupj7fs4ci" path="res://Resources/Creature Resources/Premade Resources/Player/Scene Resources/basic_core_cell_scene_resource.tres" id="2_epibl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bjau5gusvyljb" path="res://Resources/Creature Resources/Premade Resources/Player/Damage Resources/outer_spike_damage_resource.tres" id="4_afujk"]
 [ext_resource type="Resource" uid="uid://blvbtpr7n0y3q" path="res://Resources/Creature Resources/Premade Resources/Player/Health Resources/outer_spike_health_resource.tres" id="5_p5duc"]
 [ext_resource type="Resource" uid="uid://vk4k67agxu2p" path="res://Resources/Creature Resources/Premade Resources/Generic/Scene Resources/outer_spike_scene_resource.tres" id="6_qakqr"]
+[ext_resource type="Resource" uid="uid://3c7u8wyguv58" path="res://Resources/Creature Resources/CreaturePartResources/OuterPartResources/RelPosToCell/outer_spike_rptc.tres" id="7_tw3q6"]
 
 [sub_resource type="Resource" id="Resource_y7heb"]
 script = ExtResource("3_d5nvn")
@@ -15,6 +16,7 @@ Name = "outer_spike"
 type = "melee_weapon"
 position = 1
 pos_to_origin = Vector2(0, -1)
+rel_pos_to_cell_resource = ExtResource("7_tw3q6")
 health_resource = ExtResource("5_p5duc")
 scene_resource = ExtResource("6_qakqr")
 damage_resource = ExtResource("4_afujk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dn1amqhps237y"]
+[gd_scene load_steps=18 format=3 uid="uid://dn1amqhps237y"]
 
 [ext_resource type="Script" path="res://Player/components.gd" id="1_0ke7y"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/OnDealDamageComponent.gd" id="1_7kw3v"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/EnemyDeathComponent.gd" id="5_6jtrm"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSizeScript.gd" id="6_v4ihp"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureForceScript.gd" id="7_p56cn"]
+[ext_resource type="Resource" uid="uid://dkx2unyviksbt" path="res://Events/combat_events/enemy_defeated.tres" id="8_dwvyl"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureSpawnComponentScript.gd" id="8_v3v8g"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureHealthComponent.gd" id="9_bjh6q"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureDamageComponent.gd" id="10_jhwpc"]
@@ -49,6 +50,7 @@ rotation_component = NodePath("../RotationComponent")
 
 [node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("5_6jtrm")
+enemy_defeated = ExtResource("8_dwvyl")
 
 [node name="EnemySizeComponent" type="Node" parent="."]
 script = ExtResource("6_v4ihp")

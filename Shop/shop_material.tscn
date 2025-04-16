@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://gi4xehlx01ey"]
+[gd_scene load_steps=10 format=3 uid="uid://gi4xehlx01ey"]
 
 [ext_resource type="Script" path="res://Shop/shop_material.gd" id="1_n8xiw"]
 [ext_resource type="Resource" uid="uid://dcpjklrfnhrsj" path="res://Resources/MatResource/mat_resource.tres" id="2_lfkhl"]
 [ext_resource type="Texture2D" uid="uid://brep6wjmjjfj6" path="res://In-Game Resource Sprite/Biohex Gold Sprite.png" id="2_rejfm"]
 [ext_resource type="Texture2D" uid="uid://ce0208wrsnvx5" path="res://In-Game Resource Sprite/Biohex Claw Sprite.png" id="3_1fot1"]
 [ext_resource type="Script" path="res://Shop/shop_material_buy_button.gd" id="5_hcoly"]
+[ext_resource type="Resource" uid="uid://ctxproj4n0o83" path="res://Events/player_inventory_events/player_resources_changed.tres" id="6_armk0"]
 [ext_resource type="Resource" uid="uid://cb8kjmwjph8n6" path="res://Resources/Inventory/PlayerInventory/player_inventory.tres" id="6_n2se6"]
 [ext_resource type="Resource" uid="uid://d0qp24aua0eid" path="res://Resources/ShopInventory/shop_inventory.tres" id="7_yciwn"]
 
@@ -130,6 +131,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Buy"
 script = ExtResource("5_hcoly")
+player_resources_changed = ExtResource("6_armk0")
 player_inventory = ExtResource("6_n2se6")
 shop_inventory = ExtResource("7_yciwn")
 

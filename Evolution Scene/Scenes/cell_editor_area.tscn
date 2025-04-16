@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bimkuixjthv3l"]
+
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/celleditorarea.gd" id="1_nox5b"]
+[ext_resource type="PackedScene" uid="uid://bdsllr50qbwyb" path="res://Evolution Scene/Scenes/Cell Part Blueprints/cell blueprint/cell_blueprint_colbox.tscn" id="2_6xcbj"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CEMouseInputScript.gd" id="3_or6oc"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditShowUIScript.gd" id="4_efmj7"]
+[ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditorProperties.gd" id="5_jjf46"]
+
+[node name="CellEditorArea" type="Node3D" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component")]
+script = ExtResource("1_nox5b")
+show_UI_component = NodePath("Components/ShowUIComponent")
+change_material_component = NodePath("Components/MouseInputComponent")
+mouse_input_component = NodePath("Components/MouseInputComponent")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="cellblueprintcolbox" parent="Area3D" instance=ExtResource("2_6xcbj")]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MouseInputComponent" type="Node3D" parent="Components" node_paths=PackedStringArray("show_UI_component")]
+script = ExtResource("3_or6oc")
+show_UI_component = NodePath("../ShowUIComponent")
+
+[node name="ShowUIComponent" type="Node" parent="Components" node_paths=PackedStringArray("properties")]
+script = ExtResource("4_efmj7")
+properties = NodePath("../Properties")
+
+[node name="Properties" type="Node" parent="Components"]
+script = ExtResource("5_jjf46")
+
+[connection signal="mouse_entered" from="Area3D" to="Components/MouseInputComponent" method="onMouseEntered"]
+[connection signal="mouse_exited" from="Area3D" to="Components/MouseInputComponent" method="onMouseExited"]

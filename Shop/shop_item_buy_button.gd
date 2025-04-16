@@ -2,6 +2,9 @@ extends Button
 
 var already_pressed: bool = false
 
+@export var player_resources_changed: Event
+@export var player_items_changed: Event
+
 @export var player_items_editor: Node
 
 @export var player_inventory: PlayerInventory
@@ -16,6 +19,7 @@ func _on_pressed() -> void:
 		player_items_editor._add_item(owner.item)
 		shop_inventory.items.erase(owner.item)
 		
-		UI.currently_active_ui._set_resources()
+		player_resources_changed.emit_signal("event_triggered")
+		player_items_changed.emit_signal("event_triggered")
 		
 		owner.queue_free()

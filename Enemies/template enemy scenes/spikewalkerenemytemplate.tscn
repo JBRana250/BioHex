@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbsssjjkhekwl"]
 
 [ext_resource type="PackedScene" uid="uid://bcqsiwg1jnp4o" path="res://Combat Scene/assets/cell parts/enemy/enemybasiccell.glb" id="1_ls4ai"]
-[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outernail.tscn" id="2_cq5on"]
+[ext_resource type="PackedScene" uid="uid://s1hie80ofivg" path="res://CreatureParts/CellParts/Generic/outer_spike.tscn" id="2_cq5on"]
 [ext_resource type="Script" path="res://Enemies/enemy creature scripts/enemycellpartscripts/enemycorecell.gd" id="3_h7rus"]
 [ext_resource type="Script" path="res://Combat Scene/scripts/Generic Scripts/CreatureColBoxScript.gd" id="4_gqoe4"]
 

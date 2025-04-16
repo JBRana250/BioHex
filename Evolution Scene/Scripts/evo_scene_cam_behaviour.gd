@@ -41,5 +41,5 @@ func _process(delta):
 		camera_pivot.rotation.x += (next_mouse_position.y - prev_mouse_position.y) * -cam_rotation_speed * delta
 		#lock z rotation
 		camera_pivot.rotation.z = 0
-		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-90), 0)
+		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -90, 0)
 		prev_mouse_position = next_mouse_position

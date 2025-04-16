@@ -25,7 +25,6 @@ func globalDeselectBlueprint():
 func _input(_event):
 	if Input.is_action_just_pressed("left_click"):
 		if mouse_hovering == true:
-			
 			var active_blueprint = Globals.active_cell_blueprint
 			
 			# if there is already an active blueprint:
@@ -37,4 +36,5 @@ func _input(_event):
 			mesh._set_material_active()
 			show_UI_component.globalShowUI()
 			is_active = true
+			
 			Globals.active_cell_blueprint = owner

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Creature_Part_Scene_Resource" load_steps=3 format=3 uid="uid://bmll5uaf5spsh"]
 
 [ext_resource type="Script" path="res://Resources/Creature Resources/creature_part_scene_resource.gd" id="1_inmlx"]
-[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/Generic/basiccellcore.tscn" id="1_xsrng"]
+[ext_resource type="PackedScene" uid="uid://uj5omfj3kl8y" path="res://CreatureParts/CellParts/Generic/basic_cell_core.tscn" id="1_xsrng"]
 
 [resource]
 script = ExtResource("1_inmlx")
