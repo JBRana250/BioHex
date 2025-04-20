@@ -12,6 +12,17 @@ var is_active: bool = false
 @export var is_creature_part_editor_area: bool = false
 @onready var properties = get_parent().get_node("Properties")
 
+@export var mouse_entered_evo_UI: EventNoParam
+
+func _ready():
+	_set_material_idle()
+	mouse_entered_evo_UI.connect("event_triggered", onMouseEnteredEvoUI)
+
+func onMouseEnteredEvoUI():
+	if is_active == false:
+		_set_material_idle()
+	mouse_hovering = false
+
 func _set_material_hover():
 	for cell_mesh in properties.cell_meshes:
 		cell_mesh.set_surface_override_material(0, EXISTING_CELL_HOVER)
@@ -38,9 +49,6 @@ func onMouseExited():
 	if is_active == false:
 		_set_material_idle()
 	mouse_hovering = false
-	
-func _ready():
-	_set_material_idle()
 
 func globalDeselectBlueprint():
 	is_active = false

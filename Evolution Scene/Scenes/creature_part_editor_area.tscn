@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://clieiq0xms47h"]
+[gd_scene load_steps=6 format=3 uid="uid://clieiq0xms47h"]
 
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/creature_part_editor_area.gd" id="1_icuxr"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CEMouseInputScript.gd" id="2_n4ag7"]
+[ext_resource type="Resource" uid="uid://df3ccwmeld3gt" path="res://Events/evo_screen_events/mouse_entered_evo_ui.tres" id="3_7rib4"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditShowUIScript.gd" id="3_s0bsj"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell editor area/CellEditorProperties.gd" id="4_5fxnh"]
 
@@ -21,6 +22,7 @@ area_3D = NodePath("Area3D")
 script = ExtResource("2_n4ag7")
 show_UI_component = NodePath("../ShowUIComponent")
 is_creature_part_editor_area = true
+mouse_entered_evo_UI = ExtResource("3_7rib4")
 
 [node name="ShowUIComponent" type="Node" parent="Components" node_paths=PackedStringArray("properties")]
 script = ExtResource("3_s0bsj")

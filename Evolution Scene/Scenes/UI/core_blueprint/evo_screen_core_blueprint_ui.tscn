@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cj2ia2m0y6tod"]
+[gd_scene load_steps=12 format=3 uid="uid://cj2ia2m0y6tod"]
 
 [ext_resource type="Texture2D" uid="uid://cmmqodagwpscq" path="res://Evolution Scene/Assets/UI/cancel_button_2.png" id="1_bofd3"]
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/blueprint_menu_ui.gd" id="1_o8x58"]
 [ext_resource type="Resource" uid="uid://c55ol1i8d2lo4" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/CorePartUIArrays/core_ranged_parts.tres" id="2_6dxth"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/UI/cell blueprint/cancel_add_creature_cell_button.gd" id="2_jiarf"]
 [ext_resource type="Resource" uid="uid://c88ovxdpxiblj" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/CorePartUIArrays/core_mana_parts.tres" id="3_iotqc"]
+[ext_resource type="Resource" uid="uid://df3ccwmeld3gt" path="res://Events/evo_screen_events/mouse_entered_evo_ui.tres" id="3_w20gg"]
 [ext_resource type="Resource" uid="uid://c34nvjkifuc0j" path="res://CreatureParts/CreaturePartUI/CreaturePartUIArrays/CorePartUIArrays/core_utility_parts.tres" id="4_q5mck"]
 [ext_resource type="Script" path="res://Evolution Scene/Scenes/UI/general_menu/category_button/evo_screen_blueprint_ui_category_button.gd" id="5_lqatu"]
 [ext_resource type="Resource" uid="uid://d38jrky6a7ph6" path="res://Events/evo_screen_events/evo_ui_mouse_filter_change.tres" id="5_v61dy"]
@@ -23,6 +24,7 @@ script = ExtResource("1_o8x58")
 initial_creature_part_ui_database = ExtResource("2_6dxth")
 display_vbox = NodePath("MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/Display/ScrollContainer/display_vbox")
 creature_part_type = "core"
+mouse_entered_evo_ui = ExtResource("3_w20gg")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -157,6 +159,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" to="MarginContainer/HBoxContainer/CenterContainer2/CancelAddCellButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer2/MarginContainer/ranged_button" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" to="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Menu/HBoxContainer/PanelContainer4/MarginContainer/mana_button" method="_on_pressed"]

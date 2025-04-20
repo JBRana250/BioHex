@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs31ffl6c1msk"]
+[gd_scene load_steps=10 format=3 uid="uid://bs31ffl6c1msk"]
 
 [ext_resource type="PackedScene" uid="uid://cafeaqdsf0b6u" path="res://Evolution Scene/Assets/Cell Part Blueprints/cell_blueprint.glb" id="1_pxb20"]
 [ext_resource type="Material" uid="uid://dr21mufu731pp" path="res://Evolution Scene/Assets/Cell Part Blueprints/blueprint_idle.tres" id="2_hc5a1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBMouseInputScript.gd" id="5_taogx"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/CBShowUIScript.gd" id="6_ohyt5"]
 [ext_resource type="Script" path="res://Evolution Scene/Scripts/cell blueprint/BlueprintProperties.gd" id="7_aq8bp"]
+[ext_resource type="Resource" uid="uid://df3ccwmeld3gt" path="res://Events/evo_screen_events/mouse_entered_evo_ui.tres" id="7_poi8w"]
 
 [node name="basiccellblueprint" node_paths=PackedStringArray("show_UI_component", "change_material_component", "mouse_input_component") groups=["CellBlueprint"] instance=ExtResource("1_pxb20")]
 script = ExtResource("2_q7oa2")
@@ -30,6 +31,7 @@ script = ExtResource("5_taogx")
 mesh = NodePath("../../Cylinder_001")
 properties = NodePath("../Properties")
 show_UI_component = NodePath("../ShowUIComponent")
+mouse_entered_evo_ui = ExtResource("7_poi8w")
 
 [node name="ShowUIComponent" type="Node" parent="Components" index="1" node_paths=PackedStringArray("properties")]
 script = ExtResource("6_ohyt5")

@@ -7,6 +7,16 @@ extends Node3D
 var mouse_hovering: bool = false
 var is_active: bool = false
 
+@export var mouse_entered_evo_ui: EventNoParam
+
+func _ready():
+	mouse_entered_evo_ui.connect("event_triggered", onMouseEnteredEvoUI)
+
+func onMouseEnteredEvoUI():
+	if is_active == false:
+		mesh._set_material_idle()
+	mouse_hovering = false
+
 func onMouseEntered():
 	if is_active == false:
 		mesh._set_material_hover()

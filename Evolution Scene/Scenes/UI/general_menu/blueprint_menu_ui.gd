@@ -10,6 +10,8 @@ const creature_part_blueprint_panel_scene = preload("res://Evolution Scene/Scene
 var current_cell_position: Vector2
 var current_part_position: int
 
+@export var mouse_entered_evo_ui: EventNoParam
+
 class CraftCost:
 	var mat_amount: int
 	var mat_type: String
@@ -42,4 +44,6 @@ func display_parts(creature_part_ui_database: CreaturePartUIDatabase = initial_c
 		creature_part_blueprint_panel_instance.craft_cost_array = craft_cost_array
 		creature_part_blueprint_panel_instance.initialize_creature_part_blueprint()
 		display_vbox.add_child(creature_part_blueprint_panel_instance)
-	
+
+func _on_mouse_entered() -> void:
+	mouse_entered_evo_ui.event_triggered.emit()

@@ -22,7 +22,6 @@ mouse_input_component = NodePath("Components/MouseInputComponent")
 [node name="MouseInputComponent" type="Node3D" parent="Components" node_paths=PackedStringArray("show_UI_component")]
 script = ExtResource("3_or6oc")
 show_UI_component = NodePath("../ShowUIComponent")
-is_creature_part_editor_area = null
 mouse_entered_evo_UI = ExtResource("4_30hws")
 
 [node name="ShowUIComponent" type="Node" parent="Components" node_paths=PackedStringArray("properties")]
